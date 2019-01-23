@@ -1,0 +1,12 @@
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\bin\Debug\TestApp.exe.config
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\bin\Debug\TestApp.exe
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\bin\Debug\TestApp.pdb
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\bin\Debug\System.ValueTuple.dll
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\bin\Debug\System.ValueTuple.xml
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\obj\Debug\TestApp.csprojAssemblyReference.cache
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\obj\Debug\TestApp.csproj.CoreCompileInputs.cache
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\obj\Debug\TestApp.csproj.CopyComplete
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\obj\Debug\TestApp.exe
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\obj\Debug\TestApp.pdb
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\bin\Debug\EPPlus.dll
+C:\Users\Ivan\source\repos\MakeSharpGreat\TestApp\TestApp\bin\Debug\EPPlus.xml
