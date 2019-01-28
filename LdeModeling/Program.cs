@@ -86,7 +86,7 @@ namespace TestApp
             RealGeneticAlgorithm realGa = new RealGeneticAlgorithm();
             RealGeneticAlgorithmParameters realGaParameters = new RealGeneticAlgorithmParameters();
 
-            realGaParameters.GenerationType = RvgaGenerationType.Uniform;
+            realGaParameters.GenerationType = PopulationGenerationType.Uniform;
             realGaParameters.GenerationFrom = Enumerable.Repeat(-3.0, 12).ToArray();
             realGaParameters.GenerationTo = Enumerable.Repeat(3.0, 12).ToArray();
 

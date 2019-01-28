@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes
+namespace TestApp.Optimization.EvolutionaryAlgorithms
 {
-    enum RvgaGenerationType
+    enum PopulationGenerationType
     {
         Uniform,
         Normal

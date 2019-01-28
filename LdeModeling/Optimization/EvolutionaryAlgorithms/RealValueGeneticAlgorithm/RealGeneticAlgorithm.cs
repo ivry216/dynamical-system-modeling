@@ -70,7 +70,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
         {
             // Generate the new population
             // With normal distribution
-            if (Parameters.GenerationType == RvgaGenerationType.Normal)
+            if (Parameters.GenerationType == PopulationGenerationType.Normal)
             {
                 for (int i = 0; i < Parameters.Size; i++)
                 {
@@ -81,7 +81,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
                 }
             }
             // With uniform distribution
-            if (Parameters.GenerationType == RvgaGenerationType.Uniform)
+            if (Parameters.GenerationType == PopulationGenerationType.Uniform)
             {
                 for (int i = 0; i < Parameters.Size; i++)
                 {

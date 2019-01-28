@@ -18,7 +18,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
         public RvgaNextPopulationType NextPopulationType { get; set; }
 
         // Generation of new populations
-        public RvgaGenerationType GenerationType { get; set; }
+        public PopulationGenerationType GenerationType { get; set; }
         public double[] GenerationFrom { get; set; }
         public double[] GenerationTo { get; set; }
         public double[] GenerationMean { get; set; }
