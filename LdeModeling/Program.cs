@@ -9,6 +9,7 @@ using TestApp.Models.Dynamical.InverseProblem;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
 using TestApp.Models.Dynamical.ModelToDataProcessing;
 using TestApp.Models.Dynamical.SamplePreprocessing;
+using TestApp.Optimization.EvolutionaryAlgorithms;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
 
