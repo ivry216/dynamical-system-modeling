@@ -12,6 +12,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
 
         public double CrossoverProbability { get; set; }
         public double DifferentialWeight { get; set; }
+        public bool IsAtLeastOneGenMutates { get; set; }
 
         // Generation of new populations
         public PopulationGenerationType GenerationType { get; set; }
