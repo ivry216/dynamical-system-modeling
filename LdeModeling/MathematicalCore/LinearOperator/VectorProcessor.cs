@@ -9,7 +9,7 @@ namespace TestApp.MathematicalCore.LinearOperator
     class VectorProcessor
     {
         #region Fields
-        private static readonly VectorProcessor instance = new VectorProcessor();
+        private static readonly Lazy<VectorProcessor> _singleton = new Lazy<VectorProcessor>(() => new VectorProcessor());
         #endregion Fields
 
         #region Static Properties
@@ -17,7 +17,7 @@ namespace TestApp.MathematicalCore.LinearOperator
         {
             get
             {
-                return instance;
+                return _singleton.Value;
             }
         }
         #endregion Static Properties

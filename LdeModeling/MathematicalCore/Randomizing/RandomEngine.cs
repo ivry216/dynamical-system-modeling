@@ -9,7 +9,7 @@ namespace TestApp.MathematicalCore.Randomizing
     class RandomEngine
     {
         #region Fields
-        private static readonly RandomEngine instance = new RandomEngine();
+        private static readonly Lazy<RandomEngine> _singleton = new Lazy<RandomEngine>(() => new RandomEngine());
         private Random _random;
         #endregion Fields
 
@@ -18,7 +18,7 @@ namespace TestApp.MathematicalCore.Randomizing
         {
             get
             {
-                return instance;
+                return _singleton.Value;
             }
         }
         #endregion Static Properties
