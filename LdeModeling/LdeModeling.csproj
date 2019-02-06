@@ -96,6 +96,8 @@
     <Compile Include="Models\IModelInput.cs" />
     <Compile Include="Models\IModelOutput.cs" />
     <Compile Include="Models\IModelParameters.cs" />
+    <Compile Include="Models\ModelingResults\Dynamical\DynamicalModelResultsIOManager.cs" />
+    <Compile Include="Models\ModelingResults\IModelingResultsIOManager.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolution.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParameters.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\EvolutionaryAlgorithm.cs" />
