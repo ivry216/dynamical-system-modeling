@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestApp.Models.Dynamical
 {
-    class DiscreteDynamicalModelOutput : IDiscreteOutput
+    public class DiscreteDynamicalModelOutput : IDiscreteOutput
     {
         public int NumberOfOutputs { get; }
 
