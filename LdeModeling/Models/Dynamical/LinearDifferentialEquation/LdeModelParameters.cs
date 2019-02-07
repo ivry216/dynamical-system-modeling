@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestApp.Models.Dynamical.LinearDifferentialEquation
 {
-    class LdeModelParameters : ILinearDifferentialEquationParameters
+    public class LdeModelParameters : ILinearDifferentialEquationParameters
     {
         public LinearDynamicalSystemParameters ModelParameters { get; set; }
 
