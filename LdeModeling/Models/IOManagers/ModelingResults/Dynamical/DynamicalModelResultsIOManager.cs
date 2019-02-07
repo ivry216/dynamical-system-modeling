@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestApp.Models.Dynamical;
 
-namespace TestApp.Models.ModelingResults.Dynamical
+namespace TestApp.Models.IOManagers.ModelingResults.Dynamical
 {
     public class DynamicalModelResultsIOManager
         : IModelingResultsIOManager<DiscreteDynamicalModelOutput, DiscreteDynamicalModelInput>
@@ -17,6 +17,12 @@ namespace TestApp.Models.ModelingResults.Dynamical
             // Save the data to file
             using (ExcelPackage package = new ExcelPackage(new FileInfo(fileName)))
             {
+                // Get worksheet names 
+                var names = package.Workbook.Worksheets.Select(ws => ws.Name);
+                // Check if there is ws with required name
+                if (names.Contains("Data"))
+                    package.Workbook.Worksheets.Delete(package.Workbook.Worksheets.Where(ws => ws.Name == "Data").First());
+
                 // Create worksheet
                 ExcelWorksheet wsData = package.Workbook.Worksheets.Add("Data");
                 // Set column names
@@ -51,6 +57,12 @@ namespace TestApp.Models.ModelingResults.Dynamical
 
         public void Save(DiscreteDynamicalModelOutput modelOutput, DiscreteDynamicalModelInput modelInput, string fileName)
         {
+            // Get worksheet names 
+            var names = package.Workbook.Worksheets.Select(ws => ws.Name);
+            // Check if there is ws with required name
+            if (names.Contains("Data"))
+                package.Workbook.Worksheets.Delete(package.Workbook.Worksheets.Where(ws => ws.Name == "Data").First());
+
             // Save the data to file
             using (ExcelPackage package = new ExcelPackage(new FileInfo(fileName)))
             {

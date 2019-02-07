@@ -16,6 +16,12 @@ namespace TestApp.Models.IOManagers.Parameters.Dynamical
             // Save the data to file
             using (ExcelPackage package = new ExcelPackage(new FileInfo(fileName)))
             {
+                // Get worksheet names 
+                var names = package.Workbook.Worksheets.Select(ws => ws.Name);
+                // Check if there is ws with required name
+                if (names.Contains("Parameters"))
+                    package.Workbook.Worksheets.Delete(package.Workbook.Worksheets.Where(ws => ws.Name == "Parameters").First());
+
                 // Create worksheet
                 ExcelWorksheet wsPars = package.Workbook.Worksheets.Add("Parameters");
 
