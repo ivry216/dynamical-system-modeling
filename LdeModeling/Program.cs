@@ -9,6 +9,8 @@ using TestApp.Models.Dynamical.InverseProblem;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
 using TestApp.Models.Dynamical.ModelToDataProcessing;
 using TestApp.Models.Dynamical.SamplePreprocessing;
+using TestApp.Models.IOManagers.ModelingResults.Dynamical;
+using TestApp.Models.IOManagers.Parameters.Dynamical;
 using TestApp.Optimization.EvolutionaryAlgorithms;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
@@ -73,9 +75,9 @@ namespace TestApp
             var integrationScheme = modelToDataProcessor.SetIntegrationSchemeBySample();
             model.EvaluationParameters = integrationScheme;
             model.ModelParameters.InitialState = sample.Data.InitialValue;
-            double result = modelToDataProcessor.CalculateCriterion(model);
+            double result = modelToDataProcessor.CalculateSingleOutputCriterion(model);
 
-            LdeInverseProblem ldeInverseProblem = new LdeInverseProblem(12);
+            LdeMultipleOutputInverseProblem ldeInverseProblem = new LdeMultipleOutputInverseProblem(12);
             ldeInverseProblem.NumberOfStateVars = 3;
             ldeInverseProblem.NumberOfInputVars = 1;
             ldeInverseProblem.SetData(sample);
@@ -106,10 +108,16 @@ namespace TestApp
             realGaParameters.Size = 200;
             realGaParameters.Iterations = 1000;
             
-
             realGa.SetProblem(ldeInverseProblem);
             realGa.SetParameters(realGaParameters);
             realGa.Evaluate();
+
+            model.ModelParameters.ModelParameters.AssignWithArray(realGa.BestSolution);
+            DynamicalModelResultsIOManager ioResultsManager = new DynamicalModelResultsIOManager();
+            ioResultsManager.Save((DiscreteDynamicalModelOutput)model.Evaluate(discreteDynamicalModelInput), "test1.xlsx");
+            ioResultsManager.Save((DiscreteDynamicalModelOutput)model.Evaluate(discreteDynamicalModelInput), discreteDynamicalModelInput, "test2.xlsx");
+            DynamicalModelParametersIOManager ioParamsManager = new DynamicalModelParametersIOManager();
+            ioParamsManager.Save((LdeModelParameters)model.ModelParameters, "test3.xlsx");
 
         }
     }

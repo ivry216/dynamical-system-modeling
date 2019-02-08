@@ -11,7 +11,7 @@ using TestApp.Optimization.Problem;
 
 namespace TestApp.Models.Dynamical.InverseProblem
 {
-    public class LdeInverseProblem : OptimizationProblem
+    public abstract class LdeInverseProblem : OptimizationProblem
     {
         #region Fields
 
@@ -65,14 +65,7 @@ namespace TestApp.Models.Dynamical.InverseProblem
             _model.ModelParameters.ModelParameters = new LinearDynamicalSystemParameters(NumberOfInputVars, NumberOfStateVars);
         }
 
-        public override double CalcualteCriterion(double[] alternative)
-        {
-            _model.ModelParameters.ModelParameters.AssignWithArray(alternative);
-
-            double result = _modelToDataProcessor.CalculateCriterion(_model);
-
-            return 1 / (1 + result);
-        }
+        public override abstract double CalcualteCriterion(double[] alternative);
 
         #endregion Setting
     }

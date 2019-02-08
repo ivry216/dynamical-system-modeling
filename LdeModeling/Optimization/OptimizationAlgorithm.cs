@@ -7,7 +7,7 @@ using TestApp.Optimization.Problem;
 
 namespace TestApp.Optimization
 {
-    abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>
+    abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IAlgorithm
         where AlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Fields
@@ -45,6 +45,17 @@ namespace TestApp.Optimization
         {
             Parameters = parameters;
         }
+
+        void IAlgorithm.SetParameters(object parameters)
+        {
+            SetParameters((AlgorithmParameters)parameters);
+        }
+
+        void IAlgorithm.Evaluate()
+        {
+            Evaluate();
+        }
+
         #endregion Inherited Methods
     }
 }

@@ -7,10 +7,10 @@ using TestApp.Optimization.Problem;
 
 namespace TestApp.Optimization
 {
-    interface IOptimizationAlgorithm<AlgorithmParameters>
-        where AlgorithmParameters : OptimizationAlgorithmParameters
+    public interface IOptimizationAlgorithm<TAlgorithmParametesr>
+        where TAlgorithmParametesr : OptimizationAlgorithmParameters
     {
-        void SetParameters(AlgorithmParameters parameters);
+        void SetParameters(TAlgorithmParametesr parameters);
         void SetProblem(OptimizationProblem problem);
         void Evaluate();
 

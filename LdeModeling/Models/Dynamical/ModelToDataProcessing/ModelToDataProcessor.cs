@@ -15,6 +15,7 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
         private SampleToLdeDataProcessor _samplePreprocessing;
         private int _sampleSize;
         private DynamicalSystemSample _sample;
+        private int _numberOfOutputs;
 
         public void SetInputs(IDynamicalModelInput inputs)
         {
@@ -24,6 +25,7 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
         public void SetData(DynamicalSystemSample sample)
         {
             _sample = sample;
+            _numberOfOutputs = _sample.Data.NumberOfOutputs;
             _samplePreprocessing = new SampleToLdeDataProcessor();
             _samplePreprocessing.Process(sample);
             _sampleSize = sample.Size;
@@ -34,7 +36,7 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
             return new LdeEvaluationParameters(_sample.Data.OutputStartTime, _sample.Data.OutputEndTime, _samplePreprocessing.IntegrationStep, areInputsPrecalculated: true);
         }
 
-        public double CalculateCriterion(LdeModel model)
+        public double CalculateSingleOutputCriterion(LdeModel model)
         {
             // Calculate the model output
             var output = (DiscreteDynamicalModelOutput)model.Evaluate(_inputs);
@@ -46,10 +48,25 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
                 sum += Math.Abs(output.Outputs[index][0] - indexAndValues[index][0]);
             }
 
-            //if (sum > 0)
-            //    throw new Exception();
-
             return sum / _sampleSize;
+        }
+
+        public double CalculateMultipleOutputCriterion(LdeModel model)
+        {
+            // Calculate the model output
+            var output = (DiscreteDynamicalModelOutput)model.Evaluate(_inputs);
+            //
+            double sum = 0;
+            var indexAndValues = _samplePreprocessing.IntegrationStepAndOutputs;
+            foreach (var index in indexAndValues.Keys)
+            {
+                for (int i = 0; i < _numberOfOutputs; i++)
+                {
+                    sum += Math.Abs(output.Outputs[index][i] - indexAndValues[index][i]);
+                }
+            }
+
+            return sum / (_sampleSize * _numberOfOutputs);
         }
     }
 }

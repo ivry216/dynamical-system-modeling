@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestApp.Optimization
 {
-    abstract class OptimizationAlgorithmParameters : IOptimizationAlgorithmParameters
+    public abstract class OptimizationAlgorithmParameters : IOptimizationAlgorithmParameters
     {
     }
 }
