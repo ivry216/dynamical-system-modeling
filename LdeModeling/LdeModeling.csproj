@@ -81,6 +81,8 @@
     <Compile Include="Models\Dynamical\IDynamicalModelOutput.cs" />
     <Compile Include="Models\Dynamical\IDynamicalModelParameters.cs" />
     <Compile Include="Models\Dynamical\IContiniousInput.cs" />
+    <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblem.cs" />
+    <Compile Include="Models\Dynamical\InverseProblem\LdeSingleOutputInverseProblem.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeInverseProblem.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\ILinearDifferentialEquationEvaluationParams.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\ILinearDifferentialEquationModel.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Models\IOManagers\ModelingResults\IModelingResultsIOManager.cs" />
     <Compile Include="Models\IOManagers\Parameters\Dynamical\DynamicalModelParametersIOManager.cs" />
     <Compile Include="Models\IOManagers\Parameters\IParametersIOManager.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\IOptimizationLauncher.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolution.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParameters.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\EvolutionaryAlgorithm.cs" />
@@ -111,6 +114,7 @@
     <Compile Include="Optimization\EvolutionaryAlgorithms\PopulationGenerationType.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\ParameterTypes\RvgaMutationType.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\ParameterTypes\RvgaSelectionType.cs" />
+    <Compile Include="Optimization\IAlgorithm.cs" />
     <Compile Include="Optimization\IOptimizationAlgorithm.cs" />
     <Compile Include="Optimization\IOptimizationAlgorithmParameters.cs" />
     <Compile Include="Optimization\OptimizationAlgorithm.cs" />
