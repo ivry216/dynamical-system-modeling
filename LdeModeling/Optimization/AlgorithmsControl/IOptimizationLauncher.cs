@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace TestApp.Optimization.AlgorithmsControl
 {
-    public interface IOptimizationLauncher
+    public interface IOptimizationLauncher<TParameters>
+        where TParameters : IOptimizationLauncherParameters
     {
         IAlgorithm Algorithm { get; }
+        OptimizationAlgorithmParameters AlgorithmParameters { get; }
+        AlgorithmLauncherType LauncherType { get; }
+        TParameters Parameters { get; }
+
+        void Run();
     }
 }

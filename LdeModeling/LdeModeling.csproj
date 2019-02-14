@@ -102,7 +102,15 @@
     <Compile Include="Models\IOManagers\ModelingResults\IModelingResultsIOManager.cs" />
     <Compile Include="Models\IOManagers\Parameters\Dynamical\DynamicalModelParametersIOManager.cs" />
     <Compile Include="Models\IOManagers\Parameters\IParametersIOManager.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IAlgorithmRunDataCollector.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IRealAlgorithmRunDataCollector.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\RealAlgorithmDataCollector.cs" />
     <Compile Include="Optimization\AlgorithmsControl\IOptimizationLauncher.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\AlgorithmLauncherType.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\IOptimizationLauncherParameters.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\OptimizationLauncher.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\Restart\Static\StaticRestartLaucherParameters.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\Restart\Static\StaticRestartLauncher.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolution.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParameters.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\EvolutionaryAlgorithm.cs" />
