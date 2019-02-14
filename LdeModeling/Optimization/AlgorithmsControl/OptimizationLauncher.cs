@@ -7,10 +7,9 @@ using TestApp.Optimization.AlgorithmsControl.InformationCollectingManager;
 
 namespace TestApp.Optimization.AlgorithmsControl
 {
-    public abstract class OptimizationLauncher<TParameters, TCollector, T> : IOptimizationLauncher<TParameters>
+    public abstract class OptimizationLauncher<TParameters, TCollector> : IOptimizationLauncher<TParameters>
         where TParameters : IOptimizationLauncherParameters
         where TCollector : IAlgorithmRunDataCollector, new()
-        where T in <double>;
     {
         #region Fields
 

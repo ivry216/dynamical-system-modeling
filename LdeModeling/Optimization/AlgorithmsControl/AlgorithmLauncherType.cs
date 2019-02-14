@@ -8,6 +8,6 @@ namespace TestApp.Optimization.AlgorithmsControl
 {
     public enum AlgorithmLauncherType
     {
-        WithSameParameters
+        StaticRestart
     }
 }
