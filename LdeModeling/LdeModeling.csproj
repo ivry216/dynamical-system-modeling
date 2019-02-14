@@ -125,6 +125,7 @@
     <Compile Include="Optimization\IAlgorithm.cs" />
     <Compile Include="Optimization\IOptimizationAlgorithm.cs" />
     <Compile Include="Optimization\IOptimizationAlgorithmParameters.cs" />
+    <Compile Include="Optimization\IRealAlgorithm.cs" />
     <Compile Include="Optimization\OptimizationAlgorithm.cs" />
     <Compile Include="Optimization\Problem\IOptimizationProblem.cs" />
     <Compile Include="Optimization\OptimizationAlgorithmParameters.cs" />

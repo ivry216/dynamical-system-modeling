@@ -7,7 +7,7 @@ using TestApp.Optimization.Problem;
 
 namespace TestApp.Optimization
 {
-    abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IAlgorithm
+    abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IRealAlgorithm
         where AlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Fields
@@ -19,6 +19,9 @@ namespace TestApp.Optimization
         #region Properties
         public double[] BestSolution { get; protected set; }
         public double BestValue { get; protected set; }
+
+        object IAlgorithm.BestValue => BestValue;
+        object IAlgorithm.BestSolution => BestSolution;
         #endregion Properties
 
         #region Constructor

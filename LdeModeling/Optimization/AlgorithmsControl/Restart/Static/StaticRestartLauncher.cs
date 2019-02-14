@@ -13,7 +13,14 @@ namespace TestApp.Optimization.AlgorithmsControl.Restart.Static
 
         public override void Run()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Parameters.Iterations; i++)
+            {
+                // Evaluate algorithm
+                Algorithm.Evaluate();
+                // Save the results to collector
+                collector.AddBest(Algorithm.BestValue);
+                collector.AddBestSolution(Algorithm.BestSolution);
+            }
         }
     }
 }
