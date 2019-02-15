@@ -11,6 +11,7 @@ using TestApp.Models.Dynamical.ModelToDataProcessing;
 using TestApp.Models.Dynamical.SamplePreprocessing;
 using TestApp.Models.IOManagers.ModelingResults.Dynamical;
 using TestApp.Models.IOManagers.Parameters.Dynamical;
+using TestApp.Optimization.AlgorithmsControl.Restart.Static;
 using TestApp.Optimization.EvolutionaryAlgorithms;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
@@ -106,7 +107,7 @@ namespace TestApp
             realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
             realGaParameters.SizeOfTrialPopulation = 300;
             realGaParameters.Size = 200;
-            realGaParameters.Iterations = 1000;
+            realGaParameters.Iterations = 200;
             
             realGa.SetProblem(ldeInverseProblem);
             realGa.SetParameters(realGaParameters);
@@ -119,6 +120,9 @@ namespace TestApp
             DynamicalModelParametersIOManager ioParamsManager = new DynamicalModelParametersIOManager();
             ioParamsManager.Save((LdeModelParameters)model.ModelParameters, "test3.xlsx");
 
+            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 10 });
+            launcher.Algorithm = realGa;
+            launcher.Run();
         }
     }
 }

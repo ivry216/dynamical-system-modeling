@@ -19,8 +19,7 @@ namespace TestApp.Optimization.AlgorithmsControl
 
         #region Inherited Properties 
 
-        public IRealAlgorithm Algorithm { get; }
-        public OptimizationAlgorithmParameters AlgorithmParameters { get; }
+        public IRealAlgorithm Algorithm { get; set; }
         public abstract AlgorithmLauncherType LauncherType { get; }
         public TParameters Parameters { get; }
 
@@ -28,9 +27,11 @@ namespace TestApp.Optimization.AlgorithmsControl
 
         #region Constructor
 
-        public OptimizationLauncher()
+        public OptimizationLauncher(TParameters parameters)
         {
             collector = new TCollector();
+
+            Parameters = parameters;
         }
 
         #endregion Constructor

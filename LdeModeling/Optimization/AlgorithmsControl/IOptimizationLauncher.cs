@@ -9,8 +9,7 @@ namespace TestApp.Optimization.AlgorithmsControl
     public interface IOptimizationLauncher<TParameters>
         where TParameters : IOptimizationLauncherParameters
     {
-        IRealAlgorithm Algorithm { get; }
-        OptimizationAlgorithmParameters AlgorithmParameters { get; }
+        IRealAlgorithm Algorithm { get; set; }
         AlgorithmLauncherType LauncherType { get; }
         TParameters Parameters { get; }
 

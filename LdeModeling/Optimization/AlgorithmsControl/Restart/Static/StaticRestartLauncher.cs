@@ -11,6 +11,9 @@ namespace TestApp.Optimization.AlgorithmsControl.Restart.Static
     {
         public override AlgorithmLauncherType LauncherType => AlgorithmLauncherType.StaticRestart;
 
+        public StaticRestartLauncher(StaticRestartLaucherParameters parameters) : base(parameters)
+        { }
+
         public override void Run()
         {
             for (int i = 0; i < Parameters.Iterations; i++)
