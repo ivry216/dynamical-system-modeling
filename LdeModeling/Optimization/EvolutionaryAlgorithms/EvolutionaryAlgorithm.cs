@@ -32,6 +32,10 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms
         #region Universal Methods
         protected virtual void Initialize()
         {
+            // Update best values and solutions
+            BestValue = 0;
+            BestSolution = new double[Problem.Dimension];
+
             // Initialize the population
             Population = new double[Parameters.Size][];
             for (int i = 0; i < Problem.Dimension; i++)

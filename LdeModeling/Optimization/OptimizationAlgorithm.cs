@@ -41,7 +41,6 @@ namespace TestApp.Optimization
         {
             Problem = problem;
             Dimension = problem.Dimension;
-            BestSolution = new double[Problem.Dimension];
         }
 
         public void SetParameters(AlgorithmParameters parameters)
