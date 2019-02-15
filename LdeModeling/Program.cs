@@ -22,6 +22,8 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
+            // -----------------------------------------------------------------------------------------------------
+            // Eta chast koda - schityvautsia ishodnyed dannye, kotorye dalee vo vseh parallelnyh rasschetah budut
             double startTime = 0;
             double endTime = 20;
             int numberOfSteps = 200;
@@ -87,6 +89,8 @@ namespace TestApp
 
             ldeInverseProblem.CalcualteCriterion(new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 1 });
 
+            // -----------------------------------------------------------------------------------------------------
+            // A vot ety chast do samogo niza nado rasparallelit
             RealGeneticAlgorithm realGa = new RealGeneticAlgorithm();
             RealGeneticAlgorithmParameters realGaParameters = new RealGeneticAlgorithmParameters();
 
@@ -107,7 +111,7 @@ namespace TestApp
             realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
             realGaParameters.SizeOfTrialPopulation = 300;
             realGaParameters.Size = 200;
-            realGaParameters.Iterations = 200;
+            realGaParameters.Iterations = 20;
             
             realGa.SetProblem(ldeInverseProblem);
             realGa.SetParameters(realGaParameters);
