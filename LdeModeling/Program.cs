@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestApp.DataSample.SampleGeneration.LinearDynamicalSystem;
 using TestApp.Models.Dynamical;
 using TestApp.Models.Dynamical.InverseProblem;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
 using TestApp.Models.Dynamical.ModelToDataProcessing;
 using TestApp.Models.Dynamical.SamplePreprocessing;
-using TestApp.Models.IOManagers.ModelingResults.Dynamical;
-using TestApp.Models.IOManagers.Parameters.Dynamical;
-using TestApp.Optimization.AlgorithmsControl.Restart.Static;
 using TestApp.Optimization.EvolutionaryAlgorithms;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
@@ -21,6 +16,42 @@ namespace TestApp
     class Program
     {
         static void Main(string[] args)
+        {
+            var realGasList = new List<RealGeneticAlgorithm>();
+            for (int i = 0; i < 64; i++)
+                realGasList.Add(CreateAlgorithm());           
+
+            var result = realGasList
+                .AsParallel()
+                .WithDegreeOfParallelism(System.Environment.ProcessorCount)
+                .WithMergeOptions(ParallelMergeOptions.FullyBuffered)
+                .Select(item =>
+                {
+                    item.Evaluate();
+
+                    return item.BestValue;
+                })
+                .ToList();
+
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+
+            //Parallel.ForEach(realGasList, new ParallelOptions{MaxDegreeOfParallelism = System.Environment.ProcessorCount },(x) => x.Evaluate());
+
+            //foreach (var item in realGasList)
+            //{
+            //    Console.WriteLine(item.BestValue);
+            //} 
+
+            Console.WriteLine("Конец");
+            Console.ReadLine();
+
+        }
+
+        static RealGeneticAlgorithm CreateAlgorithm()
         {
             // -----------------------------------------------------------------------------------------------------
             // Eta chast koda - schityvautsia ishodnyed dannye, kotorye dalee vo vseh parallelnyh rasschetah budut
@@ -40,8 +71,8 @@ namespace TestApp
 
             // Set initial values
             double[] initialValue = new double[] { 0, 0, 0 };
-            
-            // Set those parameters
+
+            // Set those parameters 
             ldeModelParameters.ModelParameters = linearDynamicalSystemParameters;
             ldeModelParameters.InitialState = initialValue;
 
@@ -53,7 +84,7 @@ namespace TestApp
             double[] inputTimes = new double[(numberOfSteps + 1) * 2];
             for (int i = 0; i < input.Length; i++)
             {
-                inputTimes[i] = startTime + i * (endTime - startTime)/numberOfSteps/2d;
+                inputTimes[i] = startTime + i * (endTime - startTime) / numberOfSteps / 2d;
                 input[i] = new double[1];
                 input[i][0] = 1;
             }
@@ -111,22 +142,14 @@ namespace TestApp
             realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
             realGaParameters.SizeOfTrialPopulation = 300;
             realGaParameters.Size = 200;
-            realGaParameters.Iterations = 20;
-            
+            realGaParameters.Iterations = 1000;
+
+
             realGa.SetProblem(ldeInverseProblem);
             realGa.SetParameters(realGaParameters);
-            realGa.Evaluate();
+            //realGa.Evaluate();
 
-            model.ModelParameters.ModelParameters.AssignWithArray(realGa.BestSolution);
-            DynamicalModelResultsIOManager ioResultsManager = new DynamicalModelResultsIOManager();
-            ioResultsManager.Save((DiscreteDynamicalModelOutput)model.Evaluate(discreteDynamicalModelInput), "test1.xlsx");
-            ioResultsManager.Save((DiscreteDynamicalModelOutput)model.Evaluate(discreteDynamicalModelInput), discreteDynamicalModelInput, "test2.xlsx");
-            DynamicalModelParametersIOManager ioParamsManager = new DynamicalModelParametersIOManager();
-            ioParamsManager.Save((LdeModelParameters)model.ModelParameters, "test3.xlsx");
-
-            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 10 });
-            launcher.Algorithm = realGa;
-            launcher.Run();
+            return realGa;
         }
     }
 }
