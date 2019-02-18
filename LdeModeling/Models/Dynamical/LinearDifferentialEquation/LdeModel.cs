@@ -24,8 +24,14 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
         private double[,] systemMatrix => ModelParameters.ModelParameters.A;
         private double[,] inputsMatrix => ModelParameters.ModelParameters.B;
 
+        private double[] systemMatrixResult;
+        private double[] inputsMatrixResult;
+
         public LdeModel()
         {
+            systemMatrixResult = new double[0];
+            inputsMatrixResult = new double[0];
+
             rungeKuttahIntegrator = new RungeKuttahIntegrator();
             rungeKuttahIntegrator.SetModel(this);
         }
@@ -35,13 +41,22 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
             EvaluationParameters = evaluationParameters;
             ModelParameters = modelParameters;
 
+            systemMatrixResult = new double[0];
+            inputsMatrixResult = new double[0];
+
             rungeKuttahIntegrator = new RungeKuttahIntegrator();
             rungeKuttahIntegrator.SetModel(this);
         }
 
-        public double[] CalculateSystemEquation(double[] state, double[] inputs)
+        public double[] CalculateSystemEquation(double[] result, double[] state, double[] inputs)
         {
-            return VectorProcessor.Instance.CalcualteSum(systemMatrix.MultiplyByVector(state), inputsMatrix.MultiplyByVector(inputs));
+            if (systemMatrixResult.Length != state.Length)
+                systemMatrixResult = new double[state.Length];
+
+            if (inputsMatrixResult.Length != state.Length)
+                inputsMatrixResult = new double[state.Length];
+
+            return VectorProcessor.Instance.CalcualteSum(result, systemMatrix.MultiplyByVector(state, systemMatrixResult), inputsMatrix.MultiplyByVector(inputs, inputsMatrixResult));
         }
 
         public IDiscreteOutput Evaluate(IContiniousInput input)

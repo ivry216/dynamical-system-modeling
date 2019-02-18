@@ -9,7 +9,7 @@ namespace TestApp.MathematicalCore.Normalization
     class Normalizer
     {
         #region Fields
-        private static readonly Lazy<Normalizer> _singleton = new Lazy<Normalizer>(() => new Normalizer());
+        private static readonly Normalizer _singleton = new Normalizer();
         #endregion Fields
 
         #region Static Properties
@@ -17,7 +17,7 @@ namespace TestApp.MathematicalCore.Normalization
         {
             get
             {
-                return _singleton.Value;
+                return _singleton;
             }
         }
         #endregion Static Properties

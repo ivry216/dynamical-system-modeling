@@ -8,13 +8,13 @@ namespace TestApp.MathematicalCore.ArrayExtensions
 {
     public static class OperationsExtensions
     {
-        public static double[] MultiplyByVector(this double[,] matrix, double[] vector)
+        public static double[] MultiplyByVector(this double[,] matrix, double[] vector, double[] result)
         {
             // Dimension
             int numberOfCols = vector.Length;
             int numberOfRows = matrix.GetLength(0);
             // Initialize result 
-            double[] result = new double[numberOfRows];
+            //double[] result = new double[numberOfRows];
 
             for (int i = 0; i < numberOfRows; i++)
             {

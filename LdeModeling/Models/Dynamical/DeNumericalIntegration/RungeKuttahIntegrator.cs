@@ -36,6 +36,20 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
         double halfStep;
         double sixPartStep;
 
+        private int? partsLength;
+        private double[] k1;
+        private double[] k2;
+        private double[] k3;
+        private double[] k4;
+        private double[] k21;
+        private double[] k31;
+        private double[] k41;
+        private double[] trialVectorR0;
+        private double[] trialVectorR1;
+        private double[] trialVectorR2;
+        private double[] trialVectorR3;
+        private double[] trialVectorR4;
+
         public RungeKuttahIntegrator()
         { }
 
@@ -105,11 +119,11 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
             throw new NotImplementedException();
         }
 
-        private double[] CaclulateSystemEquation(double[] state, double[] inputs)
+        private double[] CaclulateSystemEquation(double[] result, double[] state, double[] inputs)
         {
-            return model.CalculateSystemEquation(state, inputs);
+            return model.CalculateSystemEquation(result, state, inputs);
         }
-
+        
         private (double[][] Solution, double[] Times) ApplyRungeKuttahScheme(double[][] precalculatedInputs)
         {
             // Times
@@ -135,29 +149,26 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
             double currentTime = startTime;
 
             // Initialize the parts of the scheme
-            double[] k1 = new double[numberOfOutputs];
-            double[] k2 = new double[numberOfOutputs];
-            double[] k3 = new double[numberOfOutputs];
-            double[] k4 = new double[numberOfOutputs];
+            InitializePartsOfScheme();
 
             for (int i = 0; i < steps; i++)
             {
                 int inputsIndex = i * 2;
                 // Calculate K1
-                k1 = CaclulateSystemEquation(currentVector, precalculatedInputs[inputsIndex]);
+                k1 = CaclulateSystemEquation(k1,currentVector, precalculatedInputs[inputsIndex]);
                 // K2
-                k2 = CaclulateSystemEquation(VectorProcessor.Instance.CalculateLinearCombination(currentVector, k1, halfStep), precalculatedInputs[inputsIndex + 1]);
+                k2 = CaclulateSystemEquation(k2, VectorProcessor.Instance.CalculateLinearCombination(k21, currentVector, k1, halfStep), precalculatedInputs[inputsIndex + 1]);
                 // K3
-                k3 = CaclulateSystemEquation(VectorProcessor.Instance.CalculateLinearCombination(currentVector, k2, halfStep), precalculatedInputs[inputsIndex + 1]);
+                k3 = CaclulateSystemEquation(k3, VectorProcessor.Instance.CalculateLinearCombination(k31, currentVector, k2, halfStep), precalculatedInputs[inputsIndex + 1]);
                 // K4
-                k4 = CaclulateSystemEquation(VectorProcessor.Instance.CalculateLinearCombination(currentVector, k3, stepSize), precalculatedInputs[inputsIndex + 2]);
+                k4 = CaclulateSystemEquation(k4, VectorProcessor.Instance.CalculateLinearCombination(k41, currentVector, k3, stepSize), precalculatedInputs[inputsIndex + 2]);
 
                 //
-                trialVector = VectorProcessor.Instance.CalcualteSum(currentVector, // y +
-                    VectorProcessor.Instance.ScaleByValue( // + step/6 * (
-                        VectorProcessor.Instance.CalculateLinearCombination( // 
-                            VectorProcessor.Instance.CalculateLinearCombination(k1, k2, 2), // k1 + 2*k2
-                            VectorProcessor.Instance.CalculateLinearCombination(k4, k3, 2), 1), sixPartStep)); // k4 + 2*k3
+                trialVector = VectorProcessor.Instance.CalcualteSum(trialVectorR0, currentVector, // y +
+                    VectorProcessor.Instance.ScaleByValue(trialVectorR1, // + step/6 * (
+                        VectorProcessor.Instance.CalculateLinearCombination(trialVectorR2, // 
+                            VectorProcessor.Instance.CalculateLinearCombination(trialVectorR3, k1, k2, 2), // k1 + 2*k2
+                            VectorProcessor.Instance.CalculateLinearCombination(trialVectorR4, k4, k3, 2), 1), sixPartStep)); // k4 + 2*k3
 
                 // Update soluton
                 currentVector.FillWithVector(trialVector);
@@ -168,6 +179,27 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
             }
 
             return (results, times);
+        }
+
+        private void InitializePartsOfScheme()
+        {
+            if (partsLength.HasValue && partsLength.Value == numberOfOutputs)
+                return;
+
+            partsLength = numberOfOutputs;
+
+            k1 = new double[numberOfOutputs];
+            k2 = new double[numberOfOutputs];
+            k3 = new double[numberOfOutputs];
+            k4 = new double[numberOfOutputs];
+            k21 = new double[numberOfOutputs];
+            k31 = new double[numberOfOutputs];
+            k41 = new double[numberOfOutputs];
+            trialVectorR0 = new double[numberOfOutputs];
+            trialVectorR1 = new double[numberOfOutputs];
+            trialVectorR2 = new double[numberOfOutputs];
+            trialVectorR3 = new double[numberOfOutputs];
+            trialVectorR4 = new double[numberOfOutputs];
         }
 
         #endregion Main Methods

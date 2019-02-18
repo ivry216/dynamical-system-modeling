@@ -9,7 +9,7 @@ namespace TestApp.MathematicalCore.LinearOperator
     class VectorProcessor
     {
         #region Fields
-        private static readonly Lazy<VectorProcessor> _singleton = new Lazy<VectorProcessor>(() => new VectorProcessor());
+        private static readonly VectorProcessor _singleton = new VectorProcessor();
         #endregion Fields
 
         #region Static Properties
@@ -17,7 +17,7 @@ namespace TestApp.MathematicalCore.LinearOperator
         {
             get
             {
-                return _singleton.Value;
+                return _singleton;
             }
         }
         #endregion Static Properties
@@ -32,10 +32,10 @@ namespace TestApp.MathematicalCore.LinearOperator
 
         #region Main Methods
         // TODO dimensionally unsafe
-        public double[] CalcualteSum(double[] vectorA, double[] vectorB)
+        public double[] CalcualteSum(double[] result, double[] vectorA, double[] vectorB)
         {
             // Initialize
-            double[] result = new double[vectorA.Length];
+            //double[] result = new double[vectorA.Length];
 
             // Make a sum
             for (int i = 0; i < result.Length; i++)
@@ -65,10 +65,10 @@ namespace TestApp.MathematicalCore.LinearOperator
             return result;
         }
 
-        public double[] CalculateLinearCombination(double[] vectorA, double[] vectorB, double coefB, double coefA = 1)
+        public double[] CalculateLinearCombination(double[] result, double[] vectorA, double[] vectorB, double coefB, double coefA = 1)
         {
             // Initialize
-            double[] result = new double[vectorA.Length];
+            //double[] result = new double[vectorA.Length];
 
             // Make a weighted sum
             for (int i = 0; i < result.Length; i++)
@@ -79,10 +79,10 @@ namespace TestApp.MathematicalCore.LinearOperator
             return result;
         }
 
-        public double[] ScaleByValue(double[] vector, double value)
+        public double[] ScaleByValue(double[] result, double[] vector, double value)
         {
             // Initialize
-            double[] result = new double[vector.Length];
+            //double[] result = new double[vector.Length];
 
             // Make a scaleble vector
             for (int i = 0; i < result.Length; i++)

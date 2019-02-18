@@ -282,7 +282,8 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
 
             // Get an offspring
             double[] offspring = VectorProcessor.Instance.CalcualteSum(parents);
-            offspring = VectorProcessor.Instance.ScaleByValue(vector: offspring, value: 1.0 / Parameters.NumberOfParents);
+            double[] offspringR = new double[offspring.Length];
+            offspring = VectorProcessor.Instance.ScaleByValue(offspringR, vector: offspring, value: 1.0 / Parameters.NumberOfParents);
 
             return offspring;
         }

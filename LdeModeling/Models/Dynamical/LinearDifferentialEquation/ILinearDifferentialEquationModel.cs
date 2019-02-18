@@ -8,6 +8,6 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
 {
     public interface ILinearDifferentialEquationModel : IDynamicalModel<ILinearDifferentialEquationEvaluationParams, ILinearDifferentialEquationParameters, IDiscreteOutput, IContiniousInput>
     {
-        double[] CalculateSystemEquation(double[] state, double[] inputs);
+        double[] CalculateSystemEquation(double[] result, double[] state, double[] inputs);
     }
 }
