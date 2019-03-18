@@ -59,8 +59,8 @@
     <Compile Include="DataSample\RegressionData.cs" />
     <Compile Include="DataSample\SampleGeneration\ISampleGenerator.cs" />
     <Compile Include="DataSample\SampleGeneration\LinearDynamicalSystem\LdsSampleGenerator.cs" />
-    <Compile Include="DataSample\SampleLoader\ISampleLoader.cs" />
-    <Compile Include="DataSample\SampleLoader\LinearDynamicalSystem\LdsSampleLoader.cs" />
+    <Compile Include="DataSample\SampleIO\ISampleFileManipulator.cs" />
+    <Compile Include="DataSample\SampleIO\LinearDynamicalSystem\LdsSampleManipulator.cs" />
     <Compile Include="MathematicalCore\ArrayExtensions\AssigningExtension.cs" />
     <Compile Include="MathematicalCore\ArrayExtensions\MutatingExtension.cs" />
     <Compile Include="MathematicalCore\ArrayExtensions\OperationsExtensions.cs" />
@@ -106,6 +106,7 @@
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\IBestSolutionStats.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\BestSolutionStats.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\BestSolutionStatsReal.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatsMiner\IAlgorithmStatsMiner.cs" />
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IAlgorithmRunDataCollector.cs" />
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IRealAlgorithmRunDataCollector.cs" />
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\RealAlgorithmDataCollector.cs" />
