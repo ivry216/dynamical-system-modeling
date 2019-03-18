@@ -10,5 +10,6 @@ namespace TestApp.DataSample
     {
         DataType DataType { get; }
         int OutputSampleSize { get; }
+        int InputSampleSize { get; }
     }
 }

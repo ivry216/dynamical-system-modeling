@@ -21,10 +21,13 @@ namespace TestApp.DataSample
 
         public int OutputSampleSize { get; }
 
+        public int InputSampleSize { get; }
+
         public RegressionData(double[][] inputs, double[][] outputs)
         { 
             // TODO: Add all checkings and increase safety
-            OutputSampleSize = inputs.Length;
+            OutputSampleSize = outputs.Length;
+            InputSampleSize = inputs.Length;
 
             NumberOfInputs = inputs[0].Length;
             NumberOfOutputs = outputs[0].Length;
