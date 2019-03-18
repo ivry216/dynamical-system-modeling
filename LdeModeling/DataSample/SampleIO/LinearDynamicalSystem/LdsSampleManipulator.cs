@@ -35,7 +35,7 @@ namespace TestApp.DataSample.SampleIO.LinearDynamicalSystem
                 wsData.Cells[rowIndex, 1].Value = "Time";
                 for (int i = 2; i <= sample.Data.NumberOfOutputs + 1; i++)
                 {
-                    wsData.Cells[rowIndex, i].Value = i;
+                    wsData.Cells[rowIndex, i].Value = i - 1;
                 }
 
                 // Save the data
@@ -46,6 +46,7 @@ namespace TestApp.DataSample.SampleIO.LinearDynamicalSystem
                 {
                     wsData.Cells[j, colIndex].Value = sample.Data.OutputsTimes[i];
                 }
+
                 // Save output values
                 colIndex = 2; // Index for column containing time
                 for (int i = 0, row = rowIndex; i < sample.Data.OutputSampleSize; i++, row++)
@@ -63,9 +64,14 @@ namespace TestApp.DataSample.SampleIO.LinearDynamicalSystem
                 wsData.Cells[rowIndex, 1].Value = "Time";
                 for (int i = 2; i <= sample.Data.NumberOfInputs + 1; i++)
                 {
-                    wsData.Cells[rowIndex, i].Value = i;
+                    wsData.Cells[rowIndex, i].Value = i - 1;
                 }
-
+                colIndex = 1; // Index for column containing time
+                rowIndex++;
+                for (int i = 0, j = rowIndex; i < sample.Data.InputSampleSize; i++, j++)
+                {
+                    wsData.Cells[j, colIndex].Value = sample.Data.InputsTimes[i];
+                }
                 // Save input values
                 colIndex = 2; // Index for column containing time
                 for (int i = 0, row = rowIndex; i < sample.Data.InputSampleSize; i++, row++)
