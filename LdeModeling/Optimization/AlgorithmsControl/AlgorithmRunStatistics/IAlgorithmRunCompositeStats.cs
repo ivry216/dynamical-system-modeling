@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatistics
 {
-    public interface IAlgorithmRunCompositeStats<TBest, TBestSolution>
+    public interface IAlgorithmRunCompositeStats<TBestSolutionStats, TBest, TBestSolution>
+        where TBestSolutionStats : IBestSolutionStats<TBest, TBestSolution>
     {
         IBestSolutionStats<TBest, TBestSolution> BestSolutionStats { get; }
     }

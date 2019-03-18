@@ -7,8 +7,9 @@ using TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 
 namespace TestApp.Optimization.AlgorithmsControl
 {
-    public interface IOptimizationLauncherResult<TBest, TBestSolution, TRunStats>
-        where TRunStats : IAlgorithmRunCompositeStats<TBest, TBestSolution>
+    public interface IOptimizationLauncherResult<TBest, TBestSolution, TRunStats, TBestSolutionStats>
+        where TBestSolutionStats : IBestSolutionStats<TBest, TBestSolution>
+        where TRunStats : IAlgorithmRunCompositeStats<TBestSolutionStats, TBest, TBestSolution>
     {
         int Count { get; }
         TRunStats[] Stats { get; }
