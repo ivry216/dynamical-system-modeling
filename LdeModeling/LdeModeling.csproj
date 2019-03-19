@@ -63,6 +63,7 @@
     <Compile Include="DataSample\SampleIO\LinearDynamicalSystem\LdsSampleManipulator.cs" />
     <Compile Include="MathematicalCore\ArrayExtensions\AssigningExtension.cs" />
     <Compile Include="MathematicalCore\ArrayExtensions\MutatingExtension.cs" />
+    <Compile Include="MathematicalCore\ArrayExtensions\NormExtension.cs" />
     <Compile Include="MathematicalCore\ArrayExtensions\OperationsExtensions.cs" />
     <Compile Include="MathematicalCore\ArrayExtensions\SortingExtension.cs" />
     <Compile Include="MathematicalCore\LinearOperator\VectorProcessor.cs" />
