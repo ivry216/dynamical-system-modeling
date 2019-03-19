@@ -18,7 +18,6 @@ namespace TestApp.Models.Dynamical.InverseProblem
         private SampleToLdeDataProcessor _sampleToLdeProcessor;
         private ModelToDataProcessor _modelToDataProcessor;
         private LdeModel _model;
-        private LdeEvaluationParameters _ldeEvaluationParameters;
 
         #endregion Fields
 
