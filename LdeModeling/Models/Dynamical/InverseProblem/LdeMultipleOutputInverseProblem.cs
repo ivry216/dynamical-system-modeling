@@ -13,21 +13,13 @@ namespace TestApp.Models.Dynamical.InverseProblem
 {
     public class LdeMultipleOutputInverseProblem : LdeInverseProblem
     {
-        #region Fields
-
-        private SampleToLdeDataProcessor _sampleToLdeProcessor;
-        private ModelToDataProcessor _modelToDataProcessor;
-        private LdeModel _model;
-
-        #endregion Fields
-
         #region Constructor
 
         public LdeMultipleOutputInverseProblem(int dimension) : base(dimension)
         {
-            _sampleToLdeProcessor = new SampleToLdeDataProcessor();
-            _modelToDataProcessor = new ModelToDataProcessor();
-            _model = new LdeModel();
+            sampleToLdeProcessor = new SampleToLdeDataProcessor();
+            modelToDataProcessor = new ModelToDataProcessor();
+            model = new LdeModel();
         }
 
         #endregion Construtor
@@ -36,9 +28,9 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         public override double CalcualteCriterion(double[] alternative)
         {
-            _model.ModelParameters.ModelParameters.AssignWithArray(alternative);
+            model.ModelParameters.ModelParameters.AssignWithArray(alternative);
 
-            double result = _modelToDataProcessor.CalculateMultipleOutputCriterion(_model);
+            double result = modelToDataProcessor.CalculateMultipleOutputCriterion(model);
 
             return 1 / (1 + result);
         }

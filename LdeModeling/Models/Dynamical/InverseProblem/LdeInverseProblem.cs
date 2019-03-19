@@ -15,9 +15,9 @@ namespace TestApp.Models.Dynamical.InverseProblem
     {
         #region Fields
 
-        private SampleToLdeDataProcessor _sampleToLdeProcessor;
-        private ModelToDataProcessor _modelToDataProcessor;
-        private LdeModel _model;
+        protected SampleToLdeDataProcessor sampleToLdeProcessor;
+        protected ModelToDataProcessor modelToDataProcessor;
+        protected LdeModel model;
 
         #endregion Fields
 
@@ -33,9 +33,9 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         public LdeInverseProblem(int dimension) : base(dimension)
         {
-            _sampleToLdeProcessor = new SampleToLdeDataProcessor();
-            _modelToDataProcessor = new ModelToDataProcessor();
-            _model = new LdeModel();
+            sampleToLdeProcessor = new SampleToLdeDataProcessor();
+            modelToDataProcessor = new ModelToDataProcessor();
+            model = new LdeModel();
         }
 
         #endregion Construtor
@@ -44,24 +44,24 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         public void SetData(DynamicalSystemSample sample)
         {
-            _sampleToLdeProcessor.Process(sample);
-            _modelToDataProcessor.SetData(sample);
-            var ldeEvaluationParameters = _modelToDataProcessor.SetIntegrationSchemeBySample();
-            _model.EvaluationParameters = ldeEvaluationParameters;
+            sampleToLdeProcessor.Process(sample);
+            modelToDataProcessor.SetData(sample);
+            var ldeEvaluationParameters = modelToDataProcessor.SetIntegrationSchemeBySample();
+            model.EvaluationParameters = ldeEvaluationParameters;
             InitialValue = sample.Data.InitialValue;
         }
 
         public void SetInputs(IDynamicalModelInput discreteDynamicalModelInput)
         {
-            _modelToDataProcessor.SetInputs(discreteDynamicalModelInput);
+            modelToDataProcessor.SetInputs(discreteDynamicalModelInput);
             NumberOfInputVars = discreteDynamicalModelInput.NumberOfInputs;
         }
 
         public void InitializeCalculation()
         {
-            _model.ModelParameters = new LdeModelParameters(NumberOfStateVars, NumberOfInputVars);
-            _model.ModelParameters.InitialState = InitialValue;
-            _model.ModelParameters.ModelParameters = new LinearDynamicalSystemParameters(NumberOfInputVars, NumberOfStateVars);
+            model.ModelParameters = new LdeModelParameters(NumberOfStateVars, NumberOfInputVars);
+            model.ModelParameters.InitialState = InitialValue;
+            model.ModelParameters.ModelParameters = new LinearDynamicalSystemParameters(NumberOfInputVars, NumberOfStateVars);
         }
 
         public override abstract double CalcualteCriterion(double[] alternative);
