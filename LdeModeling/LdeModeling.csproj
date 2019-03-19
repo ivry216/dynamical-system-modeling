@@ -83,6 +83,8 @@
     <Compile Include="Models\Dynamical\IDynamicalModelParameters.cs" />
     <Compile Include="Models\Dynamical\IContiniousInput.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblem.cs" />
+    <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblemL1.cs" />
+    <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblemL2.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeSingleOutputInverseProblem.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeInverseProblem.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\ILinearDifferentialEquationEvaluationParams.cs" />

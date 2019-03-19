@@ -17,9 +17,6 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         public LdeSingleOutputInverseProblem(int dimension) : base(dimension)
         {
-            sampleToLdeProcessor = new SampleToLdeDataProcessor();
-            modelToDataProcessor = new ModelToDataProcessor();
-            model = new LdeModel();
         }
 
         #endregion Construtor
