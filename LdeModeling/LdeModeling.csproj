@@ -135,6 +135,9 @@
     <Compile Include="Optimization\IOptimizationAlgorithm.cs" />
     <Compile Include="Optimization\IOptimizationAlgorithmParameters.cs" />
     <Compile Include="Optimization\IRealAlgorithm.cs" />
+    <Compile Include="Optimization\LocalOptimization\RandomCoordinatewiseOptimizator.cs" />
+    <Compile Include="Optimization\LocalOptimization\RandomCoordinatewiseOptimizatorParameters.cs" />
+    <Compile Include="Optimization\LocalOptimization\RandomCoordinatewiseSearchType.cs" />
     <Compile Include="Optimization\OptimizationAlgorithm.cs" />
     <Compile Include="Optimization\Problem\IOptimizationProblem.cs" />
     <Compile Include="Optimization\OptimizationAlgorithmParameters.cs" />
