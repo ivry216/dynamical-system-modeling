@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestApp.DataSample.SampleGeneration.LinearDynamicalSystem;
+using TestApp.DataSample.SampleIO.LinearDynamicalSystem;
 using TestApp.Models.Dynamical;
 using TestApp.Models.Dynamical.InverseProblem;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
@@ -13,6 +14,7 @@ using TestApp.Models.IOManagers.ModelingResults.Dynamical;
 using TestApp.Models.IOManagers.Parameters.Dynamical;
 using TestApp.Optimization.AlgorithmsControl.Restart.Static;
 using TestApp.Optimization.EvolutionaryAlgorithms;
+using TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
 
@@ -36,7 +38,7 @@ namespace TestApp
             LinearDynamicalSystemParameters linearDynamicalSystemParameters = new LinearDynamicalSystemParameters(numberOfInputs, stateDimension);
 
             // Set parameters
-            linearDynamicalSystemParameters.AssignWithArray(new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 1 });
+            linearDynamicalSystemParameters.AssignWithArray(new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 });
 
             // Set initial values
             double[] initialValue = new double[] { 0, 0, 0 };
@@ -65,9 +67,14 @@ namespace TestApp
 
             LdsSampleGenerator sampleGenerator = new LdsSampleGenerator();
             sampleGenerator.SetModelAndInput(model, discreteDynamicalModelInput);
-            sampleGenerator.SampleSize = 100;
+            sampleGenerator.SampleSize = 200;
+
+            DynamicalModelResultsIOManager dynamicalModelResultsIOManager = new DynamicalModelResultsIOManager();
 
             var sample = sampleGenerator.Generate();
+
+            LdsSampleManipulator ldsSampleManipulator = new LdsSampleManipulator();
+            ldsSampleManipulator.Save("test.xlsx", sample);
 
             SampleToLdeDataProcessor sampleToLdeProcessor = new SampleToLdeDataProcessor();
             sampleToLdeProcessor.Process(sample);
@@ -87,7 +94,23 @@ namespace TestApp
             ldeInverseProblem.InitializeCalculation();
             ldeInverseProblem.SetInputs(discreteDynamicalModelInput);
 
-            ldeInverseProblem.CalcualteCriterion(new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 1 });
+            LdeMultipleOutputInverseProblemL1 ldeInverseProblemL1 = new LdeMultipleOutputInverseProblemL1(12);
+            ldeInverseProblemL1.NumberOfStateVars = 3;
+            ldeInverseProblemL1.NumberOfInputVars = 1;
+            ldeInverseProblemL1.SetData(sample);
+            ldeInverseProblemL1.InitializeCalculation();
+            ldeInverseProblemL1.SetInputs(discreteDynamicalModelInput);
+            ldeInverseProblemL1.Lambda = 0.01;
+
+            LdeMultipleOutputInverseProblemL2 ldeInverseProblemL2 = new LdeMultipleOutputInverseProblemL2(12);
+            ldeInverseProblemL2.NumberOfStateVars = 3;
+            ldeInverseProblemL2.NumberOfInputVars = 1;
+            ldeInverseProblemL2.SetData(sample);
+            ldeInverseProblemL2.InitializeCalculation();
+            ldeInverseProblemL2.SetInputs(discreteDynamicalModelInput);
+            ldeInverseProblemL2.Lambda = 0.1;
+
+            var test = ldeInverseProblem.CalcualteCriterion(new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 1 });
 
             // -----------------------------------------------------------------------------------------------------
             // A vot ety chast do samogo niza nado rasparallelit
@@ -95,27 +118,48 @@ namespace TestApp
             RealGeneticAlgorithmParameters realGaParameters = new RealGeneticAlgorithmParameters();
 
             realGaParameters.GenerationType = PopulationGenerationType.Uniform;
-            realGaParameters.GenerationFrom = Enumerable.Repeat(-3.0, 12).ToArray();
-            realGaParameters.GenerationTo = Enumerable.Repeat(3.0, 12).ToArray();
+            realGaParameters.GenerationFrom = Enumerable.Repeat(-0.0, 12).ToArray();
+            realGaParameters.GenerationTo = Enumerable.Repeat(0.0, 12).ToArray();
 
-            realGaParameters.SelectionType = RvgaSelectionType.Proportional;
+            realGaParameters.SelectionType = RvgaSelectionType.Tournament;
             realGaParameters.NumberOfParents = 2;
+            realGaParameters.TournamentSize = 10;
 
-            realGaParameters.CrossoverType = RvgaCrossoverType.Intermediate;
+            realGaParameters.CrossoverType = RvgaCrossoverType.Uniform;
 
-            realGaParameters.MutationType = RvgaMutationType.Uniform;
+            realGaParameters.MutationType = RvgaMutationType.Additive;
             realGaParameters.MutateFrom = Enumerable.Repeat(-3.0, 12).ToArray();
             realGaParameters.MutateTo = Enumerable.Repeat(3.0, 12).ToArray();
+            realGaParameters.MutationAdditiveSD = 1;
+            realGaParameters.MutationProbability = 0.1;
             realGaParameters.MutationNumberOfGenes = 2;
 
             realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
-            realGaParameters.SizeOfTrialPopulation = 300;
-            realGaParameters.Size = 200;
-            realGaParameters.Iterations = 20;
+            realGaParameters.SizeOfTrialPopulation = 200;
+            realGaParameters.Size = 100;
+            realGaParameters.Iterations = 500;
             
             realGa.SetProblem(ldeInverseProblem);
             realGa.SetParameters(realGaParameters);
             realGa.Evaluate();
+
+            DifferentialEvolution differentialEvolution = new DifferentialEvolution();
+            DifferentialEvolutionParameters differentialEvolutionParameters = new DifferentialEvolutionParameters();
+
+            differentialEvolutionParameters.CrossoverProbability = 1.2;
+            differentialEvolutionParameters.DifferentialWeight = 1.2;
+
+            differentialEvolutionParameters.GenerationType = PopulationGenerationType.Uniform;
+            differentialEvolutionParameters.GenerationFrom = Enumerable.Repeat(-3.0, 12).ToArray();
+            differentialEvolutionParameters.GenerationTo = Enumerable.Repeat(3.0, 12).ToArray();
+
+            differentialEvolutionParameters.Size = 200;
+            differentialEvolutionParameters.Iterations = 500;
+
+            differentialEvolution.SetParameters(differentialEvolutionParameters);
+            differentialEvolution.SetProblem(ldeInverseProblemL1);
+
+            differentialEvolution.Evaluate();
 
             model.ModelParameters.ModelParameters.AssignWithArray(realGa.BestSolution);
             DynamicalModelResultsIOManager ioResultsManager = new DynamicalModelResultsIOManager();
@@ -127,6 +171,8 @@ namespace TestApp
             StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 10 });
             launcher.Algorithm = realGa;
             launcher.Run();
+
+            var test1 = ldeInverseProblem.CalcualteCriterion(launcher.Algorithm.BestSolution);
         }
     }
 }
