@@ -20,9 +20,6 @@ namespace TestApp.Optimization.LocalOptimization
         {
             if (Parameters.Type == RandomCoordinatewiseSearchType.ChooseDirection)
             {
-                // Get the value
-                _intermediateCriterionValue = Parameters.InitialPointValue;
-
                 // Make a trial vector and intermediate solution
                 _intermediate = new double[Problem.Dimension];
                 _trial = new double[Problem.Dimension];
@@ -35,9 +32,10 @@ namespace TestApp.Optimization.LocalOptimization
                 {
                     NextIteration();
                 }
-
-                
             }
+
+            BestSolution = _intermediate;
+            BestValue = _intermediateCriterionValue;
         }
 
         protected override void NextIteration()
