@@ -120,11 +120,15 @@
     <Compile Include="Optimization\AlgorithmsControl\OptimizationLauncher.cs" />
     <Compile Include="Optimization\AlgorithmsControl\Restart\Static\StaticRestartLaucherParameters.cs" />
     <Compile Include="Optimization\AlgorithmsControl\Restart\Static\StaticRestartLauncher.cs" />
+    <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParametersWRcs.cs" />
+    <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionWRcs.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolution.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParameters.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\EvolutionaryAlgorithm.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\EvolutionaryAlgorithmParameters.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\ParameterTypes\RvgaNextPopulationType.cs" />
+    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmParametersWRcs.cs" />
+    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmWRcs.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithm.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmParameters.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\ParameterTypes\RvgaCrossoverType.cs" />
