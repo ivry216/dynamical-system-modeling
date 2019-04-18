@@ -7,7 +7,7 @@ using TestApp.Optimization.Problem;
 
 namespace TestApp.Optimization
 {
-    abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IRealAlgorithm
+    public abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IRealAlgorithm
         where AlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Fields

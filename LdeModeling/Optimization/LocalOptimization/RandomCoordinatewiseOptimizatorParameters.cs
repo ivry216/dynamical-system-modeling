@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestApp.Optimization.LocalOptimization
 {
-    public class RandomCoordinatewiseOptimizatorParameters : IOptimizationAlgorithmParameters
+    public class RandomCoordinatewiseOptimizatorParameters : OptimizationAlgorithmParameters
     {
         public int NumberOfCoordinates { get; set; }
         public int NumberOfSteps { get; set; }

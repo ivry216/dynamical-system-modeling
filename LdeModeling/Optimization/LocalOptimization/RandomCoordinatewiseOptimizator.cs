@@ -20,9 +20,6 @@ namespace TestApp.Optimization.LocalOptimization
         {
             if (Parameters.Type == RandomCoordinatewiseSearchType.ChooseDirection)
             {
-                // Initialize 
-                int chooseIndex;
-                int chooseSign;
                 // Get the value
                 _intermediateCriterionValue = Parameters.InitialPointValue;
 
@@ -36,17 +33,7 @@ namespace TestApp.Optimization.LocalOptimization
 
                 for (int i = 0; i < Parameters.NumberOfCoordinates; i++)
                 {
-                    chooseIndex = RandomEngine.Instance.GenerateIntsUniformlyDistributed(0, Problem.Dimension);
-                    chooseSign = RandomEngine.Instance.GenerateIntsUniformlyDistributed(0, 2) - 1;
-
-                    _trial.FillWithVector(_intermediate);
-                    _trial.AddToIndex(chooseSign * Parameters.Step, chooseIndex);
-                    // Find criterion for the trial solution
-                    _trialCriterionValue = Problem.CalcualteCriterion(_trial);
-                    if (_trialCriterionValue > _intermediateCriterionValue)
-                    {
-
-                    }
+                    NextIteration();
                 }
 
                 
@@ -55,7 +42,31 @@ namespace TestApp.Optimization.LocalOptimization
 
         protected override void NextIteration()
         {
-            throw new NotImplementedException();
+            // TODO: could optimize this if the next index is the same with previous
+            int chooseIndex = RandomEngine.Instance.GenerateIntsUniformlyDistributed(0, Problem.Dimension);
+            int chooseSign = RandomEngine.Instance.GenerateIntsUniformlyDistributed(0, 2) - 1;
+
+            _trial.FillWithVector(_intermediate);
+            _trial[chooseIndex] += chooseSign * Parameters.Step;
+            // Find criterion for the trial solution
+            _trialCriterionValue = Problem.CalcualteCriterion(_trial);
+            if (_trialCriterionValue > _intermediateCriterionValue)
+            {
+                // Make steps in taht direction while there is improvement
+                for (int j = 0; j < Parameters.NumberOfSteps; j++)
+                {
+                    _intermediate.FillWithVector(_trial);
+                    _intermediateCriterionValue = _trialCriterionValue;
+                    // Make another step
+                    _trial[chooseIndex] += chooseSign * Parameters.Step;
+                    // Find criterion for the trial solution
+                    _trialCriterionValue = Problem.CalcualteCriterion(_trial);
+
+                    // Check if the stopping condition is met
+                    if (_trialCriterionValue < _intermediateCriterionValue)
+                        break;
+                }
+            }
         }
     }
 }
