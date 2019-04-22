@@ -42,7 +42,7 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         #region Setting
 
-        public void SetData(DynamicalSystemSample sample)
+        public virtual void SetData(DynamicalSystemSample sample)
         {
             sampleToLdeProcessor.Process(sample);
             modelToDataProcessor.SetData(sample);

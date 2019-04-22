@@ -68,5 +68,24 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
 
             return sum / (_sampleSize * _numberOfOutputs);
         }
+
+        // TODO: code repetition!!!
+        public double CalculateMultipleOutputCriterion(LdeModel model, double[] normalization)
+        {
+            // Calculate the model output
+            var output = (DiscreteDynamicalModelOutput)model.Evaluate(_inputs);
+            //
+            double sum = 0;
+            var indexAndValues = _samplePreprocessing.IntegrationStepAndOutputs;
+            foreach (var index in indexAndValues.Keys)
+            {
+                for (int i = 0; i < _numberOfOutputs; i++)
+                {
+                    sum += Math.Abs(output.Outputs[index][i] - indexAndValues[index][i]) / normalization[i];
+                }
+            }
+
+            return sum / (_sampleSize * _numberOfOutputs);
+        }
     }
 }

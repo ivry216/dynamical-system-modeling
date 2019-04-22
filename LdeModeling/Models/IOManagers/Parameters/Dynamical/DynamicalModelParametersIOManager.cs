@@ -60,7 +60,7 @@ namespace TestApp.Models.IOManagers.Parameters.Dynamical
                         wsPars.Cells[currentRow, indexMatrix].Value = "B";
                         wsPars.Cells[currentRow, indexRows].Value = i;
                         wsPars.Cells[currentRow, indexColumns].Value = j;
-                        wsPars.Cells[currentRow, indexValues].Value = modelParameters.ModelParameters.A[i, j];
+                        wsPars.Cells[currentRow, indexValues].Value = modelParameters.ModelParameters.B[i, j];
                         currentRow++;
                     }
                 }

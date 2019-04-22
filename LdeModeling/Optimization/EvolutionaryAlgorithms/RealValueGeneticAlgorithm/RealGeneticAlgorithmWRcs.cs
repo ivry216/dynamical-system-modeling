@@ -35,6 +35,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
             // Iterate
             for (int i = 0; i < Parameters.Iterations; i++)
             {
+                Console.WriteLine("Iteration: " + i.ToString() + ", Best: " + BestValue.ToString());
                 NextIteration();
                 // Update best values
                 if (Fitness[0] > BestValue)

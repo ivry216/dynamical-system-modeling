@@ -18,7 +18,7 @@ namespace TestApp.Optimization.LocalOptimization
 
         public override void Evaluate()
         {
-            if (Parameters.Type == RandomCoordinatewiseSearchType.ChooseDirection)
+            if (Parameters.Type == RandomCoordinatewiseSearchType.RandomDirection)
             {
                 // Make a trial vector and intermediate solution
                 _intermediate = new double[Problem.Dimension];
