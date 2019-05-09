@@ -1,6 +1,6 @@
 ﻿using TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 
-namespace TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatsMiner
+namespace TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
 {
     public interface IAlgBestVariableAndValueGetter
     {

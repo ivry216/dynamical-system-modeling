@@ -1,4 +1,4 @@
-﻿namespace TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatsMiner
+﻿namespace TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
 {
     public interface IAlgorithmStatsGetter<TStats>
         where TStats : IAlgorithmStats
