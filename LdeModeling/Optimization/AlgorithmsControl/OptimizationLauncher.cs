@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestApp.Optimization.AlgorithmsControl.InformationCollectingManager;
+﻿using TestApp.Optimization.AlgorithmsControl.InformationCollectingManager;
 
 namespace TestApp.Optimization.AlgorithmsControl
 {
