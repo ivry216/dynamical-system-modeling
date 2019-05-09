@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatsMiner
+namespace TestApp.Optimization
 {
-    public interface IAlgorithmStatsMiner
+    public interface IAlgorithmStats
     {
-        void SetAlgorithm();
     }
 }
