@@ -32,6 +32,11 @@ namespace TestApp.Optimization.LocalOptimization
             BestValue = _intermediateCriterionValue;
         }
 
+        protected override void Initialize()
+        {
+            //
+        }
+
         protected override void NextIteration()
         {
             // TODO: could optimize this if the next index is the same with previous

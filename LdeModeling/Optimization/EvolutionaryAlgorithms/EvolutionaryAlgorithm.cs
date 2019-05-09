@@ -7,6 +7,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms
         where AlgorithmParameters : EvolutionaryAlgorithmParameters
     {
         #region Fields
+
         protected double[][] Population;
         protected double[] Fitness;
 
@@ -15,19 +16,25 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms
 
         protected double[][] MergedPopulation;
         protected double[] MergedFitness;
+
         #endregion Fields
 
         #region Inherited Methods
+
         public abstract override void Evaluate();
         protected abstract override void NextIteration();
+
         #endregion Inherited Methods
 
         #region Abstract Methods
+
         protected abstract void Generate();
+
         #endregion Abstract Methods
 
         #region Universal Methods
-        protected virtual void Initialize()
+
+        protected override void Initialize()
         {
             // Update best values and solutions
             BestValue = 0;
@@ -57,6 +64,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms
         {
             return new BestVariableAndValueStats(BestValue, BestSolution);
         }
+
         #endregion universal Methods
     }
 }
