@@ -60,6 +60,16 @@ namespace TestApp.MathematicalCore.ArrayExtensions
             }
         }
 
+        public static double[] CopyVector(this double[] array)
+        {
+            // Initialize a copy
+            double[] copy = new double[array.Length];
+            // Assign it
+            copy.FillWithVector(array);
+
+            return copy;
+        }
+
         public static void FillWithValueInPosition(this double[] array, double value, int position, double defaultValue = 0)
         {
             // TODO: optimize?
