@@ -107,6 +107,7 @@
     <Compile Include="Models\IOManagers\Parameters\IParametersIOManager.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\BestVariableAndValueStats.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\IBestVariableAndValueStats.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatsMiner\IAlgBestVariableAndValueGetter.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatsMiner\IAlgorithmStatsGetter.cs" />
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IAlgorithmRunDataCollector.cs" />
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IRealAlgorithmRunDataCollector.cs" />

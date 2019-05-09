@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatistics;
+using TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatsMiner;
 
 namespace TestApp.Optimization.EvolutionaryAlgorithms
 {
-    abstract class EvolutionaryAlgorithm<AlgorithmParameters> : OptimizationAlgorithm<AlgorithmParameters>
+    abstract class EvolutionaryAlgorithm<AlgorithmParameters> : OptimizationAlgorithm<AlgorithmParameters>, IAlgBestVariableAndValueGetter
         where AlgorithmParameters : EvolutionaryAlgorithmParameters
     {
         #region Fields
@@ -54,6 +56,11 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms
             {
                 Fitness[i] = Problem.CalcualteCriterion(Population[i]);
             }
+        }
+
+        BestVariableAndValueStats IAlgBestVariableAndValueGetter.GetBestAlternativeAndValue()
+        {
+            return new BestVariableAndValueStats(BestValue, BestSolution);
         }
         #endregion universal Methods
     }
