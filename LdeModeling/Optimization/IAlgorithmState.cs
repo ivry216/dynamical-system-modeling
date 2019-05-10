@@ -1,6 +1,6 @@
 ﻿namespace TestApp.Optimization
 {
-    public interface IAlgorithmStats
+    public interface IAlgorithmState
     {
     }
 }
