@@ -34,12 +34,6 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
             {
                 Console.WriteLine("Iteration: " + i.ToString() + ", Best: " + BestValue.ToString());
                 NextIteration();
-                // Update best values
-                if (Fitness[0] > BestValue)
-                {
-                    BestSolution.FillWithVector(Population[0]);
-                    BestValue = Fitness[0];
-                }
             }
         }
 
@@ -186,6 +180,9 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
                         break;
                     }
             }
+
+            // Update the best solution
+            TryUpdateSolution(Fitness[0], Population[0]);
         }
 
         #region Selection

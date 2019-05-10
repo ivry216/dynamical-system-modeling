@@ -101,13 +101,8 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
                     Fitness[i] = fitnessOfTrial;
 
                     // Update the best solution
-                    if (BestValue < fitnessOfTrial)
-                    {
-                        BestValue = fitnessOfTrial;
-                        BestSolution.FillWithVector(trial);
-                    }
+                    TryUpdateSolution(fitnessOfTrial, trial);
                 }
-
             }
         }
 

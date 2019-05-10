@@ -109,11 +109,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
                     Fitness[i] = fitnessOfTrial;
 
                     // Update the best solution
-                    if (BestValue < fitnessOfTrial)
-                    {
-                        BestValue = fitnessOfTrial;
-                        BestSolution.FillWithVector(trial);
-                    }
+                    TryUpdateSolution(fitnessOfTrial, trial);
                 }
             }
 
@@ -126,6 +122,9 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
                 _localSearcher.Evaluate();
                 Population[chooseIndex] = _localSearcher.BestSolution;
                 Fitness[chooseIndex] = _localSearcher.BestValue;
+
+                // Update the best solution
+                TryUpdateSolution(Fitness[chooseIndex], Population[chooseIndex]);
             }
         }
 
