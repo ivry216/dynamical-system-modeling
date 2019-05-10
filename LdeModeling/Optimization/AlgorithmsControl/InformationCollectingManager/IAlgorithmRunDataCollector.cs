@@ -1,10 +1,12 @@
-﻿namespace TestApp.Optimization.AlgorithmsControl.InformationCollectingManager
+﻿using System.Collections.Generic;
+
+namespace TestApp.Optimization.AlgorithmsControl.InformationCollectingManager
 {
-    public interface IAlgorithmRunDataCollector
+    public interface IAlgorithmRunDataCollector<TStats>
+        where TStats : IAlgorithmStats
     {
-        void AddBest(object best);
-        void AddBestSolution(object alternative);
-        object GetBestByIndex(int index);
-        object GetBestSolutionByIndex(int index);
+        void Add(TStats stats);
+        TStats GetByIdenx(int index);
+        ICollection<TStats> GetAll();
     }
 }

@@ -113,7 +113,7 @@
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatsGetters\IAlgBestVariableAndValueGetter.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatsGetters\IAlgorithmStatsGetter.cs" />
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IAlgorithmRunDataCollector.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IRealAlgorithmRunDataCollector.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\AlgorithmRunDataCollector.cs" />
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\RealAlgorithmDataCollector.cs" />
     <Compile Include="Optimization\AlgorithmsControl\IOptimizationLauncher.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmLauncherType.cs" />

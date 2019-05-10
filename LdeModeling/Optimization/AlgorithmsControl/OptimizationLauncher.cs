@@ -2,9 +2,10 @@
 
 namespace TestApp.Optimization.AlgorithmsControl
 {
-    public abstract class OptimizationLauncher<TParameters, TCollector> : IOptimizationLauncher<TParameters>
+    public abstract class OptimizationLauncher<TParameters, TCollector, TStats> : IOptimizationLauncher<TParameters>
+        where TStats : IAlgorithmStats
         where TParameters : IOptimizationLauncherParameters
-        where TCollector : IAlgorithmRunDataCollector, new()
+        where TCollector : IAlgorithmRunDataCollector<TStats>, new()
     {
         #region Fields
 

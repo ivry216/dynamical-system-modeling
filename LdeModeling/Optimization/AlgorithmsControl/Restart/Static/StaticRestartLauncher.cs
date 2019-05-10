@@ -1,8 +1,9 @@
-﻿using TestApp.Optimization.AlgorithmsControl.InformationCollectingManager;
+﻿using TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatistics;
+using TestApp.Optimization.AlgorithmsControl.InformationCollectingManager;
 
 namespace TestApp.Optimization.AlgorithmsControl.Restart.Static
 {
-    public class StaticRestartLauncher : OptimizationLauncher<StaticRestartLaucherParameters, RealAlgorithmDataCollector>
+    public class StaticRestartLauncher : OptimizationLauncher<StaticRestartLaucherParameters, RealAlgorithmDataCollector, IBestVariableAndValueStats>
     {
         public StaticRestartLauncher(StaticRestartLaucherParameters parameters) : base(parameters)
         { }
@@ -14,8 +15,7 @@ namespace TestApp.Optimization.AlgorithmsControl.Restart.Static
                 // Evaluate algorithm
                 Algorithm.Evaluate();
                 // Save the results to collector
-                collector.AddBest(Algorithm.BestValue);
-                collector.AddBestSolution(Algorithm.BestSolution);
+                collector.Add(new BestVariableAndValueStats(Algorithm.BestValue, Algorithm.BestSolution));
             }
         }
     }
