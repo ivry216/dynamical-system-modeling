@@ -106,8 +106,8 @@
     <Compile Include="Models\IOManagers\Parameters\Dynamical\DynamicalModelParametersIOManager.cs" />
     <Compile Include="Models\IOManagers\Parameters\IParametersIOManager.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\BestVariableAndValueStats.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\IBestVariableAndValueStats.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\IHavingStandardAlgorithmState.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\AlgorithmStates\IBestVariableAndValueState.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\AlgorithmStates\IHavingStandardAlgorithmState.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatsGetters\IAlgBestVariableAndValueGetter.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatsGetters\IAlgorithmStatsGetter.cs" />
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IAlgorithmRunDataCollector.cs" />

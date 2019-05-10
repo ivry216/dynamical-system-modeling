@@ -1,7 +1,7 @@
 ﻿namespace TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
 {
     public interface IAlgorithmStatsGetter<TStats>
-        where TStats : IAlgorithmStats
+        where TStats : IAlgorithmState
     {
         TStats GetStats();
     }

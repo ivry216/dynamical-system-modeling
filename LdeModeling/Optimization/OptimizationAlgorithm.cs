@@ -1,5 +1,5 @@
 ﻿using TestApp.MathematicalCore.ArrayExtensions;
-using TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatistics;
+using TestApp.Optimization.AlgorithmsControl.AlgorithmStates;
 using TestApp.Optimization.Problem;
 
 namespace TestApp.Optimization
