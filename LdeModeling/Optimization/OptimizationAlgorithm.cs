@@ -1,10 +1,10 @@
 ﻿using TestApp.MathematicalCore.ArrayExtensions;
-using TestApp.Optimization.AlgorithmsControl.AlgorithmStates;
+using TestApp.Optimization.AlgorithmsControl.AlgorithmMeta;
 using TestApp.Optimization.Problem;
 
 namespace TestApp.Optimization
 {
-    public abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IRealAlgorithm, IHavingStandardAlgorithmState
+    public abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IRealAlgorithm, IRestartableAlgorithm
         where AlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Fields
@@ -43,6 +43,13 @@ namespace TestApp.Optimization
         protected abstract void Generate();
 
         #endregion Abstract Methods
+
+        #region Restartable Methods
+
+        void IRestartableAlgorithm.Generate() => Generate();
+        void IRestartableAlgorithm.NextIteration() => NextIteration();
+        
+        #endregion Restartable Methods
 
         #region Inherited Methods
 
