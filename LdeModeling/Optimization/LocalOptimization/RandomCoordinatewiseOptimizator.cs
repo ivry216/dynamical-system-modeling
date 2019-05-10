@@ -15,6 +15,9 @@ namespace TestApp.Optimization.LocalOptimization
             // Make a trial vector and intermediate solution
             _intermediate = new double[Problem.Dimension];
             _trial = new double[Problem.Dimension];
+
+            // Initialize the best solution
+            BestSolution = new double[Problem.Dimension];
         }
 
         protected override void Generate()

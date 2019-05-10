@@ -9,14 +9,17 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms
     class EvolutionaryAlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Properties
+
         public int Size { get; set; }
-        public int Iterations { get; set; }
+
         #endregion Properties
 
         #region Constructor
+
         public EvolutionaryAlgorithmParameters()
         {
         }
+
         #endregion Constructor
     }
 }

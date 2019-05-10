@@ -8,7 +8,7 @@ namespace TestApp.Optimization.LocalOptimization
 {
     public class RandomCoordinatewiseOptimizatorParameters : OptimizationAlgorithmParameters
     {
-        public int NumberOfCoordinates { get; set; }
+        public int NumberOfCoordinates { get => Iterations; set => Iterations = value; }
         public int NumberOfSteps { get; set; }
         public double Step { get; set; }
 
