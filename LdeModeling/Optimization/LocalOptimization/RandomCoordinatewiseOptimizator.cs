@@ -14,14 +14,10 @@ namespace TestApp.Optimization.LocalOptimization
         {
             if (Parameters.Type == RandomCoordinatewiseSearchType.RandomDirection)
             {
-                // Make a trial vector and intermediate solution
-                _intermediate = new double[Problem.Dimension];
-                _trial = new double[Problem.Dimension];
+                //
+                Initialize();
 
-                // Set the initial solution
-                _intermediate.FillWithVector(Parameters.InitialPoint);
-                _intermediateCriterionValue = Parameters.InitialPointValue;
-
+                //
                 for (int i = 0; i < Parameters.NumberOfCoordinates; i++)
                 {
                     NextIteration();
@@ -34,7 +30,13 @@ namespace TestApp.Optimization.LocalOptimization
 
         protected override void Initialize()
         {
-            //
+            // Make a trial vector and intermediate solution
+            _intermediate = new double[Problem.Dimension];
+            _trial = new double[Problem.Dimension];
+
+            // Set the initial solution
+            _intermediate.FillWithVector(Parameters.InitialPoint);
+            _intermediateCriterionValue = Parameters.InitialPointValue;
         }
 
         protected override void NextIteration()
