@@ -8,5 +8,6 @@ namespace TestApp.Optimization
 {
     interface IOptimizationAlgorithmParameters
     {
+        int Iterations { get; set; }
     }
 }

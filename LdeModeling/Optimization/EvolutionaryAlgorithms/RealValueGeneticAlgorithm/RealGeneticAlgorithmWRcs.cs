@@ -23,20 +23,6 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
 
         private ReverseComparer reverseComparer = new ReverseComparer();
 
-        public override void Evaluate()
-        {
-            // Initialize all
-            Initialize();
-            // Generate the initial population
-            Generate();
-            // Iterate
-            for (int i = 0; i < Parameters.Iterations; i++)
-            {
-                Console.WriteLine("Iteration: " + i.ToString() + ", Best: " + BestValue.ToString());
-                NextIteration();
-            }
-        }
-
         protected override void Initialize()
         {
             // Call a base initialization method

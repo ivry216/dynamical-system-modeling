@@ -19,13 +19,6 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms
 
         #endregion Fields
 
-        #region Inherited Methods
-
-        public abstract override void Evaluate();
-        protected abstract override void NextIteration();
-
-        #endregion Inherited Methods
-
         #region Universal Methods
 
         protected override void Initialize()

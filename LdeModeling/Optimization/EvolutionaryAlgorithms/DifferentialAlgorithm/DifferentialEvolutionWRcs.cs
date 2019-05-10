@@ -18,25 +18,6 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
 
         #region Inherited Methods
 
-        public override void Evaluate()
-        {
-            // Initialize all
-            Initialize();
-            // Generate the initial population
-            Generate();
-            // Iterate
-            for (int i = 0; i < Parameters.Iterations; i++)
-            {
-                NextIteration();
-                // Update best values
-                if (Fitness[0] > BestValue)
-                {
-                    BestSolution.FillWithVector(Population[0]);
-                    BestValue = Fitness[0];
-                }
-            }
-        }
-
         protected override void Initialize()
         {
             // Call the base method

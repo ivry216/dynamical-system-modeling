@@ -35,8 +35,6 @@ namespace TestApp.Optimization
 
         #region Abstract Methods
 
-        public abstract void Evaluate();
-
         protected abstract void NextIteration();
         protected abstract void Initialize();
         protected abstract void Generate();
@@ -64,6 +62,16 @@ namespace TestApp.Optimization
         void IAlgorithm.Evaluate()
         {
             Evaluate();
+        }
+
+        public void Evaluate()
+        {
+            Initialize();
+            Generate();
+            for (int i = 0; i < Parameters.Iterations; i++)
+            {
+                NextIteration();
+            }
         }
 
         #endregion Inherited Methods

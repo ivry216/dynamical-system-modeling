@@ -10,24 +10,6 @@ namespace TestApp.Optimization.LocalOptimization
         private double[] _intermediate;
         private double[] _trial;
 
-        public override void Evaluate()
-        {
-            if (Parameters.Type == RandomCoordinatewiseSearchType.RandomDirection)
-            {
-                //
-                Initialize();
-
-                //
-                for (int i = 0; i < Parameters.NumberOfCoordinates; i++)
-                {
-                    NextIteration();
-                }
-            }
-
-            BestSolution = _intermediate;
-            BestValue = _intermediateCriterionValue;
-        }
-
         protected override void Initialize()
         {
             // Make a trial vector and intermediate solution
@@ -40,6 +22,9 @@ namespace TestApp.Optimization.LocalOptimization
             // Set the initial solution
             _intermediate.FillWithVector(Parameters.InitialPoint);
             _intermediateCriterionValue = Parameters.InitialPointValue;
+
+            //
+            TryUpdateSolution(_intermediateCriterionValue, _intermediate);
         }
 
         protected override void NextIteration()
@@ -69,6 +54,9 @@ namespace TestApp.Optimization.LocalOptimization
                         break;
                 }
             }
+
+            //
+            TryUpdateSolution(_intermediateCriterionValue, _intermediate);
         }
     }
 }
