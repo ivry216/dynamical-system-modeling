@@ -1,8 +1,13 @@
-﻿namespace TestApp.Optimization.AlgorithmsControl
+﻿using System.Collections.Generic;
+
+namespace TestApp.Optimization.AlgorithmsControl
 {
-    public interface IOptimizationLauncher<TParameters>
+    public interface IOptimizationLauncher<TParameters, TStats>
         where TParameters : IOptimizationLauncherParameters
+        where TStats : IAlgorithmStats
     {
+        List<TStats> Stats { get; }
+
         IRealAlgorithm Algorithm { get; set; }
         TParameters Parameters { get; }
 
