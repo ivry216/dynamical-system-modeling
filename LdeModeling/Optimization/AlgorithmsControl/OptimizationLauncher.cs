@@ -15,7 +15,6 @@ namespace TestApp.Optimization.AlgorithmsControl
         #region Inherited Properties 
 
         public IRealAlgorithm Algorithm { get; set; }
-        public abstract AlgorithmLauncherType LauncherType { get; }
         public TParameters Parameters { get; }
 
         #endregion Inherited Properties

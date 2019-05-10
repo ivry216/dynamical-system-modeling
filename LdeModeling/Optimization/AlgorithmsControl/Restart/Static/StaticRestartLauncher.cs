@@ -4,8 +4,6 @@ namespace TestApp.Optimization.AlgorithmsControl.Restart.Static
 {
     public class StaticRestartLauncher : OptimizationLauncher<StaticRestartLaucherParameters, RealAlgorithmDataCollector>
     {
-        public override AlgorithmLauncherType LauncherType => AlgorithmLauncherType.StaticRestart;
-
         public StaticRestartLauncher(StaticRestartLaucherParameters parameters) : base(parameters)
         { }
 
