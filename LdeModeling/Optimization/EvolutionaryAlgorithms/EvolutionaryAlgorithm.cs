@@ -26,12 +26,6 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms
 
         #endregion Inherited Methods
 
-        #region Abstract Methods
-
-        protected abstract void Generate();
-
-        #endregion Abstract Methods
-
         #region Universal Methods
 
         protected override void Initialize()

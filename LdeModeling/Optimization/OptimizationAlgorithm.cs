@@ -30,6 +30,7 @@ namespace TestApp.Optimization
         public abstract void Evaluate();
         protected abstract void NextIteration();
         protected abstract void Initialize();
+        protected abstract void Generate();
         #endregion Abstract Methods
 
         #region Inherited Methods

@@ -33,7 +33,10 @@ namespace TestApp.Optimization.LocalOptimization
             // Make a trial vector and intermediate solution
             _intermediate = new double[Problem.Dimension];
             _trial = new double[Problem.Dimension];
+        }
 
+        protected override void Generate()
+        {
             // Set the initial solution
             _intermediate.FillWithVector(Parameters.InitialPoint);
             _intermediateCriterionValue = Parameters.InitialPointValue;
