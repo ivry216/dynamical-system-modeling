@@ -54,6 +54,9 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
 
         protected override void Generate()
         {
+            // Initialize iteration
+            Iteration = 0;
+
             // Generate the new population
             // With normal distribution
             if (Parameters.GenerationType == PopulationGenerationType.Normal)
@@ -84,6 +87,9 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
 
         protected override void NextIteration()
         {
+            // Update iteration
+            Iteration++;
+
             // For all individs
             for (int i = 0; i < Parameters.SizeOfTrialPopulation; i++)
             {

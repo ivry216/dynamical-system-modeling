@@ -3,6 +3,6 @@
     public interface IBestVariableAndValueStats : IAlgorithmStats
     {
         double BestValue { get; }
-        double[] BestAlternative { get; }
+        double[] BestSolution { get; }
     }
 }

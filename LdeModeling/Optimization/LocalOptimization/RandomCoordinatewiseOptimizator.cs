@@ -22,6 +22,9 @@ namespace TestApp.Optimization.LocalOptimization
 
         protected override void Generate()
         {
+            // Initialize iteration
+            Iteration = 0;
+
             // Set the initial solution
             _intermediate.FillWithVector(Parameters.InitialPoint);
             _intermediateCriterionValue = Parameters.InitialPointValue;
@@ -32,6 +35,9 @@ namespace TestApp.Optimization.LocalOptimization
 
         protected override void NextIteration()
         {
+            // Update iteration
+            Iteration++;
+
             // TODO: could optimize this if the next index is the same with previous
             int chooseIndex = RandomEngine.Instance.GenerateIntsUniformlyDistributed(0, Problem.Dimension);
             int chooseSign = RandomEngine.Instance.GenerateIntsUniformlyDistributed(0, 2) - 1;

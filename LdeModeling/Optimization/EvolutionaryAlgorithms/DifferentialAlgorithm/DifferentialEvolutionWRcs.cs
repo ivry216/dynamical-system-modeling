@@ -43,6 +43,9 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
 
         protected override void Generate()
         {
+            // Initialize Iteration
+            Iteration = 0;
+
             // Generate the new population
             // With normal distribution
             if (Parameters.GenerationType == PopulationGenerationType.Normal)
@@ -73,6 +76,9 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
 
         protected override void NextIteration()
         {
+            // Update iteration
+            Iteration++;
+
             // Run through all elements in population
             for (int i = 0; i < Parameters.Size; i++)
             {

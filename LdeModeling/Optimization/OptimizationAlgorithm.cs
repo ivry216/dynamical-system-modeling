@@ -1,9 +1,10 @@
 ﻿using TestApp.MathematicalCore.ArrayExtensions;
+using TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 using TestApp.Optimization.Problem;
 
 namespace TestApp.Optimization
 {
-    public abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IRealAlgorithm
+    public abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IRealAlgorithm, IHavingStandardAlgorithmState
         where AlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Fields
@@ -18,6 +19,8 @@ namespace TestApp.Optimization
 
         public double[] BestSolution { get; protected set; }
         public double BestValue { get; protected set; }
+
+        public int Iteration { get; protected set; }
 
         object IAlgorithm.BestValue => BestValue;
         object IAlgorithm.BestSolution => BestSolution;
