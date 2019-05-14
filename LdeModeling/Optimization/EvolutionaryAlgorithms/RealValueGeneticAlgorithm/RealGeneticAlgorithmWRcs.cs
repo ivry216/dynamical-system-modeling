@@ -113,7 +113,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
                 Parameters.LoParameters.InitialPoint = TrialPopulation[chooseIndex];
                 Parameters.LoParameters.InitialPointValue = TrialFitness[chooseIndex];
                 _localSearcher.Evaluate();
-                TrialPopulation[chooseIndex] = _localSearcher.BestSolution;
+                TrialPopulation[chooseIndex].FillWithVector(_localSearcher.BestSolution);
                 TrialFitness[chooseIndex] = _localSearcher.BestValue;
             }
 

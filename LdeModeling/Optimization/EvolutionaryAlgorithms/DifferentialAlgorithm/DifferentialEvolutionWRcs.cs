@@ -107,7 +107,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
                 Parameters.LoParameters.InitialPoint = Population[chooseIndex];
                 Parameters.LoParameters.InitialPointValue = Fitness[chooseIndex];
                 _localSearcher.Evaluate();
-                Population[chooseIndex] = _localSearcher.BestSolution;
+                Population[chooseIndex].FillWithVector(_localSearcher.BestSolution);
                 Fitness[chooseIndex] = _localSearcher.BestValue;
 
                 // Update the best solution
