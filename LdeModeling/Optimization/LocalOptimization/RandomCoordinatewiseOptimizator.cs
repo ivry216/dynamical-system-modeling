@@ -22,6 +22,9 @@ namespace TestApp.Optimization.LocalOptimization
 
         protected override void Generate()
         {
+            // Assign the best value to min
+            BestValue = double.MinValue;
+
             // Initialize iteration
             Iteration = 0;
 
