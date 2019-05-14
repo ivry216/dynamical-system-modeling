@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TestApp.Optimization.AlgorithmsControl.AlgorithmMeta;
 using TestApp.Optimization.AlgorithmsControl.InformationCollectingManager;
 
 namespace TestApp.Optimization.AlgorithmsControl
 {
-    public abstract class OptimizationLauncher<TParameters, TCollector, TStats> : IOptimizationLauncher<TParameters, TStats>
+    public abstract class OptimizationLauncher<TParameters, TCollector, TStats> : IOptimizationLauncher<TParameters, TStats>, IContainingStats<TStats>
         where TStats : IAlgorithmStats
         where TParameters : IOptimizationLauncherParameters
         where TCollector : IAlgorithmRunDataCollector<TStats>, new()
