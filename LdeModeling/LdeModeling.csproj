@@ -117,6 +117,7 @@
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\AlgorithmRunDataCollector.cs" />
     <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\RealAlgorithmDataCollector.cs" />
     <Compile Include="Optimization\AlgorithmsControl\IOManagers\ITestSessionResultsIOManager.cs" />
+    <Compile Include="Optimization\AlgorithmsControl\IOManagers\StandardLauncherStatisticsIOManager.cs" />
     <Compile Include="Optimization\AlgorithmsControl\IOptimizationLauncher.cs" />
     <Compile Include="Optimization\AlgorithmsControl\AlgorithmLauncherType.cs" />
     <Compile Include="Optimization\AlgorithmsControl\IOptimizationLauncherParameters.cs" />
