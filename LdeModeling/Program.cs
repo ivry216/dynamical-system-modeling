@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestApp.DataSample.SampleGeneration.LinearDynamicalSystem;
 using TestApp.DataSample.SampleIO.LinearDynamicalSystem;
+using TestApp.MathematicalCore.Randomizing;
 using TestApp.Models.Dynamical;
 using TestApp.Models.Dynamical.InverseProblem;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
@@ -121,9 +122,15 @@ namespace TestApp
             RealGeneticAlgorithmWRcs realGa = new RealGeneticAlgorithmWRcs();
             RealGeneticAlgorithmParametersWRcs realGaParameters = new RealGeneticAlgorithmParametersWRcs();
 
+            // Generation type
             realGaParameters.GenerationType = PopulationGenerationType.Uniform;
-            realGaParameters.GenerationFrom = Enumerable.Repeat(-3.0, 12).ToArray();
-            realGaParameters.GenerationTo = Enumerable.Repeat(3.0, 12).ToArray();
+
+            // Parameters for uniform generation
+            realGaParameters.GenerationFrom = Enumerable.Repeat(-0.0, 12).ToArray();
+            realGaParameters.GenerationTo = Enumerable.Repeat(0.0, 12).ToArray();
+            // Parameters for normal generation
+            realGaParameters.GenerationMean = RandomEngine.Instance.GenerateNormallyDistributedVector(12, 0, 3);
+            realGaParameters.GenerationSd = Enumerable.Repeat(1.0, 12).ToArray();
 
             realGaParameters.SelectionType = RvgaSelectionType.Tournament;
             realGaParameters.NumberOfParents = 2;
@@ -131,19 +138,21 @@ namespace TestApp
 
             realGaParameters.CrossoverType = RvgaCrossoverType.Uniform;
 
-            realGaParameters.MutationType = RvgaMutationType.Uniform;
+            realGaParameters.MutationType = RvgaMutationType.ProbabilisticUniform;
             realGaParameters.MutateFrom = Enumerable.Repeat(-3.0, 12).ToArray();
             realGaParameters.MutateTo = Enumerable.Repeat(3.0, 12).ToArray();
+            //realGaParameters.MutateFrom = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
+            //realGaParameters.MutateTo = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
             realGaParameters.MutationAdditiveSD = 2;
-            realGaParameters.MutationProbability = 0.1;
-            realGaParameters.MutationNumberOfGenes = 10;
+            realGaParameters.MutationProbability = 0.05;
+            realGaParameters.MutationNumberOfGenes = 2;
 
             realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
             realGaParameters.SizeOfTrialPopulation = 200;
             realGaParameters.Size = 100;
-            realGaParameters.Iterations = 200;
+            realGaParameters.Iterations = 40;
 
-            realGaParameters.IndividsToOptimizeLocally = 100;
+            realGaParameters.IndividsToOptimizeLocally = 50;
             realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
             {
                 NumberOfCoordinates = 200,
@@ -181,7 +190,7 @@ namespace TestApp
             DynamicalModelParametersIOManager ioParamsManager = new DynamicalModelParametersIOManager();
             ioParamsManager.Save((LdeModelParameters)model.ModelParameters, "test3.xlsx");
 
-            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 1 });
+            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
             launcher.Algorithm = realGa;
             launcher.Run();
 
