@@ -126,8 +126,8 @@ namespace TestApp
             realGaParameters.GenerationType = PopulationGenerationType.Uniform;
 
             // Parameters for uniform generation
-            realGaParameters.GenerationFrom = Enumerable.Repeat(-0.0, 12).ToArray();
-            realGaParameters.GenerationTo = Enumerable.Repeat(0.0, 12).ToArray();
+            realGaParameters.GenerationFrom = Enumerable.Repeat(-3.0, 12).ToArray();
+            realGaParameters.GenerationTo = Enumerable.Repeat(3.0, 12).ToArray();
             // Parameters for normal generation
             realGaParameters.GenerationMean = RandomEngine.Instance.GenerateNormallyDistributedVector(12, 0, 3);
             realGaParameters.GenerationSd = Enumerable.Repeat(1.0, 12).ToArray();
@@ -152,7 +152,7 @@ namespace TestApp
             realGaParameters.Size = 100;
             realGaParameters.Iterations = 40;
 
-            realGaParameters.IndividsToOptimizeLocally = 50;
+            realGaParameters.IndividsToOptimizeLocally = 10;
             realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
             {
                 NumberOfCoordinates = 200,
