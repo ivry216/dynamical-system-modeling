@@ -13,6 +13,7 @@ using TestApp.Models.Dynamical.ModelToDataProcessing;
 using TestApp.Models.Dynamical.SamplePreprocessing;
 using TestApp.Models.IOManagers.ModelingResults.Dynamical;
 using TestApp.Models.IOManagers.Parameters.Dynamical;
+using TestApp.Optimization.AlgorithmsControl.IOManagers;
 using TestApp.Optimization.AlgorithmsControl.Restart.Static;
 using TestApp.Optimization.EvolutionaryAlgorithms;
 using TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm;
@@ -193,6 +194,9 @@ namespace TestApp
             StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
             launcher.Algorithm = realGa;
             launcher.Run();
+
+            StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
+            launcherDataSaver.SaveStats(launcher, "test_launch.xlsx");
 
             var test1 = ldeInverseProblem.CalcualteCriterion(launcher.Algorithm.BestSolution);
         }

@@ -35,7 +35,7 @@ namespace TestApp.Optimization.AlgorithmsControl.IOManagers
                 // Problem dimension
                 var dimension = stats.First().BestSolution.Length;
 
-                for (int i = 3, j =1; i <= dimension; i++, j++)
+                for (int i = 3, j = 1; j <= dimension; i++, j++)
                 {
                     wsData.Cells[rowIndex, i].Value = $"Variable {j}";
                 }
@@ -56,7 +56,7 @@ namespace TestApp.Optimization.AlgorithmsControl.IOManagers
                     // Save value
                     wsData.Cells[row, 2].Value = stats[i].BestValue;
                     // Save best solution found
-                    for (int varialbeIndex = 0, col = colIndex; varialbeIndex < dimension; varialbeIndex++, col++)
+                    for (int varialbeIndex = 0, col = colIndex + 1; varialbeIndex < dimension; varialbeIndex++, col++)
                     {
                         wsData.Cells[row, col].Value = stats[i].BestSolution[varialbeIndex];
                     }

@@ -1,4 +1,5 @@
-﻿using TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatistics;
+﻿using System;
+using TestApp.Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 using TestApp.Optimization.AlgorithmsControl.InformationCollectingManager;
 
 namespace TestApp.Optimization.AlgorithmsControl.Restart.Static
@@ -12,6 +13,7 @@ namespace TestApp.Optimization.AlgorithmsControl.Restart.Static
         {
             for (int i = 0; i < Parameters.Iterations; i++)
             {
+                Console.WriteLine($"Test number: {i}");
                 // Evaluate algorithm
                 Algorithm.Evaluate();
                 // Save the results to collector
