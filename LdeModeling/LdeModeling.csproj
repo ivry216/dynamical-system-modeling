@@ -130,6 +130,8 @@
     <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParameters.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\EvolutionaryAlgorithm.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\EvolutionaryAlgorithmParameters.cs" />
+    <Compile Include="Optimization\EvolutionaryAlgorithms\ParticleSwarmOptimization\ParticleSwarmOptimizer.cs" />
+    <Compile Include="Optimization\EvolutionaryAlgorithms\ParticleSwarmOptimization\ParticleSwarmOptimizerParameters.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\ParameterTypes\RvgaNextPopulationType.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmParametersWRcs.cs" />
     <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmWRcs.cs" />
