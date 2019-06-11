@@ -1,5 +1,5 @@
-﻿using TestApp.MathematicalCore.ArrayExtensions;
-using TestApp.MathematicalCore.Randomizing;
+﻿using Randomizer.Randomizing;
+using TestApp.MathematicalCore.ArrayExtensions;
 
 namespace TestApp.Optimization.LocalOptimization
 {

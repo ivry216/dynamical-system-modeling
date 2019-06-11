@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Randomizer.Randomizing;
+using System;
 using System.Collections.Generic;
 using TestApp.MathematicalCore.ArrayExtensions;
 using TestApp.MathematicalCore.LinearOperator;
 using TestApp.MathematicalCore.Normalization;
-using TestApp.MathematicalCore.Randomizing;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
 using TestApp.Optimization.LocalOptimization;
 

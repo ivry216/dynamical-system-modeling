@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using Randomizer.Randomizing;
+using System.Linq;
 using TestApp.MathematicalCore.ArrayExtensions;
-using TestApp.MathematicalCore.Randomizing;
 using TestApp.Optimization.LocalOptimization;
 
 namespace TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm

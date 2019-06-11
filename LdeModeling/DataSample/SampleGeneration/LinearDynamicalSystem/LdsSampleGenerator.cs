@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Randomizer.Randomizing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestApp.MathematicalCore.Randomizing;
 using TestApp.Models.Dynamical;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
 

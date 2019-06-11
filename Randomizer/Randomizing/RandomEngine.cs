@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TestApp.MathematicalCore.Randomizing
+namespace Randomizer.Randomizing
 {
-    class RandomEngine
+    public class RandomEngine
     {
         #region Fields
+
         private static readonly Lazy<RandomEngine> _singleton = new Lazy<RandomEngine>(() => new RandomEngine());
         private Random _random;
+
         #endregion Fields
 
         #region Static Properties
+
         public static RandomEngine Instance
         {
             get
@@ -21,9 +22,11 @@ namespace TestApp.MathematicalCore.Randomizing
                 return _singleton.Value;
             }
         }
+
         #endregion Static Properties
 
         #region Constructor
+
         static RandomEngine()
         { }
 
@@ -31,9 +34,11 @@ namespace TestApp.MathematicalCore.Randomizing
         {
             _random = new Random();
         }
+
         #endregion Constructor
 
         #region Main Methods: Normal Distribution
+
         public double GenerateNormallyDistributed()
         {
             double u1 = 1.0 - _random.NextDouble();
@@ -74,10 +79,11 @@ namespace TestApp.MathematicalCore.Randomizing
 
             return result;
         }
+
         #endregion Main Methods: Normal Distribution
 
-
         #region Main Methods: Uniform Distribution for Real
+
         public double GenerateUniformlyDistributed()
         {
             return _random.NextDouble();
@@ -144,9 +150,11 @@ namespace TestApp.MathematicalCore.Randomizing
 
             return result;
         }
+
         #endregion Main Methods: Uniform Distribution for Real
 
         #region Main Methods: Uniform Distribution for Integers
+
         public int GenerateIntsUniformlyDistributed(int from, int to)
         {
             return _random.Next(from, to);
@@ -177,9 +185,11 @@ namespace TestApp.MathematicalCore.Randomizing
 
             return result;
         }
+
         #endregion Main Methods: Uniform Distribution for Integers
 
         #region Derivative Methods: Get Integers With Different Probabilities
+
         public int GenerateIndexByProbabilities(int indexesNumber, double[] probabilities)
         {
             // Generate uniformly distributed value [0 1]
@@ -208,6 +218,7 @@ namespace TestApp.MathematicalCore.Randomizing
 
             return result;
         }
+
         #endregion Derivative Methods: Get Integers With Different Probabilities
 
         #region Subsetting Methods

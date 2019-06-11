@@ -8,10 +8,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>TestApp</RootNamespace>
     <AssemblyName>TestApp</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -68,8 +69,6 @@
     <Compile Include="MathematicalCore\ArrayExtensions\SortingExtension.cs" />
     <Compile Include="MathematicalCore\LinearOperator\VectorProcessor.cs" />
     <Compile Include="MathematicalCore\Normalization\Normalizer.cs" />
-    <Compile Include="MathematicalCore\Randomizing\DistributionType.cs" />
-    <Compile Include="MathematicalCore\Randomizing\RandomEngine.cs" />
     <Compile Include="MathematicalCore\RealValuesExtensions\RoundingExtensions.cs" />
     <Compile Include="Models\Dynamical\DeNumericalIntegration\RungeKuttahIntegrator.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelInput.cs" />
@@ -165,6 +164,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Randomizer\Randomizer.csproj">
+      <Project>{4f7ca644-0272-4f1d-a606-7973d9f37415}</Project>
+      <Name>Randomizer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

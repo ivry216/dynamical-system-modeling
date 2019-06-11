@@ -8,6 +8,6 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
 {
     public interface IContiniousInput : IDynamicalModelInput
     {
-        Func<double, double>[] Inputs { get; }
+        new Func<double, double>[] Inputs { get; }
     }
 }
