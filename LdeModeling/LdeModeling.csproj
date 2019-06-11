@@ -67,8 +67,8 @@
     <Compile Include="MathematicalCore\ArrayExtensions\NormExtension.cs" />
     <Compile Include="MathematicalCore\ArrayExtensions\OperationsExtensions.cs" />
     <Compile Include="MathematicalCore\ArrayExtensions\SortingExtension.cs" />
-    <Compile Include="MathematicalCore\LinearOperator\VectorProcessor.cs" />
-    <Compile Include="MathematicalCore\Normalization\Normalizer.cs" />
+    <Compile Include="MathematicalCore\LinearOperator\VectorOperator.cs" />
+    <Compile Include="MathematicalCore\Normalization\VectorMutator.cs" />
     <Compile Include="MathematicalCore\RealValuesExtensions\RoundingExtensions.cs" />
     <Compile Include="Models\Dynamical\DeNumericalIntegration\RungeKuttahIntegrator.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelInput.cs" />

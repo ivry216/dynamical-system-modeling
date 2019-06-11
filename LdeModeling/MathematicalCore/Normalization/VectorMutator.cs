@@ -6,32 +6,11 @@ using System.Threading.Tasks;
 
 namespace TestApp.MathematicalCore.Normalization
 {
-    class Normalizer
+    class VectorMutator
     {
-        #region Fields
-        private static readonly Lazy<Normalizer> _singleton = new Lazy<Normalizer>(() => new Normalizer());
-        #endregion Fields
-
-        #region Static Properties
-        public static Normalizer Instance
-        {
-            get
-            {
-                return _singleton.Value;
-            }
-        }
-        #endregion Static Properties
-
-        #region Constructor
-        static Normalizer()
-        { }
-
-        private Normalizer()
-        { }
-        #endregion Constructor
-
         #region MinMax Normalization
-        public double[] MinMaxNormalize(double[] vector)
+
+        public static double[] NormalizeMinMax(double[] vector)
         {
             // Normalized vector
             double[] normalized = new double[vector.Length];
@@ -61,10 +40,12 @@ namespace TestApp.MathematicalCore.Normalization
 
             return normalized;
         }
+
         #endregion MinMax Normalization
 
         #region Probability Converting
-        public double[] ConvertoToProbabilities(double[] vector)
+
+        public static double[] ToProbabilities(double[] vector)
         {
             // Normalized vector
             double[] probabilities = new double[vector.Length];
@@ -85,16 +66,21 @@ namespace TestApp.MathematicalCore.Normalization
             return probabilities;
         }
 
-        public double[] ConvertToCumulative(double[] vector, bool isConverted = false)
+        public static double[] ConvertToCumulative(double[] vector, bool isConverted = false)
         {
             // Initialize (it contains 0 as start and 1 as end)
             double[] result = new double[vector.Length + 1];
 
             double[] vectorToConvert = vector;
-            // If hte vector was not previously converted
+            for (int i = 0; i < vector.Length; i++)
+            {
+                vectorToConvert[i] = vector[i];
+            }
+
+            // If the vector was not previously converted
             if (!isConverted)
             {
-                vectorToConvert = ConvertoToProbabilities(vector);
+                vectorToConvert = ToProbabilities(vector);
             }
 
             // Make a cumulative vector
@@ -107,7 +93,7 @@ namespace TestApp.MathematicalCore.Normalization
             return result;
         }
 
-        public double[] ConvertToCumulative(int[] vector, bool isConverted = false)
+        public static double[] ConvertToCumulative(int[] vector, bool isConverted = false)
         {
             // Initialize (it contains 0 as start and 1 as end)
             double[] result = new double[vector.Length + 1];
@@ -118,10 +104,10 @@ namespace TestApp.MathematicalCore.Normalization
                 vectorToConvert[i] = vector[i];
             }
 
-            // If hte vector was not previously converted
+            // If the vector was not previously converted
             if (!isConverted)
             {
-                vectorToConvert = ConvertoToProbabilities(vectorToConvert);
+                vectorToConvert = ToProbabilities(vectorToConvert);
             }
 
             // Make a cumulative vector
@@ -133,8 +119,7 @@ namespace TestApp.MathematicalCore.Normalization
 
             return result;
         }
+
         #endregion Probability Converting
-
-
     }
 }

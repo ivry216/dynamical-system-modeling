@@ -41,7 +41,7 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
 
         public double[] CalculateSystemEquation(double[] state, double[] inputs)
         {
-            return VectorProcessor.Instance.CalcualteSum(systemMatrix.MultiplyByVector(state), inputsMatrix.MultiplyByVector(inputs));
+            return VectorOperator.Sum(systemMatrix.MultiplyByVector(state), inputsMatrix.MultiplyByVector(inputs));
         }
 
         public IDiscreteOutput Evaluate(IContiniousInput input)

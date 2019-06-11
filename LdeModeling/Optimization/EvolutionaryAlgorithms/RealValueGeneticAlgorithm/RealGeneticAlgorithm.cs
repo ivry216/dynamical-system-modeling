@@ -178,7 +178,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
         private int[] PerfrormProportionalSelection()
         {
             // Convert the fitness to cumulative probabilities
-            double[] probabilities = Normalizer.Instance.ConvertToCumulative(Fitness);
+            double[] probabilities = VectorMutator.ConvertToCumulative(Fitness);
 
             // Generate the indexes of parents
             int[] parentsIndices = RandomEngine.Instance.GenerateIndexByProbabilitiesVector(
@@ -198,7 +198,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
             int[] ranks = new int[Parameters.Size];
             ranks.AssignWIntegerSequence(start: Parameters.Size, step: -1);
             // Normalize ranks
-            double[] probabilities = Normalizer.Instance.ConvertToCumulative(ranks);
+            double[] probabilities = VectorMutator.ConvertToCumulative(ranks);
 
             // Generate the numbers by probabilities
             int[] generatedNumbers = RandomEngine.Instance.GenerateIndexByProbabilitiesVector(
@@ -268,8 +268,8 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
             double[][] parents = GetParents(parentsIndices);
 
             // Get an offspring
-            double[] offspring = VectorProcessor.Instance.CalcualteSum(parents);
-            offspring = VectorProcessor.Instance.ScaleByValue(vector: offspring, value: 1.0 / Parameters.NumberOfParents);
+            double[] offspring = VectorOperator.Sum(parents);
+            offspring = VectorOperator.ScaleBy(vector: offspring, value: 1.0 / Parameters.NumberOfParents);
 
             return offspring;
         }
@@ -282,7 +282,7 @@ namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
             double[] parentsFitness = GetParentsFitness(parentsIndices);
 
             // Get an offspring
-            double[] offspring = VectorProcessor.Instance.ClaculateWeightedSum(parents, parentsFitness);
+            double[] offspring = VectorOperator.WeightedSum(parents, parentsFitness);
 
             return offspring;
         }

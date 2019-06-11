@@ -1,38 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestApp.MathematicalCore.LinearOperator
+﻿namespace TestApp.MathematicalCore.LinearOperator
 {
-    class VectorProcessor
+    class VectorOperator
     {
-        #region Fields
-        private static readonly Lazy<VectorProcessor> _singleton = new Lazy<VectorProcessor>(() => new VectorProcessor());
-        #endregion Fields
-
-        #region Static Properties
-        public static VectorProcessor Instance
-        {
-            get
-            {
-                return _singleton.Value;
-            }
-        }
-        #endregion Static Properties
-
-        #region Constructor
-        static VectorProcessor()
-        { }
-
-        private VectorProcessor()
-        { }
-        #endregion Constructor
-
         #region Main Methods
+
         // TODO dimensionally unsafe
-        public double[] CalcualteSum(double[] vectorA, double[] vectorB)
+        public static double[] Sum(double[] vectorA, double[] vectorB)
         {
             // Initialize
             double[] result = new double[vectorA.Length];
@@ -46,7 +19,7 @@ namespace TestApp.MathematicalCore.LinearOperator
             return result;
         }
 
-        public double[] CalcualteSum(double[][] vectors)
+        public static double[] Sum(double[][] vectors)
         {
             // Initialize
             double[] result = new double[vectors[0].Length];
@@ -65,7 +38,7 @@ namespace TestApp.MathematicalCore.LinearOperator
             return result;
         }
 
-        public double[] CalculateLinearCombination(double[] vectorA, double[] vectorB, double coefB, double coefA = 1)
+        public static double[] CalculateLinearCombination(double[] vectorA, double[] vectorB, double coefB, double coefA = 1)
         {
             // Initialize
             double[] result = new double[vectorA.Length];
@@ -79,7 +52,7 @@ namespace TestApp.MathematicalCore.LinearOperator
             return result;
         }
 
-        public double[] ScaleByValue(double[] vector, double value)
+        public static double[] ScaleBy(double[] vector, double value)
         {
             // Initialize
             double[] result = new double[vector.Length];
@@ -93,7 +66,7 @@ namespace TestApp.MathematicalCore.LinearOperator
             return result;
         }
 
-        public double[] CalculateWeightedSum(double[] vectorA, double[] vectorB, double[] weightsA, double[] weightsB)
+        public static double[] WeightedSum(double[] vectorA, double[] vectorB, double[] weightsA, double[] weightsB)
         {
             // Initialize
             double[] result = new double[vectorA.Length];
@@ -109,7 +82,7 @@ namespace TestApp.MathematicalCore.LinearOperator
             return result;
         }
 
-        public double[] ClaculateWeightedSum(double[][] vectors, double[] weights)
+        public static double[] WeightedSum(double[][] vectors, double[] weights)
         {
             // Initialize
             double[] result = new double[vectors[0].Length];
@@ -135,7 +108,7 @@ namespace TestApp.MathematicalCore.LinearOperator
             return result;
         }
 
-        public double[] ClaculateWeightedSum(double[][] vectors, double[][] weights)
+        public static double[] WeightedSum(double[][] vectors, double[][] weights)
         {
             // Initialize
             double[] result = new double[vectors[0].Length];
@@ -163,6 +136,7 @@ namespace TestApp.MathematicalCore.LinearOperator
 
             return result;
         }
+
         #endregion Main Methods
     }
 }

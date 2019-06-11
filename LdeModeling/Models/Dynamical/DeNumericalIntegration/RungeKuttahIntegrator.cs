@@ -146,18 +146,18 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
                 // Calculate K1
                 k1 = CaclulateSystemEquation(currentVector, precalculatedInputs[inputsIndex]);
                 // K2
-                k2 = CaclulateSystemEquation(VectorProcessor.Instance.CalculateLinearCombination(currentVector, k1, halfStep), precalculatedInputs[inputsIndex + 1]);
+                k2 = CaclulateSystemEquation(VectorOperator.CalculateLinearCombination(currentVector, k1, halfStep), precalculatedInputs[inputsIndex + 1]);
                 // K3
-                k3 = CaclulateSystemEquation(VectorProcessor.Instance.CalculateLinearCombination(currentVector, k2, halfStep), precalculatedInputs[inputsIndex + 1]);
+                k3 = CaclulateSystemEquation(VectorOperator.CalculateLinearCombination(currentVector, k2, halfStep), precalculatedInputs[inputsIndex + 1]);
                 // K4
-                k4 = CaclulateSystemEquation(VectorProcessor.Instance.CalculateLinearCombination(currentVector, k3, stepSize), precalculatedInputs[inputsIndex + 2]);
+                k4 = CaclulateSystemEquation(VectorOperator.CalculateLinearCombination(currentVector, k3, stepSize), precalculatedInputs[inputsIndex + 2]);
 
                 //
-                trialVector = VectorProcessor.Instance.CalcualteSum(currentVector, // y +
-                    VectorProcessor.Instance.ScaleByValue( // + step/6 * (
-                        VectorProcessor.Instance.CalculateLinearCombination( // 
-                            VectorProcessor.Instance.CalculateLinearCombination(k1, k2, 2), // k1 + 2*k2
-                            VectorProcessor.Instance.CalculateLinearCombination(k4, k3, 2), 1), sixPartStep)); // k4 + 2*k3
+                trialVector = VectorOperator.Sum(currentVector, // y +
+                    VectorOperator.ScaleBy( // + step/6 * (
+                        VectorOperator.CalculateLinearCombination( // 
+                            VectorOperator.CalculateLinearCombination(k1, k2, 2), // k1 + 2*k2
+                            VectorOperator.CalculateLinearCombination(k4, k3, 2), 1), sixPartStep)); // k4 + 2*k3
 
                 // Update soluton
                 currentVector.FillWithVector(trialVector);
