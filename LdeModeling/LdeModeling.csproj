@@ -34,8 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EPPlus, Version=4.5.3.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPPlus.4.5.3\lib\net40\EPPlus.dll</HintPath>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -96,55 +96,6 @@
     <Compile Include="Models\IOManagers\ModelingResults\IModelingResultsIOManager.cs" />
     <Compile Include="Models\IOManagers\Parameters\Dynamical\DynamicalModelParametersIOManager.cs" />
     <Compile Include="Models\IOManagers\Parameters\IParametersIOManager.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmMeta\IContainingStats.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmMeta\IRestartableAlgorithm.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\BestVariableAndValueStats.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatistics\IBestVariableAndValueStats.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmStates\IBestVariableAndValueState.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmStates\IHavingStandardAlgorithmState.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatsGetters\IAlgBestVariableAndValueGetter.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmRunStatsGetters\IAlgorithmStatsGetter.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\IAlgorithmRunDataCollector.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\AlgorithmRunDataCollector.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\InformationCollectingManager\RealAlgorithmDataCollector.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\IOManagers\ITestSessionResultsIOManager.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\IOManagers\StandardLauncherStatisticsIOManager.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\IOptimizationLauncher.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\AlgorithmLauncherType.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\IOptimizationLauncherParameters.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\OptimizationLauncher.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\Restart\Static\StaticRestartLaucherParameters.cs" />
-    <Compile Include="Optimization\AlgorithmsControl\Restart\Static\StaticRestartLauncher.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParametersWRcs.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionWRcs.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolution.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParameters.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\EvolutionaryAlgorithm.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\EvolutionaryAlgorithmParameters.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\ParticleSwarmOptimization\ParticleSwarmOptimizer.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\ParticleSwarmOptimization\ParticleSwarmOptimizerParameters.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\ParameterTypes\RvgaNextPopulationType.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmParametersWRcs.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmWRcs.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithm.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmParameters.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\ParameterTypes\RvgaCrossoverType.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\PopulationGenerationType.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\ParameterTypes\RvgaMutationType.cs" />
-    <Compile Include="Optimization\EvolutionaryAlgorithms\RealValueGeneticAlgorithm\ParameterTypes\RvgaSelectionType.cs" />
-    <Compile Include="Optimization\IAlgorithm.cs" />
-    <Compile Include="Optimization\IAlgorithmState.cs" />
-    <Compile Include="Optimization\IAlgorithmStats.cs" />
-    <Compile Include="Optimization\IOptimizationAlgorithm.cs" />
-    <Compile Include="Optimization\IOptimizationAlgorithmParameters.cs" />
-    <Compile Include="Optimization\IRealAlgorithm.cs" />
-    <Compile Include="Optimization\LocalOptimization\RandomCoordinatewiseOptimizator.cs" />
-    <Compile Include="Optimization\LocalOptimization\RandomCoordinatewiseOptimizatorParameters.cs" />
-    <Compile Include="Optimization\LocalOptimization\RandomCoordinatewiseSearchType.cs" />
-    <Compile Include="Optimization\OptimizationAlgorithm.cs" />
-    <Compile Include="Optimization\Problem\IOptimizationProblem.cs" />
-    <Compile Include="Optimization\OptimizationAlgorithmParameters.cs" />
-    <Compile Include="Optimization\Problem\OptimizationProblem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataSample\DataType.cs" />
@@ -161,10 +112,17 @@
       <Project>{d19314de-7772-41d6-80bb-412f0fb88b8a}</Project>
       <Name>MathCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Optimization\Optimization.csproj">
+      <Project>{6c6d836e-091f-4266-aa58-3b29fad95ef8}</Project>
+      <Name>Optimization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Randomizer\Randomizer.csproj">
       <Project>{4f7ca644-0272-4f1d-a606-7973d9f37415}</Project>
       <Name>Randomizer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Optimization\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

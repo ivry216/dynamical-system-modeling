@@ -1,9 +1,5 @@
 ﻿using Randomizer.Randomizing;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestApp.DataSample.SampleGeneration.LinearDynamicalSystem;
 using TestApp.DataSample.SampleIO.LinearDynamicalSystem;
 using TestApp.Models.Dynamical;
@@ -13,13 +9,13 @@ using TestApp.Models.Dynamical.ModelToDataProcessing;
 using TestApp.Models.Dynamical.SamplePreprocessing;
 using TestApp.Models.IOManagers.ModelingResults.Dynamical;
 using TestApp.Models.IOManagers.Parameters.Dynamical;
-using TestApp.Optimization.AlgorithmsControl.IOManagers;
-using TestApp.Optimization.AlgorithmsControl.Restart.Static;
-using TestApp.Optimization.EvolutionaryAlgorithms;
-using TestApp.Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm;
-using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm;
-using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
-using TestApp.Optimization.LocalOptimization;
+using Optimization.AlgorithmsControl.IOManagers;
+using Optimization.AlgorithmsControl.Restart.Static;
+using Optimization.EvolutionaryAlgorithms;
+using Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm;
+using Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm;
+using Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
+using Optimization.LocalOptimization;
 
 namespace TestApp
 {

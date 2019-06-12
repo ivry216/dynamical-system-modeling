@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestApp.DataSample;
+﻿using TestApp.DataSample;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
 using TestApp.Models.Dynamical.ModelToDataProcessing;
 using TestApp.Models.Dynamical.SamplePreprocessing;
-using TestApp.Optimization.Problem;
+using Optimization.Problem;
 
 namespace TestApp.Models.Dynamical.InverseProblem
 {

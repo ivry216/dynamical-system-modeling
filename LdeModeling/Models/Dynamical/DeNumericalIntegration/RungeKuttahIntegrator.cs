@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestApp.MathematicalCore.ArrayExtensions;
-using TestApp.MathematicalCore.LinearOperator;
+using MathCore.Extensions.Arrays;
+using MathCore.Vectors;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
 
 namespace TestApp.Models.Dynamical.DeNumericalIntegration
