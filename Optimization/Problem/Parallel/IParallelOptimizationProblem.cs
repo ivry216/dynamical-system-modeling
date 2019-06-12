@@ -1,4 +1,4 @@
-﻿namespace Optimization.Problem
+﻿namespace Optimization.Problem.Parallel
 {
     public interface IParallelOptimizationProblem<TValues, TAlternatives>
         where TValues : IParallelOptimizationProblemValues

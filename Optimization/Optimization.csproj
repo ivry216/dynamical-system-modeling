@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgorithmsInterfaces\Parallel\IConverterToAlternativesForParallel.cs" />
+    <Compile Include="AlgorithmsInterfaces\Parallel\IConverterToValuesForParallel.cs" />
+    <Compile Include="AlgorithmsInterfaces\Parallel\IParallelOptimizationAlgorithm.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmLauncherType.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmMeta\IContainingStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmMeta\IRestartableAlgorithm.cs" />
@@ -70,12 +73,14 @@
     <Compile Include="AlgorithmsControl\OptimizationLauncher.cs" />
     <Compile Include="AlgorithmsControl\Restart\Static\StaticRestartLaucherParameters.cs" />
     <Compile Include="AlgorithmsControl\Restart\Static\StaticRestartLauncher.cs" />
+    <Compile Include="AlgorithmsInterfaces\Parallel\ParallelOptimizationAlgorithm.cs" />
     <Compile Include="EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolution.cs" />
     <Compile Include="EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParameters.cs" />
     <Compile Include="EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionParametersWRcs.cs" />
     <Compile Include="EvolutionaryAlgorithms\DifferentialAlgorithm\DifferentialEvolutionWRcs.cs" />
     <Compile Include="EvolutionaryAlgorithms\EvolutionaryAlgorithm.cs" />
     <Compile Include="EvolutionaryAlgorithms\EvolutionaryAlgorithmParameters.cs" />
+    <Compile Include="EvolutionaryAlgorithms\Parallel\ParallelEvolutionaryAlgorithm.cs" />
     <Compile Include="EvolutionaryAlgorithms\ParticleSwarmOptimization\ParticleSwarmOptimizer.cs" />
     <Compile Include="EvolutionaryAlgorithms\ParticleSwarmOptimization\ParticleSwarmOptimizerParameters.cs" />
     <Compile Include="EvolutionaryAlgorithms\PopulationGenerationType.cs" />
@@ -87,17 +92,17 @@
     <Compile Include="EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmParameters.cs" />
     <Compile Include="EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmParametersWRcs.cs" />
     <Compile Include="EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmWRcs.cs" />
-    <Compile Include="AlgorithmInterfaces\IAlgorithm.cs" />
-    <Compile Include="AlgorithmInterfaces\IAlgorithmState.cs" />
-    <Compile Include="AlgorithmInterfaces\IAlgorithmStats.cs" />
-    <Compile Include="AlgorithmInterfaces\IOptimizationAlgorithm.cs" />
-    <Compile Include="AlgorithmInterfaces\IOptimizationAlgorithmParameters.cs" />
-    <Compile Include="AlgorithmInterfaces\IRealAlgorithm.cs" />
+    <Compile Include="AlgorithmsInterfaces\IAlgorithm.cs" />
+    <Compile Include="AlgorithmsInterfaces\IAlgorithmState.cs" />
+    <Compile Include="AlgorithmsInterfaces\IAlgorithmStats.cs" />
+    <Compile Include="AlgorithmsInterfaces\IOptimizationAlgorithm.cs" />
+    <Compile Include="AlgorithmsInterfaces\IOptimizationAlgorithmParameters.cs" />
+    <Compile Include="AlgorithmsInterfaces\IRealAlgorithm.cs" />
     <Compile Include="LocalOptimization\RandomCoordinatewiseOptimizator.cs" />
     <Compile Include="LocalOptimization\RandomCoordinatewiseOptimizatorParameters.cs" />
     <Compile Include="LocalOptimization\RandomCoordinatewiseSearchType.cs" />
-    <Compile Include="AlgorithmInterfaces\OptimizationAlgorithm.cs" />
-    <Compile Include="AlgorithmInterfaces\OptimizationAlgorithmParameters.cs" />
+    <Compile Include="AlgorithmsInterfaces\OptimizationAlgorithm.cs" />
+    <Compile Include="AlgorithmsInterfaces\OptimizationAlgorithmParameters.cs" />
     <Compile Include="Problem\IOptimizationProblem.cs" />
     <Compile Include="Problem\OptimizationProblem.cs" />
     <Compile Include="Problem\Parallel\IParallelOptimizationProblem.cs" />
@@ -119,8 +124,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EvolutionaryAlgorithms\Parallel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
