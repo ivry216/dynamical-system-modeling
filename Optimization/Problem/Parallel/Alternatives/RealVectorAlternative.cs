@@ -2,7 +2,7 @@
 {
     public class RealVectorAlternatives : IParallelOptimizationProblemAlternative
     {
-        double[][] Alternatives { get; }
+        public double[][] Alternatives { get; }
 
         public RealVectorAlternatives(double[][] alternatives)
         {
