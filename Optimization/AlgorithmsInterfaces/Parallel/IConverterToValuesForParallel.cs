@@ -2,9 +2,9 @@
 
 namespace Optimization.AlgorithmsInterfaces.Parallel
 {
-    public interface IConverterToValuesForParallel<TValues>
+    public interface IConverterToValuesForParallel<TValues, TCalculationResult>
         where TValues : IParallelOptimizationProblemValues
     {
-
+        TCalculationResult GetValues(TValues calculationResult);
     }
 }

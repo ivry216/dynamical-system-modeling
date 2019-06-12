@@ -3,7 +3,7 @@ using Optimization.Problem.Parallel;
 
 namespace Optimization.AlgorithmsInterfaces.Parallel
 {
-    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IRestartableAlgorithm
+    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IRestartableAlgorithm
         where TAlgorithmParameters : OptimizationAlgorithmParameters
         where TValues : IParallelOptimizationProblemValues
         where TAlternatives : IParallelOptimizationProblemAlternative
@@ -14,8 +14,11 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         protected ParallelOptimizationProblem<TValues, TAlternatives> Problem;
         protected int Dimension;
 
-        protected IConverterToAlternativesForParallel<TAlternatives> converterToAlternatives;
-        protected IConverterToValuesForParallel<TValues> converterToValues;
+        protected IConverterToAlternativesForParallel<TAlternatives, TAlternativeRepresentations> converterToAlternatives;
+        protected IConverterToValuesForParallel<TValues, TCalculationResult> converterToValues;
+
+        protected abstract TAlternativeRepresentations AlternativesInIteration { get; set; }
+        protected abstract TCalculationResult CritertionRepresentation { get; set; }
 
         #endregion Fields
 
@@ -45,7 +48,6 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         protected abstract void Iterate();
         protected abstract void Initialize();
         protected abstract void Generate();
-        protected abstract void CalculateFitness();
 
         #endregion Abstract Methods
 
@@ -58,10 +60,17 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
 
         #region Iteration Methods
 
+        protected virtual void CalculateObjective()
+        {
+            var alternatives = converterToAlternatives.GetAlternatives(AlternativesInIteration);
+            var solution = Problem.CalculateCriterion(alternatives);
+            CritertionRepresentation = converterToValues.GetValues(solution);
+        }
+
         protected virtual void NextIteration()
         {
             Iterate();
-            CalculateFitness();
+            CalculateObjective();
         }
 
         #endregion Iteration Methods

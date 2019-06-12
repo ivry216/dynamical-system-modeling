@@ -5,7 +5,7 @@ using Optimization.Problem.Parallel;
 
 namespace Optimization.EvolutionaryAlgorithms.Parallel
 {
-    public abstract class ParallelEvolutionaryAlgorithm<TAlgorithmParameters, TValues, TAlternatives> : ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives>, IAlgBestVariableAndValueGetter
+    public abstract class ParallelEvolutionaryAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations>, IAlgBestVariableAndValueGetter
         where TAlgorithmParameters : EvolutionaryAlgorithmParameters
         where TValues : IParallelOptimizationProblemValues
         where TAlternatives : IParallelOptimizationProblemAlternative

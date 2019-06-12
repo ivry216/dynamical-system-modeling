@@ -109,6 +109,8 @@
     <Compile Include="Problem\Parallel\IParallelOptimizationProblemAlternative.cs" />
     <Compile Include="Problem\Parallel\IParallelOptimizationProblemValues.cs" />
     <Compile Include="Problem\Parallel\ParallelOptimizationProblem.cs" />
+    <Compile Include="Problem\Parallel\Alternatives\RealVectorAlternative.cs" />
+    <Compile Include="Problem\Parallel\Values\RealObjectiveValues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
