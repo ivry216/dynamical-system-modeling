@@ -3,8 +3,10 @@ using Optimization.Problem.Parallel;
 
 namespace Optimization.AlgorithmsInterfaces.Parallel
 {
-    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<IParallelOptimizationProblemValues, IParallelOptimizationProblemAlternative>, IParallelOptimizationProblemValues, IParallelOptimizationProblemAlternative>, IRealAlgorithm, IRestartableAlgorithm
+    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IRestartableAlgorithm
         where TAlgorithmParameters : OptimizationAlgorithmParameters
+        where TValues : IParallelOptimizationProblemValues
+        where TAlternatives : IParallelOptimizationProblemAlternative
     {
         #region Fields
 
@@ -91,7 +93,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
             SetParameters((TAlgorithmParameters)parameters);
         }
 
-        public void SetProblem(ParallelOptimizationProblem<IParallelOptimizationProblemValues, IParallelOptimizationProblemAlternative> problem)
+        public void SetProblem(ParallelOptimizationProblem<TValues, TAlternatives> problem)
         {
             Problem = problem;
             Dimension = problem.Dimension;

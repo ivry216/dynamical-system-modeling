@@ -1,6 +1,10 @@
-﻿namespace Optimization.AlgorithmsInterfaces.Parallel
+﻿using Optimization.Problem.Parallel;
+
+namespace Optimization.AlgorithmsInterfaces.Parallel
 {
-    public class IConverterToValuesForParallel
+    public interface IConverterToValuesForParallel<TValues>
+        where TValues : IParallelOptimizationProblemValues
     {
+
     }
 }

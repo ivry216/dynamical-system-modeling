@@ -1,6 +1,10 @@
-﻿namespace Optimization.AlgorithmsInterfaces.Parallel
+﻿using Optimization.Problem.Parallel;
+
+namespace Optimization.AlgorithmsInterfaces.Parallel
 {
-    public class IConverterToAlternativesForParallel
+    public interface IConverterToAlternativesForParallel<TAlternatives>
+        where TAlternatives : IParallelOptimizationProblemAlternative
     {
+        
     }
 }

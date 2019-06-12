@@ -1,5 +1,4 @@
-﻿using Optimization.Problem;
-using Optimization.Problem.Parallel;
+﻿using Optimization.Problem.Parallel;
 
 namespace Optimization.AlgorithmsInterfaces
 {
