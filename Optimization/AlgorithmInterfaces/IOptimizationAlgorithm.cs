@@ -1,6 +1,6 @@
 ﻿using Optimization.Problem;
 
-namespace Optimization
+namespace Optimization.AlgorithmsInterfaces
 {
     public interface IOptimizationAlgorithm
     {

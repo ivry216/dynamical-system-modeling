@@ -1,5 +1,6 @@
 ﻿using Randomizer.Randomizing;
 using MathCore.Extensions.Arrays;
+using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.LocalOptimization
 {

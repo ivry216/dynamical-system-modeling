@@ -1,4 +1,6 @@
-﻿namespace Optimization.AlgorithmsControl.AlgorithmRunStatistics
+﻿using Optimization.AlgorithmsInterfaces;
+
+namespace Optimization.AlgorithmsControl.AlgorithmRunStatistics
 {
     public interface IBestVariableAndValueStats : IAlgorithmStats
     {

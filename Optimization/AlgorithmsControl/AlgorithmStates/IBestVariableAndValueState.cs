@@ -1,4 +1,6 @@
-﻿namespace Optimization.AlgorithmsControl.AlgorithmStates
+﻿using Optimization.AlgorithmsInterfaces;
+
+namespace Optimization.AlgorithmsControl.AlgorithmStates
 {
     public interface IBestVariableAndValueState : IAlgorithmState
     {

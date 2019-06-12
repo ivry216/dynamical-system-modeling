@@ -2,7 +2,7 @@
 using Optimization.AlgorithmsControl.AlgorithmMeta;
 using Optimization.Problem;
 
-namespace Optimization
+namespace Optimization.AlgorithmsInterfaces
 {
     public abstract class OptimizationAlgorithm<TAlgorithmParameters> : IOptimizationAlgorithm<TAlgorithmParameters>, IRealAlgorithm, IRestartableAlgorithm
         where TAlgorithmParameters : OptimizationAlgorithmParameters

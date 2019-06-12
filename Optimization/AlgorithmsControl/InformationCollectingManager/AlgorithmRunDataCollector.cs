@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Optimization.AlgorithmsInterfaces;
+using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsControl.InformationCollectingManager
 {

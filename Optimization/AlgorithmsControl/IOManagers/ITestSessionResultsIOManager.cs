@@ -1,4 +1,5 @@
 ﻿using Optimization.AlgorithmsControl.AlgorithmMeta;
+using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.AlgorithmsControl.IOManagers
 {

@@ -1,4 +1,6 @@
-﻿namespace Optimization.LocalOptimization
+﻿using Optimization.AlgorithmsInterfaces;
+
+namespace Optimization.LocalOptimization
 {
     public class RandomCoordinatewiseOptimizatorParameters : OptimizationAlgorithmParameters
     {

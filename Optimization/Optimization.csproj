@@ -87,17 +87,17 @@
     <Compile Include="EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmParameters.cs" />
     <Compile Include="EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmParametersWRcs.cs" />
     <Compile Include="EvolutionaryAlgorithms\RealValueGeneticAlgorithm\RealGeneticAlgorithmWRcs.cs" />
-    <Compile Include="IAlgorithm.cs" />
-    <Compile Include="IAlgorithmState.cs" />
-    <Compile Include="IAlgorithmStats.cs" />
-    <Compile Include="IOptimizationAlgorithm.cs" />
-    <Compile Include="IOptimizationAlgorithmParameters.cs" />
-    <Compile Include="IRealAlgorithm.cs" />
+    <Compile Include="AlgorithmInterfaces\IAlgorithm.cs" />
+    <Compile Include="AlgorithmInterfaces\IAlgorithmState.cs" />
+    <Compile Include="AlgorithmInterfaces\IAlgorithmStats.cs" />
+    <Compile Include="AlgorithmInterfaces\IOptimizationAlgorithm.cs" />
+    <Compile Include="AlgorithmInterfaces\IOptimizationAlgorithmParameters.cs" />
+    <Compile Include="AlgorithmInterfaces\IRealAlgorithm.cs" />
     <Compile Include="LocalOptimization\RandomCoordinatewiseOptimizator.cs" />
     <Compile Include="LocalOptimization\RandomCoordinatewiseOptimizatorParameters.cs" />
     <Compile Include="LocalOptimization\RandomCoordinatewiseSearchType.cs" />
-    <Compile Include="OptimizationAlgorithm.cs" />
-    <Compile Include="OptimizationAlgorithmParameters.cs" />
+    <Compile Include="AlgorithmInterfaces\OptimizationAlgorithm.cs" />
+    <Compile Include="AlgorithmInterfaces\OptimizationAlgorithmParameters.cs" />
     <Compile Include="Problem\IOptimizationProblem.cs" />
     <Compile Include="Problem\OptimizationProblem.cs" />
     <Compile Include="Problem\Parallel\IParallelOptimizationProblem.cs" />
@@ -121,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EvolutionaryAlgorithms\Parallel\" />
-    <Folder Include="Parallel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

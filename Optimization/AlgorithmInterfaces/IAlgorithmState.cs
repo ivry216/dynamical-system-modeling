@@ -1,4 +1,4 @@
-﻿namespace Optimization
+﻿namespace Optimization.AlgorithmsInterfaces
 {
     public interface IAlgorithmState
     {

@@ -1,5 +1,6 @@
 ﻿using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 using Optimization.AlgorithmsControl.AlgorithmRunStatsGetters;
+using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.EvolutionaryAlgorithms
 {

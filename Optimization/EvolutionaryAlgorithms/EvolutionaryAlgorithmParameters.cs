@@ -1,4 +1,6 @@
-﻿namespace Optimization.EvolutionaryAlgorithms
+﻿using Optimization.AlgorithmsInterfaces;
+
+namespace Optimization.EvolutionaryAlgorithms
 {
     public class EvolutionaryAlgorithmParameters : OptimizationAlgorithmParameters
     {

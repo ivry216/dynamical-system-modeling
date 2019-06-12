@@ -2,6 +2,7 @@
 using System.Linq;
 using Optimization.AlgorithmsControl.AlgorithmMeta;
 using Optimization.AlgorithmsControl.InformationCollectingManager;
+using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.AlgorithmsControl
 {

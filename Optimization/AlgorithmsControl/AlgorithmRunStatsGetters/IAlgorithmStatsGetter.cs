@@ -1,4 +1,6 @@
-﻿namespace Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
+﻿using Optimization.AlgorithmsInterfaces;
+
+namespace Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
 {
     public interface IAlgorithmStatsGetter<TStats>
         where TStats : IAlgorithmState
