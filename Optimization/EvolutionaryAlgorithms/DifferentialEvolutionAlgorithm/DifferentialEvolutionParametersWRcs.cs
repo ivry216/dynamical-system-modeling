@@ -1,6 +1,8 @@
-﻿namespace Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
+﻿using Optimization.LocalOptimization;
+
+namespace Optimization.EvolutionaryAlgorithms.DifferentialEvolutionAlgorithm
 {
-    public class DifferentialEvolutionParameters : EvolutionaryAlgorithmParameters
+    public class DifferentialEvolutionParametersWRcs : EvolutionaryAlgorithmParameters
     {
         #region Properies
 
@@ -14,6 +16,10 @@
         public double[] GenerationTo { get; set; }
         public double[] GenerationMean { get; set; }
         public double[] GenerationSd { get; set; }
+
+        // Local optimizer
+        public int IndividsToOptimizeLocally { get; set; }
+        public RandomCoordinatewiseOptimizatorParameters LoParameters { get; set; }
 
         #endregion Parameters
     }

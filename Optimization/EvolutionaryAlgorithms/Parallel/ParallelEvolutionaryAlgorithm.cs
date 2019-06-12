@@ -42,15 +42,6 @@ namespace Optimization.EvolutionaryAlgorithms.Parallel
             Fitness = new double[Parameters.Size];
         }
 
-        //protected void CalculateFitness()
-        //{
-        //    // Calculate fitness for all te individs
-        //    for (int i = 0; i < Parameters.Size; i++)
-        //    {
-        //        Fitness[i] = Problem.CalcualteCriterion(Population[i]);
-        //    }
-        //}
-
         BestVariableAndValueStats IAlgBestVariableAndValueGetter.GetBestAlternativeAndValue()
         {
             return new BestVariableAndValueStats(BestValue, BestSolution);

@@ -1,18 +1,14 @@
 ﻿using Randomizer.Randomizing;
 using System.Linq;
-using MathCore.Extensions.Arrays;
-using Optimization.LocalOptimization;
 
-namespace Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
+namespace Optimization.EvolutionaryAlgorithms.DifferentialEvolutionAlgorithm
 {
-    public class DifferentialEvolutionWRls : EvolutionaryAlgorithm<DifferentialEvolutionParametersWRcs>
+    public class DifferentialEvolution : EvolutionaryAlgorithm<DifferentialEvolutionParameters>
     {
         #region Fields
 
         private double[] _trial;
         private int[][] _indicesWithExcludedOne;
-
-        private RandomCoordinatewiseOptimizator _localSearcher;
 
         #endregion Fields
 
@@ -34,16 +30,11 @@ namespace Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
 
             // Initialize the trial variable
             _trial = new double[Problem.Dimension];
-
-            // Initialize local seracher
-            _localSearcher = new RandomCoordinatewiseOptimizator();
-            _localSearcher.SetParameters(Parameters.LoParameters);
-            _localSearcher.SetProblem(Problem);
         }
 
         protected override void Generate()
         {
-            // Initialize Iteration
+            // Update iteration
             Iteration = 0;
 
             // Generate the new population
@@ -98,20 +89,6 @@ namespace Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm
                     // Update the best solution
                     TryUpdateSolution(fitnessOfTrial, trial);
                 }
-            }
-
-            // Apply local search
-            for (int j = 0; j < Parameters.IndividsToOptimizeLocally; j++)
-            {
-                int chooseIndex = RandomEngine.Instance.GenerateIntsUniformlyDistributed(0, Parameters.Size);
-                Parameters.LoParameters.InitialPoint = Population[chooseIndex];
-                Parameters.LoParameters.InitialPointValue = Fitness[chooseIndex];
-                _localSearcher.Evaluate();
-                Population[chooseIndex].FillWithVector(_localSearcher.BestSolution);
-                Fitness[chooseIndex] = _localSearcher.BestValue;
-
-                // Update the best solution
-                TryUpdateSolution(Fitness[chooseIndex], Population[chooseIndex]);
             }
         }
 
