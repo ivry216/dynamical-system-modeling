@@ -11,11 +11,11 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         #region Fields
 
         protected TAlgorithmParameters Parameters;
-        protected ParallelOptimizationProblem<IParallelOptimizationProblemValues, IParallelOptimizationProblemAlternative> Problem;
+        protected ParallelOptimizationProblem<TValues, TAlternatives> Problem;
         protected int Dimension;
 
-        protected IConverterToAlternativesForParallel converterToAlternatives;
-        protected IConverterToValuesForParallel converterToValues;
+        protected IConverterToAlternativesForParallel<TAlternatives> converterToAlternatives;
+        protected IConverterToValuesForParallel<TValues> converterToValues;
 
         #endregion Fields
 

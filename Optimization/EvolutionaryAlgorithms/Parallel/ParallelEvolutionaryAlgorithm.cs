@@ -1,11 +1,14 @@
 ﻿using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 using Optimization.AlgorithmsControl.AlgorithmRunStatsGetters;
 using Optimization.AlgorithmsInterfaces.Parallel;
+using Optimization.Problem.Parallel;
 
 namespace Optimization.EvolutionaryAlgorithms.Parallel
 {
-    public abstract class ParallelEvolutionaryAlgorithm<TAlgorithmParameters> : ParallelOptimizationAlgorithm<TAlgorithmParameters>, IAlgBestVariableAndValueGetter
+    public abstract class ParallelEvolutionaryAlgorithm<TAlgorithmParameters, TValues, TAlternatives> : ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives>, IAlgBestVariableAndValueGetter
         where TAlgorithmParameters : EvolutionaryAlgorithmParameters
+        where TValues : IParallelOptimizationProblemValues
+        where TAlternatives : IParallelOptimizationProblemAlternative
     {
         #region Fields
 
