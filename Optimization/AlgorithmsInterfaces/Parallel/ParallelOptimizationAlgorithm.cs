@@ -1,4 +1,5 @@
-﻿using Optimization.AlgorithmsControl.AlgorithmMeta;
+﻿using MathCore.Extensions.Arrays;
+using Optimization.AlgorithmsControl.AlgorithmMeta;
 using Optimization.Problem.Parallel;
 
 namespace Optimization.AlgorithmsInterfaces.Parallel
@@ -48,6 +49,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         protected abstract void Iterate();
         protected abstract void Initialize();
         protected abstract void Generate();
+        protected abstract void Update();
 
         #endregion Abstract Methods
 
@@ -109,5 +111,18 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         }
 
         #endregion Inherited Methods
+
+        #region Supporting Methods
+
+        protected void TryUpdateSolution(double value, double[] alternative)
+        {
+            if (value > BestValue)
+            {
+                BestValue = value;
+                BestSolution.FillWithVector(alternative);
+            }
+        }
+
+        #endregion Supporting Methods
     }
 }

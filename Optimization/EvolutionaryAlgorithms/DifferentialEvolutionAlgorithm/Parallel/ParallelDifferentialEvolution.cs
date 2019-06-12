@@ -1,4 +1,5 @@
-﻿using Optimization.EvolutionaryAlgorithms.Parallel;
+﻿using MathCore.Extensions.Arrays;
+using Optimization.EvolutionaryAlgorithms.Parallel;
 using Optimization.Problem.Parallel.Alternatives;
 using Optimization.Problem.Parallel.Values;
 using Randomizer.Randomizing;
@@ -83,8 +84,18 @@ namespace Optimization.EvolutionaryAlgorithms.DifferentialEvolutionAlgorithm.Par
             }
 
             // Now calculate the fitness
-            _trials = Population;
+            for (int i = 0; i < Parameters.Size; i++)
+            {
+                _trials[i].FillWithVector(Population[i]);
+            }
             CalculateObjective();
+            Fitness.FillWithVector(_trialFitnesses);
+
+            // Get best value
+            for (int i = 0; i < Parameters.Size; i++)
+            {
+                TryUpdateSolution(Fitness[i], Population[i]);
+            }
         }
 
         protected override void Iterate()
@@ -99,6 +110,21 @@ namespace Optimization.EvolutionaryAlgorithms.DifferentialEvolutionAlgorithm.Par
                 int[] indices = GetCrossoverAgentsIndices(individIndex: i);
                 // Calcualte trial solution
                 _trials[i] = PerformCrossover(individIndex: i, recombinantsIndices: indices);
+            }
+        }
+
+        protected override void Update()
+        {
+            // Run through all elements in population
+            for (int i = 0; i < Parameters.Size; i++)
+            {
+                if (_trialFitnesses[i] > Fitness[i])
+                {
+                    Fitness[i] = _trialFitnesses[i];
+                    Population[i].FillWithVector(_trials[i]);
+
+                    TryUpdateSolution(Fitness[i], Population[i]);
+                }
             }
         }
 

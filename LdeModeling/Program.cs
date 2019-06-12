@@ -12,7 +12,7 @@ using TestApp.Models.IOManagers.Parameters.Dynamical;
 using Optimization.AlgorithmsControl.IOManagers;
 using Optimization.AlgorithmsControl.Restart.Static;
 using Optimization.EvolutionaryAlgorithms;
-using Optimization.EvolutionaryAlgorithms.DifferentialAlgorithm;
+using Optimization.EvolutionaryAlgorithms.DifferentialEvolutionAlgorithm;
 using Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm;
 using Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
 using Optimization.LocalOptimization;
