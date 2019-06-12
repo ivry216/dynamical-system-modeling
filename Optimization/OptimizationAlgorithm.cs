@@ -4,12 +4,12 @@ using Optimization.Problem;
 
 namespace Optimization
 {
-    public abstract class OptimizationAlgorithm<AlgorithmParameters> : IOptimizationAlgorithm<AlgorithmParameters>, IRealAlgorithm, IRestartableAlgorithm
-        where AlgorithmParameters : OptimizationAlgorithmParameters
+    public abstract class OptimizationAlgorithm<TAlgorithmParameters> : IOptimizationAlgorithm<TAlgorithmParameters>, IRealAlgorithm, IRestartableAlgorithm
+        where TAlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Fields
 
-        protected AlgorithmParameters Parameters;
+        protected TAlgorithmParameters Parameters;
         protected OptimizationProblem Problem;
         protected int Dimension;
 
@@ -59,14 +59,14 @@ namespace Optimization
             Dimension = problem.Dimension;
         }
 
-        public void SetParameters(AlgorithmParameters parameters)
+        public void SetParameters(TAlgorithmParameters parameters)
         {
             Parameters = parameters;
         }
 
         void IAlgorithm.SetParameters(object parameters)
         {
-            SetParameters((AlgorithmParameters)parameters);
+            SetParameters((TAlgorithmParameters)parameters);
         }
 
         void IAlgorithm.Evaluate()
