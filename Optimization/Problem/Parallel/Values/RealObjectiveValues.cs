@@ -4,7 +4,7 @@ namespace Optimization.Problem.Parallel.Values
 {
     public class RealObjectiveValues : IParallelOptimizationProblemValues
     {
-        ConcurrentBag<(int, double)> Values { get; }
+        public ConcurrentBag<(int Index, double Value)> Values { get; }
 
         public RealObjectiveValues(ConcurrentBag<(int, double)> values)
         {

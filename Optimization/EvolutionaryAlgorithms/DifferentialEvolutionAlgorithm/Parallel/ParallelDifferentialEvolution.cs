@@ -1,5 +1,6 @@
 ﻿using MathCore.Extensions.Arrays;
 using Optimization.EvolutionaryAlgorithms.Parallel;
+using Optimization.EvolutionaryAlgorithms.Parallel.Converters;
 using Optimization.Problem.Parallel.Alternatives;
 using Optimization.Problem.Parallel.Values;
 using Randomizer.Randomizing;
@@ -29,6 +30,16 @@ namespace Optimization.EvolutionaryAlgorithms.DifferentialEvolutionAlgorithm.Par
         }
 
         #endregion Inner Properties
+
+        #region Constructor
+
+        public ParallelDifferentialEvolution()
+        {
+            converterToAlternatives = new ConverterToRealAlternativesByRef();
+            converterToValues = new ConverterToRealValuesFromBag();
+        }
+
+        #endregion Constructor
 
         #region Inherited Methods
 

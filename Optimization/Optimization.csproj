@@ -81,6 +81,8 @@
     <Compile Include="EvolutionaryAlgorithms\DifferentialEvolutionAlgorithm\Parallel\ParallelDifferentialEvolution.cs" />
     <Compile Include="EvolutionaryAlgorithms\EvolutionaryAlgorithm.cs" />
     <Compile Include="EvolutionaryAlgorithms\EvolutionaryAlgorithmParameters.cs" />
+    <Compile Include="EvolutionaryAlgorithms\Parallel\Converters\ConverterToRealAlternativesByRef.cs" />
+    <Compile Include="EvolutionaryAlgorithms\Parallel\Converters\ConverterToRealValuesFromBag.cs" />
     <Compile Include="EvolutionaryAlgorithms\Parallel\ParallelEvolutionaryAlgorithm.cs" />
     <Compile Include="EvolutionaryAlgorithms\ParticleSwarmOptimization\ParticleSwarmOptimizer.cs" />
     <Compile Include="EvolutionaryAlgorithms\ParticleSwarmOptimization\ParticleSwarmOptimizerParameters.cs" />
