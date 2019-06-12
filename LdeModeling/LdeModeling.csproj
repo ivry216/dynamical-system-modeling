@@ -62,14 +62,6 @@
     <Compile Include="DataSample\SampleGeneration\LinearDynamicalSystem\LdsSampleGenerator.cs" />
     <Compile Include="DataSample\SampleIO\ISampleFileManipulator.cs" />
     <Compile Include="DataSample\SampleIO\LinearDynamicalSystem\LdsSampleManipulator.cs" />
-    <Compile Include="MathematicalCore\ArrayExtensions\AssigningExtension.cs" />
-    <Compile Include="MathematicalCore\ArrayExtensions\MutatingExtension.cs" />
-    <Compile Include="MathematicalCore\ArrayExtensions\NormExtension.cs" />
-    <Compile Include="MathematicalCore\ArrayExtensions\OperationsExtensions.cs" />
-    <Compile Include="MathematicalCore\ArrayExtensions\SortingExtension.cs" />
-    <Compile Include="MathematicalCore\LinearOperator\VectorOperator.cs" />
-    <Compile Include="MathematicalCore\Normalization\VectorMutator.cs" />
-    <Compile Include="MathematicalCore\RealValuesExtensions\RoundingExtensions.cs" />
     <Compile Include="Models\Dynamical\DeNumericalIntegration\RungeKuttahIntegrator.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelInput.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelOutput.cs" />
@@ -165,6 +157,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MathCore\MathCore.csproj">
+      <Project>{d19314de-7772-41d6-80bb-412f0fb88b8a}</Project>
+      <Name>MathCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Randomizer\Randomizer.csproj">
       <Project>{4f7ca644-0272-4f1d-a606-7973d9f37415}</Project>
       <Name>Randomizer</Name>

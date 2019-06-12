@@ -1,10 +1,9 @@
 ﻿using Randomizer.Randomizing;
+using MathCore.Vectors;
 using System;
 using System.Collections.Generic;
-using TestApp.MathematicalCore.ArrayExtensions;
-using TestApp.MathematicalCore.LinearOperator;
-using TestApp.MathematicalCore.Normalization;
 using TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTypes;
+using MathCore.Extensions.Arrays;
 
 namespace TestApp.Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
 {

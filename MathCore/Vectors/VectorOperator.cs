@@ -1,6 +1,6 @@
-﻿namespace TestApp.MathematicalCore.LinearOperator
+﻿namespace MathCore.Vectors
 {
-    class VectorOperator
+    public class VectorOperator
     {
         #region Main Methods
 
