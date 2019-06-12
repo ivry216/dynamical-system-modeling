@@ -78,6 +78,7 @@
     <Compile Include="EvolutionaryAlgorithms\DifferentialEvolutionAlgorithm\DifferentialEvolutionParameters.cs" />
     <Compile Include="EvolutionaryAlgorithms\DifferentialEvolutionAlgorithm\DifferentialEvolutionParametersWRcs.cs" />
     <Compile Include="EvolutionaryAlgorithms\DifferentialEvolutionAlgorithm\DifferentialEvolutionWRcs.cs" />
+    <Compile Include="EvolutionaryAlgorithms\DifferentialEvolutionAlgorithm\Parallel\ParallelDifferentialEvolution.cs" />
     <Compile Include="EvolutionaryAlgorithms\EvolutionaryAlgorithm.cs" />
     <Compile Include="EvolutionaryAlgorithms\EvolutionaryAlgorithmParameters.cs" />
     <Compile Include="EvolutionaryAlgorithms\Parallel\ParallelEvolutionaryAlgorithm.cs" />

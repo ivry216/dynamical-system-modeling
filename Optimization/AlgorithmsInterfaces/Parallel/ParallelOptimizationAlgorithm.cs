@@ -17,8 +17,8 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         protected IConverterToAlternativesForParallel<TAlternatives, TAlternativeRepresentations> converterToAlternatives;
         protected IConverterToValuesForParallel<TValues, TCalculationResult> converterToValues;
 
-        protected abstract TAlternativeRepresentations AlternativesInIteration { get; set; }
-        protected abstract TCalculationResult CritertionRepresentation { get; set; }
+        protected abstract TAlternativeRepresentations AlternativesInIteration { get; }
+        protected abstract TCalculationResult AlternativesCriterionValues { get; set ; }
 
         #endregion Fields
 
@@ -64,7 +64,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         {
             var alternatives = converterToAlternatives.GetAlternatives(AlternativesInIteration);
             var solution = Problem.CalculateCriterion(alternatives);
-            CritertionRepresentation = converterToValues.GetValues(solution);
+            AlternativesCriterionValues = converterToValues.GetValues(solution);
         }
 
         protected virtual void NextIteration()
