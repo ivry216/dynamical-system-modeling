@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsControl.AlgorithmRunStatistics
 {
-    interface IIterationValuesHistoryStats : IAlgorithmStats
+    public interface IIterationValuesHistoryStats : IAlgorithmStats
     {
         ICollection<double[]> Values { get; }
     }

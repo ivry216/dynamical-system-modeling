@@ -1,8 +1,8 @@
 ﻿using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 
-namespace Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
+namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure
 {
-    public interface IBestAlternativeGetter
+    public interface IBestAlternativeAndValueGetter
     {
         IBestVariableAndValueStats GetBestAlternativeAndValue();
     }

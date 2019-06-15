@@ -1,6 +1,6 @@
-﻿namespace Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
+﻿namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.IterationStatistics
 {
-    interface IMessageToFollowers
+    public interface IMessageToFollowers
     {
         double[] BestAlternative { get; }
         double BestValue { get; }

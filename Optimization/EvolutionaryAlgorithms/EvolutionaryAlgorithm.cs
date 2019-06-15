@@ -1,10 +1,10 @@
 ﻿using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
-using Optimization.AlgorithmsControl.AlgorithmRunStatsGetters;
+using Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure;
 using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.EvolutionaryAlgorithms
 {
-    public abstract class EvolutionaryAlgorithm<AlgorithmParameters> : OptimizationAlgorithm<AlgorithmParameters>, IBestAlternativeGetter
+    public abstract class EvolutionaryAlgorithm<AlgorithmParameters> : OptimizationAlgorithm<AlgorithmParameters>, IBestAlternativeAndValueGetter
         where AlgorithmParameters : EvolutionaryAlgorithmParameters
     {
         #region Fields
@@ -48,7 +48,7 @@ namespace Optimization.EvolutionaryAlgorithms
             }
         }
 
-        IBestVariableAndValueStats IBestAlternativeGetter.GetBestAlternativeAndValue()
+        IBestVariableAndValueStats IBestAlternativeAndValueGetter.GetBestAlternativeAndValue()
         {
             return new BestVariableAndValueStats(BestValue, BestSolution);
         }

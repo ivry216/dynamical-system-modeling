@@ -1,11 +1,11 @@
 ﻿using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
-using Optimization.AlgorithmsControl.AlgorithmRunStatsGetters;
+using Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure;
 using Optimization.AlgorithmsInterfaces.Parallel;
 using Optimization.Problem.Parallel;
 
 namespace Optimization.EvolutionaryAlgorithms.Parallel
 {
-    public abstract class ParallelEvolutionaryAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations>, IBestAlternativeGetter
+    public abstract class ParallelEvolutionaryAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations>, IBestAlternativeAndValueGetter
         where TAlgorithmParameters : EvolutionaryAlgorithmParameters
         where TValues : IParallelOptimizationProblemValues
         where TAlternatives : IParallelOptimizationProblemAlternative
@@ -42,7 +42,7 @@ namespace Optimization.EvolutionaryAlgorithms.Parallel
             Fitness = new double[Parameters.Size];
         }
 
-        IBestVariableAndValueStats IBestAlternativeGetter.GetBestAlternativeAndValue()
+        IBestVariableAndValueStats IBestAlternativeAndValueGetter.GetBestAlternativeAndValue()
         {
             return new BestVariableAndValueStats(BestValue, BestSolution);
         }
