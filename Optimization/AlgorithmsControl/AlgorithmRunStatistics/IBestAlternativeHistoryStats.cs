@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsControl.AlgorithmRunStatistics
 {
-    interface IBestAlternativeHistoryStats : IAlgorithmStats
+    public interface IBestAlternativeHistoryStats : IAlgorithmStats
     {
         ICollection<double> BestValues { get; }
         ICollection<double[]> BestVarialbes { get; }

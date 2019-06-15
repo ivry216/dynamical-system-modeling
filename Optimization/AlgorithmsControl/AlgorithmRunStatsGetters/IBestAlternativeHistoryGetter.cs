@@ -4,6 +4,6 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
 {
     public interface IBestAlternativeHistoryGetter
     {
-        BestAlternativeHistoryStats GetAlternativeHistory();
+        IBestAlternativeHistoryStats GetAlternativeHistory();
     }
 }

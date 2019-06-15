@@ -42,7 +42,7 @@ namespace Optimization.EvolutionaryAlgorithms.Parallel
             Fitness = new double[Parameters.Size];
         }
 
-        BestVariableAndValueStats IBestAlternativeGetter.GetBestAlternativeAndValue()
+        IBestVariableAndValueStats IBestAlternativeGetter.GetBestAlternativeAndValue()
         {
             return new BestVariableAndValueStats(BestValue, BestSolution);
         }

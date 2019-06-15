@@ -48,7 +48,7 @@ namespace Optimization.EvolutionaryAlgorithms
             }
         }
 
-        BestVariableAndValueStats IBestAlternativeGetter.GetBestAlternativeAndValue()
+        IBestVariableAndValueStats IBestAlternativeGetter.GetBestAlternativeAndValue()
         {
             return new BestVariableAndValueStats(BestValue, BestSolution);
         }

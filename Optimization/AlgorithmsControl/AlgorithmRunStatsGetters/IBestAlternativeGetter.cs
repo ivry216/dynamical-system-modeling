@@ -4,6 +4,6 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
 {
     public interface IBestAlternativeGetter
     {
-        BestVariableAndValueStats GetBestAlternativeAndValue();
+        IBestVariableAndValueStats GetBestAlternativeAndValue();
     }
 }

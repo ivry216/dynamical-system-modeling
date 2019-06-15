@@ -2,6 +2,6 @@
 {
     interface IAlgorithmIterationFollower
     {
-
+        void Update(IMessageToFollowers message);
     }
 }
