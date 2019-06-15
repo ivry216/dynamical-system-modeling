@@ -3,7 +3,7 @@
 namespace Optimization.AlgorithmsControl.AlgorithmRunStatsGetters
 {
     public interface IAlgorithmStatsGetter<TStats>
-        where TStats : IAlgorithmState
+        where TStats : IAlgorithmStats
     {
         TStats GetStats();
     }

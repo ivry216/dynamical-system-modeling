@@ -51,6 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\BestAlternativeHistoryStats.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IBestAlternativeHistoryStats.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IIterationValuesHistoryStats.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IterationValuesHistoryStats.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatsGetters\IAlgorithmIterationFollower.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatsGetters\IBestAlternativeHistoryGetter.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatsGetters\IIterationValuesHistoryGetter.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatsGetters\IMessageToFollowers.cs" />
     <Compile Include="AlgorithmsInterfaces\Parallel\IConverterToAlternativesForParallel.cs" />
     <Compile Include="AlgorithmsInterfaces\Parallel\IConverterToValuesForParallel.cs" />
     <Compile Include="AlgorithmsInterfaces\Parallel\IParallelOptimizationAlgorithm.cs" />
@@ -59,7 +67,7 @@
     <Compile Include="AlgorithmsControl\AlgorithmMeta\IRestartableAlgorithm.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\BestVariableAndValueStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IBestVariableAndValueStats.cs" />
-    <Compile Include="AlgorithmsControl\AlgorithmRunStatsGetters\IAlgBestVariableAndValueGetter.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatsGetters\IBestAlternativeGetter.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatsGetters\IAlgorithmStatsGetter.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmStates\IBestVariableAndValueState.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmStates\IHavingStandardAlgorithmState.cs" />

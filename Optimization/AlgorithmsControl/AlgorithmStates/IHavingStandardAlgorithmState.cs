@@ -1,6 +1,4 @@
-﻿using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
-
-namespace Optimization.AlgorithmsControl.AlgorithmStates
+﻿namespace Optimization.AlgorithmsControl.AlgorithmStates
 {
     public interface IHavingStandardAlgorithmState : IBestVariableAndValueState
     {

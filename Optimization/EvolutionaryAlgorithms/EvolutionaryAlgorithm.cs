@@ -4,7 +4,7 @@ using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.EvolutionaryAlgorithms
 {
-    public abstract class EvolutionaryAlgorithm<AlgorithmParameters> : OptimizationAlgorithm<AlgorithmParameters>, IAlgBestVariableAndValueGetter
+    public abstract class EvolutionaryAlgorithm<AlgorithmParameters> : OptimizationAlgorithm<AlgorithmParameters>, IBestAlternativeGetter
         where AlgorithmParameters : EvolutionaryAlgorithmParameters
     {
         #region Fields
@@ -48,7 +48,7 @@ namespace Optimization.EvolutionaryAlgorithms
             }
         }
 
-        BestVariableAndValueStats IAlgBestVariableAndValueGetter.GetBestAlternativeAndValue()
+        BestVariableAndValueStats IBestAlternativeGetter.GetBestAlternativeAndValue()
         {
             return new BestVariableAndValueStats(BestValue, BestSolution);
         }
