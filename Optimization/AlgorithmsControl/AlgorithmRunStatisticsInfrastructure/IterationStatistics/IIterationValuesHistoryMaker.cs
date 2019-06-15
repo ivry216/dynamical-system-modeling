@@ -2,7 +2,7 @@
 
 namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.IterationStatistics
 {
-    public interface IPopulationValueHistoryMaker : IAlgorithmIterationFollower, IAlgorithmStatsGetter<IIterationValuesHistoryStats>
+    public interface IIterationValueHistoryMaker : IAlgorithmIterationFollower, IAlgorithmStatsGetter<IIterationValuesHistoryStats>
     {
     }
 }
