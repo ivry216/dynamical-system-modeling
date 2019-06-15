@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\AlgorithmStatsFollowerType.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\BestAlternativeHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IBestAlternativeHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IIterationValuesHistoryStats.cs" />
