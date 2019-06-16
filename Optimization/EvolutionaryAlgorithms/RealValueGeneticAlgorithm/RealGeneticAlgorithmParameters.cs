@@ -40,9 +40,7 @@ namespace Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
         #region Constructor
 
         public RealGeneticAlgorithmParameters() : base()
-        {
-
-        }
+        { }
 
         #endregion Constructor
     }

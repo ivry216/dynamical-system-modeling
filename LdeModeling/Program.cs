@@ -168,9 +168,9 @@ namespace TestApp
             differentialEvolutionParameters.CrossoverProbability = 1.2;
             differentialEvolutionParameters.DifferentialWeight = 1.2;
 
-            differentialEvolutionParameters.GenerationType = PopulationGenerationType.Uniform;
-            differentialEvolutionParameters.GenerationFrom = Enumerable.Repeat(-3.0, 12).ToArray();
-            differentialEvolutionParameters.GenerationTo = Enumerable.Repeat(3.0, 12).ToArray();
+            differentialEvolutionParameters.GenerationParameters.GenerationType = PopulationGenerationType.Uniform;
+            differentialEvolutionParameters.GenerationParameters.GenerationFrom = Enumerable.Repeat(-3.0, 12).ToArray();
+            differentialEvolutionParameters.GenerationParameters.GenerationTo = Enumerable.Repeat(3.0, 12).ToArray();
 
             differentialEvolutionParameters.Size = 200;
             differentialEvolutionParameters.Iterations = 500;
