@@ -11,6 +11,9 @@ namespace Optimization.LocalOptimization
         private double[] _intermediate;
         private double[] _trial;
 
+        protected override double[][] IterationAlternatives => throw new System.NotImplementedException();
+        protected override double[] IterationValues => throw new System.NotImplementedException();
+
         protected override void Initialize()
         {
             // Make a trial vector and intermediate solution

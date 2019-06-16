@@ -1,10 +1,12 @@
 ﻿using MathCore.Extensions.Arrays;
 using Optimization.AlgorithmsControl.AlgorithmMeta;
+using Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.IterationStatistics;
 using Optimization.Problem.Parallel;
+using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsInterfaces.Parallel
 {
-    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IRestartableAlgorithm
+    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IRestartableAlgorithm, IContainingStatsFollowers
         where TAlgorithmParameters : OptimizationAlgorithmParameters
         where TValues : IParallelOptimizationProblemValues
         where TAlternatives : IParallelOptimizationProblemAlternative
@@ -22,6 +24,19 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         protected abstract TCalculationResult AlternativesCriterionValues { get; set ; }
 
         #endregion Fields
+
+        #region Followers Fields
+
+        protected List<IAlgorithmIterationFollower> algorithmIterationFollowers;
+
+        #endregion Followers Fields
+
+        #region Interation Properties
+
+        protected abstract double[][] IterationAlternatives { get; }
+        protected abstract double[] IterationValues { get; }
+
+        #endregion Iteration Properties
 
         #region Properties
 
@@ -86,6 +101,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
             for (int i = 0; i < Parameters.Iterations; i++)
             {
                 NextIteration();
+                UpdateFollowers();
             }
         }
 
@@ -124,5 +140,33 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         }
 
         #endregion Supporting Methods
+
+        #region Stats Followers
+
+        public void AddStatsFollowers(ICollection<IAlgorithmIterationFollower> statsFollowers)
+        {
+            if (algorithmIterationFollowers == null)
+            {
+                algorithmIterationFollowers = new List<IAlgorithmIterationFollower>();
+            }
+
+            algorithmIterationFollowers.AddRange(statsFollowers);
+        }
+
+        public void UpdateFollowers()
+        {
+            if (algorithmIterationFollowers != null && algorithmIterationFollowers.Count > 0)
+            {
+                // Perform a message to followers
+                MessageToStatsFollowers message = new MessageToStatsFollowers(BestSolution, BestValue, IterationAlternatives, IterationValues);
+
+                foreach (var follower in algorithmIterationFollowers)
+                {
+                    follower.Update(message);
+                }
+            }
+        }
+
+        #endregion Stats Followers
     }
 }

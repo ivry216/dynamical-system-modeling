@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
+﻿using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 using Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure;
-using Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.IterationStatistics;
 using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.EvolutionaryAlgorithms
 {
-    public abstract class EvolutionaryAlgorithm<AlgorithmParameters> : OptimizationAlgorithm<AlgorithmParameters>, IBestAlternativeAndValueGetter, IContainingStatsFollowers
+    public abstract class EvolutionaryAlgorithm<AlgorithmParameters> : OptimizationAlgorithm<AlgorithmParameters>, IBestAlternativeAndValueGetter
         where AlgorithmParameters : EvolutionaryAlgorithmParameters
     {
         #region Fields
@@ -22,11 +20,12 @@ namespace Optimization.EvolutionaryAlgorithms
 
         #endregion Fields
 
-        #region Followers Fields
+        #region Iteration Properties
 
-        protected List<IAlgorithmIterationFollower> algorithmIterationFollowers;
+        protected override double[][] IterationAlternatives => Population;
+        protected override double[] IterationValues => Fitness;
 
-        #endregion Followers Fields
+        #endregion Iteration Properties
 
         #region Universal Methods
 
@@ -59,30 +58,6 @@ namespace Optimization.EvolutionaryAlgorithms
         IBestVariableAndValueStats IBestAlternativeAndValueGetter.GetBestAlternativeAndValue()
         {
             return new BestVariableAndValueStats(BestValue, BestSolution);
-        }
-
-        public void AddStatsFollowers(ICollection<IAlgorithmIterationFollower> statsFollowers)
-        {
-            if (algorithmIterationFollowers == null)
-            {
-                algorithmIterationFollowers = new List<IAlgorithmIterationFollower>();
-            }
-
-            algorithmIterationFollowers.AddRange(statsFollowers);
-        }
-
-        void IContainingStatsFollowers.UpdateFollowers()
-        {
-            // Perform a message to followers
-            MessageToStatsFollowers message = new MessageToStatsFollowers(BestSolution, BestValue, Population, Fitness);
-
-            if (algorithmIterationFollowers != null)
-            {
-                foreach (var follower in algorithmIterationFollowers)
-                {
-                    follower.Update(message);
-                }
-            }
         }
 
         #endregion universal Methods

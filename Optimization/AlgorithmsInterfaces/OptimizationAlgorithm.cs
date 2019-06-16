@@ -1,10 +1,12 @@
 ﻿using MathCore.Extensions.Arrays;
 using Optimization.AlgorithmsControl.AlgorithmMeta;
+using Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.IterationStatistics;
 using Optimization.Problem;
+using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsInterfaces
 {
-    public abstract class OptimizationAlgorithm<TAlgorithmParameters> : IOptimizationAlgorithm<TAlgorithmParameters>, IRealAlgorithm, IRestartableAlgorithm
+    public abstract class OptimizationAlgorithm<TAlgorithmParameters> : IOptimizationAlgorithm<TAlgorithmParameters>, IRealAlgorithm, IRestartableAlgorithm, IContainingStatsFollowers
         where TAlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Fields
@@ -14,6 +16,19 @@ namespace Optimization.AlgorithmsInterfaces
         protected int Dimension;
 
         #endregion Fields
+
+        #region Followers Fields
+
+        protected List<IAlgorithmIterationFollower> algorithmIterationFollowers;
+
+        #endregion Followers Fields
+
+        #region Interation Properties
+
+        protected abstract double[][] IterationAlternatives { get; }
+        protected abstract double[] IterationValues { get; }
+
+        #endregion Iteration Properties
 
         #region Properties
 
@@ -81,6 +96,7 @@ namespace Optimization.AlgorithmsInterfaces
             for (int i = 0; i < Parameters.Iterations; i++)
             {
                 NextIteration();
+                UpdateFollowers();
             }
         }
 
@@ -98,5 +114,33 @@ namespace Optimization.AlgorithmsInterfaces
         }
 
         #endregion Solution-Related Methods
+
+        #region Stats Followers
+
+        public void AddStatsFollowers(ICollection<IAlgorithmIterationFollower> statsFollowers)
+        {
+            if (algorithmIterationFollowers == null)
+            {
+                algorithmIterationFollowers = new List<IAlgorithmIterationFollower>();
+            }
+
+            algorithmIterationFollowers.AddRange(statsFollowers);
+        }
+
+        public void UpdateFollowers()
+        {
+            if (algorithmIterationFollowers != null && algorithmIterationFollowers.Count > 0)
+            {
+                // Perform a message to followers
+                MessageToStatsFollowers message = new MessageToStatsFollowers(BestSolution, BestValue, IterationAlternatives, IterationValues);
+
+                foreach (var follower in algorithmIterationFollowers)
+                {
+                    follower.Update(message);
+                }
+            }
+        }
+
+        #endregion Stats Followers
     }
 }
