@@ -23,6 +23,13 @@ namespace Optimization.EvolutionaryAlgorithms.Parallel
 
         #endregion Fields
 
+        #region Iteration Properties
+
+        protected override double[][] IterationAlternatives => Population;
+        protected override double[] IterationValues => Fitness;
+
+        #endregion Iteration Properties
+
         #region Universal Methods
 
         protected override void Initialize()
