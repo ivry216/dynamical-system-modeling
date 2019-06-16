@@ -39,25 +39,25 @@ namespace Optimization.EvolutionaryAlgorithms.DifferentialEvolutionAlgorithm
 
             // Generate the new population
             // With normal distribution
-            if (Parameters.GenerationType == PopulationGenerationType.Normal)
+            if (Parameters.GenerationParameters.GenerationType == PopulationGenerationType.Normal)
             {
                 for (int i = 0; i < Parameters.Size; i++)
                 {
                     Population[i] = RandomEngine.Instance.GenerateNormallyDistributedVector(
                     dimension: Problem.Dimension,
-                    mean: Parameters.GenerationMean,
-                    sd: Parameters.GenerationSd);
+                    mean: Parameters.GenerationParameters.GenerationMean,
+                    sd: Parameters.GenerationParameters.GenerationSd);
                 }
             }
             // With uniform distribution
-            if (Parameters.GenerationType == PopulationGenerationType.Uniform)
+            if (Parameters.GenerationParameters.GenerationType == PopulationGenerationType.Uniform)
             {
                 for (int i = 0; i < Parameters.Size; i++)
                 {
                     Population[i] = RandomEngine.Instance.GenerateUniformlyDistributedVector(
                     dimension: Problem.Dimension,
-                    from: Parameters.GenerationFrom,
-                    to: Parameters.GenerationTo);
+                    from: Parameters.GenerationParameters.GenerationFrom,
+                    to: Parameters.GenerationParameters.GenerationTo);
                 }
             }
 
