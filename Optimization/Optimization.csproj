@@ -54,6 +54,7 @@
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\AlgorithmStatsFollowerType.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\BestAlternativeHistoryMaker.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\IterationValuesHistoryMaker.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\MessageToStatsFollowers.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\BestAlternativeHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IBestAlternativeHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IIterationValuesHistoryStats.cs" />
