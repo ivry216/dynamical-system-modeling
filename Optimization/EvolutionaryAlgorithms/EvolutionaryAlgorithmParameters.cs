@@ -1,4 +1,5 @@
 ﻿using Optimization.AlgorithmsInterfaces;
+using Optimization.Parameters.Generation;
 
 namespace Optimization.EvolutionaryAlgorithms
 {
@@ -9,13 +10,5 @@ namespace Optimization.EvolutionaryAlgorithms
         public int Size { get; set; }
 
         #endregion Properties
-
-        #region Constructor
-
-        public EvolutionaryAlgorithmParameters()
-        {
-        }
-
-        #endregion Constructor
     }
 }

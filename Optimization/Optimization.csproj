@@ -67,6 +67,7 @@
     <Compile Include="AlgorithmsControl\Restart\Conditional\BestValueBasedRestartParameters.cs" />
     <Compile Include="AlgorithmsInterfaces\IContainingStatsFollowers.cs" />
     <Compile Include="AlgorithmsInterfaces\IRealIterableAlgorithm.cs" />
+    <Compile Include="AlgorithmsInterfaces\IRestartableAlgorithm.cs" />
     <Compile Include="AlgorithmsInterfaces\Parallel\IConverterToAlternativesForParallel.cs" />
     <Compile Include="AlgorithmsInterfaces\Parallel\IConverterToValuesForParallel.cs" />
     <Compile Include="AlgorithmsInterfaces\Parallel\IParallelOptimizationAlgorithm.cs" />
@@ -121,6 +122,8 @@
     <Compile Include="LocalOptimization\RandomCoordinatewiseSearchType.cs" />
     <Compile Include="AlgorithmsInterfaces\OptimizationAlgorithm.cs" />
     <Compile Include="AlgorithmsInterfaces\OptimizationAlgorithmParameters.cs" />
+    <Compile Include="Parameters\Generation\GenerationParameters.cs" />
+    <Compile Include="Parameters\Generation\IGenerationParameters.cs" />
     <Compile Include="Problem\IOptimizationProblem.cs" />
     <Compile Include="Problem\OptimizationProblem.cs" />
     <Compile Include="Problem\Parallel\IParallelOptimizationProblem.cs" />

@@ -1,12 +1,12 @@
 ﻿using MathCore.Extensions.Arrays;
-using Optimization.AlgorithmsControl.AlgorithmMeta;
 using Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.IterationStatistics;
+using Optimization.Parameters.Generation;
 using Optimization.Problem.Parallel;
 using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsInterfaces.Parallel
 {
-    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IIterableAlgorithm, IContainingStatsFollowers
+    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IRestartableAlgorithm, IContainingStatsFollowers
         where TAlgorithmParameters : OptimizationAlgorithmParameters
         where TValues : IParallelOptimizationProblemValues
         where TAlternatives : IParallelOptimizationProblemAlternative
@@ -37,6 +37,19 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         protected abstract double[] IterationValues { get; }
 
         #endregion Iteration Properties
+
+        #region Restart Properties
+
+        IGenerationParameters IRestartableAlgorithm.GenerationParameters
+        {
+            get => Parameters.GenerationParameters;
+            set
+            {
+                Parameters.GenerationParameters = value;
+            }
+        }
+
+        #endregion Restart Properties
 
         #region Properties
 
@@ -70,6 +83,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
 
         #region Restartable Methods
 
+        void IIterableAlgorithm.Initialize() => Initialize();
         void IIterableAlgorithm.Generate() => Generate();
         void IIterableAlgorithm.NextIteration() => NextIteration();
 

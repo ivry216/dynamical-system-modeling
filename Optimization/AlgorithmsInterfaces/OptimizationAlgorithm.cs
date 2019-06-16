@@ -1,12 +1,12 @@
 ﻿using MathCore.Extensions.Arrays;
-using Optimization.AlgorithmsControl.AlgorithmMeta;
 using Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.IterationStatistics;
+using Optimization.Parameters.Generation;
 using Optimization.Problem;
 using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsInterfaces
 {
-    public abstract class OptimizationAlgorithm<TAlgorithmParameters> : IOptimizationAlgorithm<TAlgorithmParameters>, IRealAlgorithm, IIterableAlgorithm, IContainingStatsFollowers
+    public abstract class OptimizationAlgorithm<TAlgorithmParameters> : IOptimizationAlgorithm<TAlgorithmParameters>, IRealAlgorithm, IRestartableAlgorithm, IContainingStatsFollowers
         where TAlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Fields
@@ -29,6 +29,19 @@ namespace Optimization.AlgorithmsInterfaces
         protected abstract double[] IterationValues { get; }
 
         #endregion Iteration Properties
+
+        #region Restart Properties
+
+        IGenerationParameters IRestartableAlgorithm.GenerationParameters
+        {
+            get => Parameters.GenerationParameters;
+            set
+            {
+                Parameters.GenerationParameters = value;
+            }
+        }
+
+        #endregion Restart Properties
 
         #region Properties
 
