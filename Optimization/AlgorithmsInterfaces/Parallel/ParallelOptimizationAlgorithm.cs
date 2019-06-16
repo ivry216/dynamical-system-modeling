@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsInterfaces.Parallel
 {
-    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IRestartableAlgorithm, IContainingStatsFollowers
+    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IIterableAlgorithm, IContainingStatsFollowers
         where TAlgorithmParameters : OptimizationAlgorithmParameters
         where TValues : IParallelOptimizationProblemValues
         where TAlternatives : IParallelOptimizationProblemAlternative
@@ -70,8 +70,8 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
 
         #region Restartable Methods
 
-        void IRestartableAlgorithm.Generate() => Generate();
-        void IRestartableAlgorithm.NextIteration() => NextIteration();
+        void IIterableAlgorithm.Generate() => Generate();
+        void IIterableAlgorithm.NextIteration() => NextIteration();
 
         #endregion Restartable Methods
 

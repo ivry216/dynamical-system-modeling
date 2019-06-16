@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsInterfaces
 {
-    public abstract class OptimizationAlgorithm<TAlgorithmParameters> : IOptimizationAlgorithm<TAlgorithmParameters>, IRealAlgorithm, IRestartableAlgorithm, IContainingStatsFollowers
+    public abstract class OptimizationAlgorithm<TAlgorithmParameters> : IOptimizationAlgorithm<TAlgorithmParameters>, IRealAlgorithm, IIterableAlgorithm, IContainingStatsFollowers
         where TAlgorithmParameters : OptimizationAlgorithmParameters
     {
         #region Fields
@@ -61,8 +61,9 @@ namespace Optimization.AlgorithmsInterfaces
 
         #region Restartable Methods
 
-        void IRestartableAlgorithm.Generate() => Generate();
-        void IRestartableAlgorithm.NextIteration() => NextIteration();
+        void IIterableAlgorithm.Generate() => Generate();
+        void IIterableAlgorithm.NextIteration() => NextIteration();
+        void IIterableAlgorithm.Initialize() => Initialize();
         
         #endregion Restartable Methods
 

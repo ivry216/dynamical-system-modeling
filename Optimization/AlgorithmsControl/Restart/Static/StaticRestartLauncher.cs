@@ -1,10 +1,11 @@
 ﻿using System;
 using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 using Optimization.AlgorithmsControl.InformationCollectingManager;
+using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.AlgorithmsControl.Restart.Static
 {
-    public class StaticRestartLauncher : OptimizationLauncher<StaticRestartLaucherParameters, RealAlgorithmDataCollector, IBestVariableAndValueStats>
+    public class StaticRestartLauncher : OptimizationLauncher<StaticRestartLaucherParameters, RealAlgorithmDataCollector, IBestVariableAndValueStats, IRealAlgorithm>
     {
         public StaticRestartLauncher(StaticRestartLaucherParameters parameters) : base(parameters)
         { }

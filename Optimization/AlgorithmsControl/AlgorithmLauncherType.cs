@@ -2,6 +2,7 @@
 {
     public enum AlgorithmLauncherType
     {
+        BestValueBased,
         StaticRestart
     }
 }

@@ -6,10 +6,11 @@ using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.AlgorithmsControl
 {
-    public abstract class OptimizationLauncher<TParameters, TCollector, TStats> : IOptimizationLauncher<TParameters, TStats>, IContainingStats<TStats>
+    public abstract class OptimizationLauncher<TParameters, TCollector, TStats, TAlgorithm> : IOptimizationLauncher<TParameters, TStats, TAlgorithm>, IContainingStats<TStats>
         where TStats : IAlgorithmStats
         where TParameters : IOptimizationLauncherParameters
         where TCollector : IAlgorithmRunDataCollector<TStats>, new()
+        where TAlgorithm : IRealAlgorithm
     {
         #region Fields
 
@@ -20,7 +21,7 @@ namespace Optimization.AlgorithmsControl
         #region Inherited Properties 
 
         public List<TStats> Stats => collector.GetAll().ToList();
-        public IRealAlgorithm Algorithm { get; set; }
+        public TAlgorithm Algorithm { get; set; }
         public TParameters Parameters { get; }
 
         #endregion Inherited Properties
