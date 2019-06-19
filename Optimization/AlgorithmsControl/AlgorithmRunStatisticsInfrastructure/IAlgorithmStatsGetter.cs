@@ -6,5 +6,6 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure
         where TStats : IAlgorithmStats
     {
         TStats GetStats();
+        void SaveToFile();
     }
 }

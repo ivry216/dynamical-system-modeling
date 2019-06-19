@@ -1,4 +1,5 @@
-﻿using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
+﻿using OfficeOpenXml;
+using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.IterationStatistics
@@ -27,6 +28,14 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.It
         public void Update(IMessageToFollowers message)
         {
             values.Add(message.AlternativeValues);
+        }
+
+        public void SaveToFile()
+        {
+            using (ExcelPackage excel)
+            {
+
+            }
         }
     }
 }
