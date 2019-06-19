@@ -56,7 +56,7 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.It
 
                 // Value colname
                 string valueColname = "Objective value";
-                int valueColnameIndex = dimension + 2;
+                int valueColnameIndex = dimension + 1;
 
                 // Write the column names
                 for (int i = 0, j = 1; i < dimension; i++, j++)
