@@ -12,7 +12,7 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.It
         private List<double[]> _bestAlternatives;
         private List<double> _bestValues;
 
-        private readonly string _fileName = "Best alternative history";
+        private readonly string _fileName = "History best alternative.xlsx";
         private readonly string _worksheetName = "Best alternative history";
 
         public AlgorithmStatsFollowerType Type => AlgorithmStatsFollowerType.BestAlternativeHistory;
@@ -75,7 +75,7 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.It
                     worksheet.Cells[row, valueColnameIndex].Value = _bestValues[i];
                 }
 
-                excelPackage.SaveAs(new FileInfo(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + _fileName));
+                excelPackage.SaveAs(new FileInfo(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\" + _fileName));
             }
         }
     }

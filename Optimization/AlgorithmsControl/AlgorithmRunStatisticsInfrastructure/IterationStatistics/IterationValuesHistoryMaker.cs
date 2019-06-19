@@ -10,8 +10,8 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.It
     public class IterationValuesHistoryMaker : IIterationValueHistoryMaker
     {
         private List<double[]> _values;
-        private readonly string _fileName = "Best alternative history";
-        private readonly string _worksheetName = "Best alternative history";
+        private readonly string _fileName = "History Iteration Values.xlsx";
+        private readonly string _worksheetName = "Iteration alternatives values";
 
         public AlgorithmStatsFollowerType Type => AlgorithmStatsFollowerType.ValuesHistory;
 
@@ -64,7 +64,7 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.It
                     }
                 }
 
-                excelPackage.SaveAs(new FileInfo(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + _fileName));
+                excelPackage.SaveAs(new FileInfo(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\" + _fileName));
             }
         }
     }
