@@ -44,16 +44,16 @@ namespace TestApp.Models.Dynamical.InverseProblem
                 parameters[i] = alternative[i];
             }
 
-            parameters[8] = alternative[6];
-            parameters[9] = alternative[7];
-            parameters[10] = alternative[8];
-            parameters[11] = alternative[9];
-            parameters[16] = alternative[10];
-            parameters[19] = alternative[11];
-            parameters[24] = alternative[12];
-            parameters[29] = alternative[13];
+            parameters[7] = alternative[6];
+            parameters[8] = alternative[7];
+            parameters[9] = alternative[8];
+            parameters[10] = alternative[9];
+            parameters[15] = alternative[10];
+            parameters[18] = alternative[11];
+            parameters[23] = alternative[12];
+            parameters[28] = alternative[13];
 
-            model.ModelParameters.ModelParameters.AssignWithArray(alternative);
+            model.ModelParameters.ModelParameters.AssignWithArray(parameters);
 
             double result = modelToDataProcessor.CalculateMultipleOutputCriterion(model, _outputNormalization);
 
