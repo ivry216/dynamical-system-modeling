@@ -1,6 +1,6 @@
 ﻿namespace TestApp.Models.Dynamical.SystemsS
 {
-    public class CascadedPathawaySystemPaameters
+    public class CascadedPathawaySystemParameters
     {
         #region Fields
 
@@ -27,7 +27,7 @@
 
         #region Constructor
 
-        public CascadedPathawaySystemPaameters(int numberOfInputs, int numberOfOutputs)
+        public CascadedPathawaySystemParameters(int numberOfInputs, int numberOfOutputs)
         {
             _numberOfInputs = numberOfInputs;
             _numberOfOutputs = numberOfOutputs;

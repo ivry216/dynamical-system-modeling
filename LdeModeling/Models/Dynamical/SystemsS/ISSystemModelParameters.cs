@@ -2,6 +2,6 @@
 {
     public interface ISSystemModelParameters : IDynamicalModelParameters
     {
-        new 
+        new CascadedPathawaySystemParameters ModelParameters { get; set; }
     }
 }
