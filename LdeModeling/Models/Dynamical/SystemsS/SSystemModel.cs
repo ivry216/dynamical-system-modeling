@@ -42,6 +42,15 @@ namespace TestApp.Models.Dynamical.SystemsS
             EvaluationParameters = new SSystemEvaluationParameters();
         }
 
+        public SSystemModel(ISSystemModelEvaluationParameters evaluationParameters, ISSystemModelParameters modelParameters)
+        {
+            EvaluationParameters = evaluationParameters;
+            ModelParameters = modelParameters;
+
+            rungeKuttahIntegrator = new RungeKuttahIntegrator();
+            rungeKuttahIntegrator.SetModel(this);
+        }
+
         public IDiscreteOutput Evaluate(IContiniousInput input)
         {
             return rungeKuttahIntegrator.SolveEquation(input);
