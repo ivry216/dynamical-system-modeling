@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TestApp.Models.Dynamical.LinearDifferentialEquation
 {
-    public interface ILinearDifferentialEquationModel : IDynamicalModel<ILinearDifferentialEquationEvaluationParams, ILinearDifferentialEquationParameters, IDiscreteOutput, IContiniousInput>
+    public interface ILinearDifferentialEquationModel : IDynamicalModel<ILinearDifferentialEquationEvaluationParams, ILinearDifferentialEquationParameters, IDiscreteOutput, IContiniousInput>, INumericallyCalculable
     {
-        double[] CalculateSystemEquation(double[] state, double[] inputs);
+        
     }
 }

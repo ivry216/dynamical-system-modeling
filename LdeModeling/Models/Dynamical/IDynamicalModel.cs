@@ -12,6 +12,6 @@ namespace TestApp.Models.Dynamical
         where TOutput : IDynamicalModelOutput
         where TInput : IDynamicalModelInput
     {
-
+        
     }
 }

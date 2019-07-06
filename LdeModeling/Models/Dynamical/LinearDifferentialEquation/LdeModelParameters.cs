@@ -16,6 +16,8 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
 
         public int InputsNumber { get; }
 
+        public int OutputsNumber => ModelParameters.NumberOfOutputs;
+
         object IDynamicalModelParameters.ModelParameters
         {
             get => ModelParameters;

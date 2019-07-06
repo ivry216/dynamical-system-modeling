@@ -18,9 +18,14 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
 
         IModelParameters IModel.ModelParameters => ModelParameters;
 
+        IDynamicalModelEvaluationParams INumericallyCalculable.EvaluationParameters => EvaluationParameters;
+
+        IDynamicalModelParameters INumericallyCalculable.ModelParameters => ModelParameters;
+
         private double[,] systemMatrix => ModelParameters.ModelParameters.A;
         private double[,] inputsMatrix => ModelParameters.ModelParameters.B;
 
+        
         public LdeModel()
         {
             rungeKuttahIntegrator = new RungeKuttahIntegrator();

@@ -23,6 +23,8 @@
         public double[,] G;
         public double[,] H;
 
+        public int OutputsNumber => _numberOfOutputs;
+
         #endregion Properties
 
         #region Constructor

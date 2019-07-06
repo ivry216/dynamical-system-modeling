@@ -73,6 +73,7 @@
     <Compile Include="Models\Dynamical\IDynamicalModelOutput.cs" />
     <Compile Include="Models\Dynamical\IDynamicalModelParameters.cs" />
     <Compile Include="Models\Dynamical\IContiniousInput.cs" />
+    <Compile Include="Models\Dynamical\INumericallyCalculable.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblem.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblemL1.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblemL2.cs" />
@@ -91,6 +92,8 @@
     <Compile Include="Models\Dynamical\SystemsS\ISSystemModelEvaluationParameters.cs" />
     <Compile Include="Models\Dynamical\SystemsS\ISSystemModel.cs" />
     <Compile Include="Models\Dynamical\SystemsS\ISSystemModelParameters.cs" />
+    <Compile Include="Models\Dynamical\SystemsS\SSystemEvaluationParameters.cs" />
+    <Compile Include="Models\Dynamical\SystemsS\SSystemModel.cs" />
     <Compile Include="Models\Dynamical\SystemsS\SSystemModelParameters.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\IModelEvaluationParameters.cs" />

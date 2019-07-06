@@ -8,11 +8,7 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
     class RungeKuttahIntegrator
     {
         // Model itself
-        private ILinearDifferentialEquationModel model;
-
-        // Parameters of the model
-        private double[,] systemMatrix;
-        private double[,] inputsMatrix;
+        private INumericallyCalculable model;
 
         // The initial values
         private double[] initialValues;
@@ -37,7 +33,7 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
 
         #region Main Methods
 
-        public void SetModel(ILinearDifferentialEquationModel equation)
+        public void SetModel(INumericallyCalculable equation)
         {
             model = equation;
         }
@@ -72,17 +68,12 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
 
         private IDiscreteOutput SolveForPrecalculatedInputs(IDiscreteInput input)
         {
-            // Parameters of the model
-            var deParameters = model.ModelParameters;
-            systemMatrix = deParameters.ModelParameters.A;
-            inputsMatrix = deParameters.ModelParameters.B;
-
             // Get the initial values
             initialValues = model.ModelParameters.InitialState;
 
             // Get the number of inputs and outputs
-            numberOfInputs = deParameters.InputsNumber;
-            numberOfOutputs = deParameters.ModelParameters.NumberOfOutputs;
+            numberOfInputs = model.ModelParameters.InputsNumber;
+            numberOfOutputs = model.ModelParameters.OutputsNumber;
 
             // Get the input
             discreteInputs = input.Inputs;

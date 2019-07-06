@@ -2,6 +2,6 @@
 
 namespace TestApp.Models.Dynamical.SystemsS
 {
-    public interface ISSystemModel : IDynamicalModel<ISSystemModelEvaluationParameters, ISSystemModelParameters, IDiscreteOutput, IContiniousInput>
+    public interface ISSystemModel : IDynamicalModel<ISSystemModelEvaluationParameters, ISSystemModelParameters, IDiscreteOutput, IContiniousInput>, INumericallyCalculable
     { }
 }

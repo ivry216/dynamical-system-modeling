@@ -12,5 +12,6 @@ namespace TestApp.Models.Dynamical
         double[] InitialState { get; set; }
         object ModelParameters { get; set; }
         int InputsNumber { get; }
+        int OutputsNumber { get; }
     }
 }

@@ -19,6 +19,8 @@
 
         public int InputsNumber { get; }
 
+        public int OutputsNumber => ModelParameters.OutputsNumber;
+
         public SSystemModelParameters(int stateDimension, int inputsNumber)
         {
             StateDimension = stateDimension;
