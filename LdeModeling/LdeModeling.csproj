@@ -87,6 +87,11 @@
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\LinearDynamicalSystemParameters.cs" />
     <Compile Include="Models\Dynamical\ModelToDataProcessing\ModelToDataProcessor.cs" />
     <Compile Include="Models\Dynamical\SamplePreprocessing\SampleToLdeDataProcessor.cs" />
+    <Compile Include="Models\Dynamical\SystemsS\CascadedPathawaySystemPaameters.cs" />
+    <Compile Include="Models\Dynamical\SystemsS\ISSystemModelEvaluationParameters.cs" />
+    <Compile Include="Models\Dynamical\SystemsS\ISSystemModel.cs" />
+    <Compile Include="Models\Dynamical\SystemsS\ISSystemModelParameters.cs" />
+    <Compile Include="Models\Dynamical\SystemsS\SSystemModelParameters.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\IModelEvaluationParameters.cs" />
     <Compile Include="Models\IModelInput.cs" />
