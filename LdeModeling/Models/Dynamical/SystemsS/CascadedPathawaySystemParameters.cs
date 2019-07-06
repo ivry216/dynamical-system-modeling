@@ -6,6 +6,7 @@
 
         private int _numberOfInputs;
         private int _numberOfOutputs;
+        private int _sumOfInputsAndOutputs;
 
         private double[] _alpha;
         private double[] _betta;
@@ -33,6 +34,7 @@
         {
             _numberOfInputs = numberOfInputs;
             _numberOfOutputs = numberOfOutputs;
+            _sumOfInputsAndOutputs = _numberOfInputs + _numberOfOutputs;
 
             _alpha = new double[numberOfOutputs];
             _betta = new double[numberOfOutputs];
@@ -42,5 +44,45 @@
         }
 
         #endregion Constructor
+
+        #region Methods
+
+        public void AssignWithArray(double[] parameters)
+        {
+            // Current vector position
+            int vectorPosition = 0;
+
+            // Assign vectors
+            for (int i = 0; i < _numberOfOutputs; i++)
+            {
+                _alpha[i] = parameters[vectorPosition];
+                vectorPosition++;
+            }
+            for (int i = 0; i < _numberOfOutputs; i++)
+            {
+                _betta[i] = parameters[vectorPosition];
+                vectorPosition++;
+            }
+
+            // Assign matrixes
+            for (int i = 0; i < _numberOfOutputs; i++)
+            {
+                for (int j = 0; j < _sumOfInputsAndOutputs; j++)
+                {
+                    _gMatrix[i, j] = parameters[vectorPosition];
+                    vectorPosition++;
+                }
+            }
+            for (int i = 0; i < _numberOfOutputs; i++)
+            {
+                for (int j = 0; j < _sumOfInputsAndOutputs; j++)
+                {
+                    _hMatrix[i, j] = parameters[vectorPosition];
+                    vectorPosition++;
+                }
+            }
+        }
+
+        #endregion Methods
     }
 }
