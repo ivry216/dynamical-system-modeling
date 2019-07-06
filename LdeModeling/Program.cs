@@ -47,6 +47,10 @@ namespace TestApp
                 0, 0.5, 0, 0,
                 0, 0, 0.5, 0
             };
+
+            // Set dimension
+            int dimension = realParameters.Length;
+
             // Set parameters
             cascadeSystemParams.AssignWithArray(realParameters);
 
@@ -84,93 +88,85 @@ namespace TestApp
             DynamicalModelResultsIOManager dynamicalModelResultsIOManager = new DynamicalModelResultsIOManager();
 
             var sample = sampleGenerator.Generate();
-            throw new NotImplementedException();
-            //LdsSampleManipulator ldsSampleManipulator = new LdsSampleManipulator();
-            //ldsSampleManipulator.Save("test.xlsx", sample);
-            
-            //SampleToDynamicalSolutionDataProcessor sampleToLdeProcessor = new SampleToDynamicalSolutionDataProcessor();
-            //sampleToLdeProcessor.Process(sample);
 
-            //ModelToDataProcessor modelToDataProcessor = new ModelToDataProcessor();
-            //modelToDataProcessor.SetInputs(discreteDynamicalModelInput);
-            //modelToDataProcessor.SetData(sample);
-            //var integrationScheme = modelToDataProcessor.SetIntegrationSchemeBySample();
-            //model.EvaluationParameters = new LdeEvaluationParameters(integrationScheme);
-            //model.ModelParameters.InitialState = sample.Data.InitialValue;
-            //double result = modelToDataProcessor.CalculateSingleOutputCriterion(model);
+            LdsSampleManipulator ldsSampleManipulator = new LdsSampleManipulator();
+            ldsSampleManipulator.Save("test.xlsx", sample);
 
-            //LdeMultipleOutputInverseProblem ldeInverseProblem = new LdeMultipleOutputInverseProblem(12);
-            //ldeInverseProblem.NumberOfStateVars = 3;
-            //ldeInverseProblem.NumberOfInputVars = 1;
-            //ldeInverseProblem.SetData(sample);
-            //ldeInverseProblem.InitializeCalculation();
-            //ldeInverseProblem.SetInputs(discreteDynamicalModelInput);
+            SampleToDynamicalSolutionDataProcessor sampleToLdeProcessor = new SampleToDynamicalSolutionDataProcessor();
+            sampleToLdeProcessor.Process(sample);
 
-            //LdeMultipleOutputInverseProblemL1 ldeInverseProblemL1 = new LdeMultipleOutputInverseProblemL1(12);
-            //ldeInverseProblemL1.NumberOfStateVars = 3;
-            //ldeInverseProblemL1.NumberOfInputVars = 1;
-            //ldeInverseProblemL1.SetData(sample);
-            //ldeInverseProblemL1.InitializeCalculation();
-            //ldeInverseProblemL1.SetInputs(discreteDynamicalModelInput);
-            //ldeInverseProblemL1.Lambda = 0.01;
+            ModelToDataProcessor modelToDataProcessor = new ModelToDataProcessor();
+            modelToDataProcessor.SetInputs(discreteDynamicalModelInput);
+            modelToDataProcessor.SetData(sample);
+            var integrationScheme = modelToDataProcessor.SetIntegrationSchemeBySample();
+            model.EvaluationParameters = new SSystemEvaluationParameters(integrationScheme);
+            model.ModelParameters.InitialState = sample.Data.InitialValue;
+            double result = modelToDataProcessor.CalculateSingleOutputCriterion(model);
 
-            //LdeMultipleOutputInverseProblemL2 ldeInverseProblemL2 = new LdeMultipleOutputInverseProblemL2(12);
-            //ldeInverseProblemL2.NumberOfStateVars = 3;
-            //ldeInverseProblemL2.NumberOfInputVars = 1;
-            //ldeInverseProblemL2.SetData(sample);
-            //ldeInverseProblemL2.InitializeCalculation();
-            //ldeInverseProblemL2.SetInputs(discreteDynamicalModelInput);
-            //ldeInverseProblemL2.Lambda = 0.01;
+            SSystIdentificationProblem sSystIdentificationProblem = new SSystIdentificationProblem(dimension);
+            sSystIdentificationProblem.NumberOfStateVars = 3;
+            sSystIdentificationProblem.NumberOfInputVars = 1;
+            sSystIdentificationProblem.SetData(sample);
+            sSystIdentificationProblem.InitializeCalculation();
+            sSystIdentificationProblem.SetInputs(discreteDynamicalModelInput);
 
-            //var test = ldeInverseProblem.CalcualteCriterion(new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 });
+            var test = sSystIdentificationProblem.CalcualteCriterion(new double[] {
+                10, 2, 3,
+                5, 1.44, 7.2,
+                -0.1, -0.05, 1,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5
+            });
 
-            //// -----------------------------------------------------------------------------------------------------
-            //// A vot ety chast do samogo niza nado rasparallelit
-            //RealGeneticAlgorithmWRcs realGa = new RealGeneticAlgorithmWRcs();
-            //RealGeneticAlgorithmParametersWRcs realGaParameters = new RealGeneticAlgorithmParametersWRcs();
 
-            //// Generation type
-            //realGaParameters.GenerationType = PopulationGenerationType.Uniform;
+            RealGeneticAlgorithmWRcs realGa = new RealGeneticAlgorithmWRcs();
+            RealGeneticAlgorithmParametersWRcs realGaParameters = new RealGeneticAlgorithmParametersWRcs();
 
-            //// Parameters for uniform generation
-            //realGaParameters.GenerationFrom = Enumerable.Repeat(-3.0, 12).ToArray();
-            //realGaParameters.GenerationTo = Enumerable.Repeat(3.0, 12).ToArray();
-            //// Parameters for normal generation
-            //realGaParameters.GenerationMean = RandomEngine.Instance.GenerateNormallyDistributedVector(12, 0, 3);
-            //realGaParameters.GenerationSd = Enumerable.Repeat(1.0, 12).ToArray();
+            // Generation type
+            realGaParameters.GenerationType = PopulationGenerationType.Uniform;
 
-            //realGaParameters.SelectionType = RvgaSelectionType.Tournament;
-            //realGaParameters.NumberOfParents = 2;
-            //realGaParameters.TournamentSize = 10;
+            // Parameters for uniform generation
+            realGaParameters.GenerationFrom = Enumerable.Repeat(-1.0, dimension).ToArray();
+            realGaParameters.GenerationTo = Enumerable.Repeat(12.0, dimension).ToArray();
+            // Parameters for normal generation
+            realGaParameters.GenerationMean = RandomEngine.Instance.GenerateNormallyDistributedVector(dimension, 0, 3);
+            realGaParameters.GenerationSd = Enumerable.Repeat(1.0, 12).ToArray();
 
-            //realGaParameters.CrossoverType = RvgaCrossoverType.Uniform;
+            realGaParameters.SelectionType = RvgaSelectionType.Tournament;
+            realGaParameters.NumberOfParents = 2;
+            realGaParameters.TournamentSize = 10;
 
-            //realGaParameters.MutationType = RvgaMutationType.ProbabilisticUniform;
-            //realGaParameters.MutateFrom = Enumerable.Repeat(-3.0, 12).ToArray();
-            //realGaParameters.MutateTo = Enumerable.Repeat(3.0, 12).ToArray();
-            ////realGaParameters.MutateFrom = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
-            ////realGaParameters.MutateTo = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
-            //realGaParameters.MutationAdditiveSD = 2;
-            //realGaParameters.MutationProbability = 0.05;
-            //realGaParameters.MutationNumberOfGenes = 2;
+            realGaParameters.CrossoverType = RvgaCrossoverType.Uniform;
 
-            //realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
-            //realGaParameters.SizeOfTrialPopulation = 200;
-            //realGaParameters.Size = 100;
-            //realGaParameters.Iterations = 40;
+            realGaParameters.MutationType = RvgaMutationType.ProbabilisticUniform;
+            realGaParameters.MutateFrom = Enumerable.Repeat(-1.0, dimension).ToArray();
+            realGaParameters.MutateTo = Enumerable.Repeat(10.0, dimension).ToArray();
+            //realGaParameters.MutateFrom = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
+            //realGaParameters.MutateTo = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
+            realGaParameters.MutationAdditiveSD = 2;
+            realGaParameters.MutationProbability = 0.05;
+            realGaParameters.MutationNumberOfGenes = 2;
 
-            //realGaParameters.IndividsToOptimizeLocally = 10;
-            //realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
-            //{
-            //    NumberOfCoordinates = 200,
-            //    NumberOfSteps = 5,
-            //    Step = 0.05,
-            //    Type = RandomCoordinatewiseSearchType.RandomDirection
-            //};
+            realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
+            realGaParameters.SizeOfTrialPopulation = 200;
+            realGaParameters.Size = 100;
+            realGaParameters.Iterations = 40;
 
-            //realGa.SetProblem(ldeInverseProblem);
-            //realGa.SetParameters(realGaParameters);
-            //realGa.Evaluate();
+            realGaParameters.IndividsToOptimizeLocally = 10;
+            realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
+            {
+                NumberOfCoordinates = 200,
+                NumberOfSteps = 5,
+                Step = 0.05,
+                Type = RandomCoordinatewiseSearchType.RandomDirection
+            };
+
+            realGa.SetProblem(sSystIdentificationProblem);
+            realGa.SetParameters(realGaParameters);
+            realGa.Evaluate();
 
             //DifferentialEvolution differentialEvolution = new DifferentialEvolution();
             //DifferentialEvolutionParameters differentialEvolutionParameters = new DifferentialEvolutionParameters();
@@ -197,14 +193,12 @@ namespace TestApp
             //DynamicalModelParametersIOManager ioParamsManager = new DynamicalModelParametersIOManager();
             //ioParamsManager.Save((LdeModelParameters)model.ModelParameters, "test3.xlsx");
 
-            //StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
-            //launcher.Algorithm = realGa;
-            //launcher.Run();
+            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
+            launcher.Algorithm = realGa;
+            launcher.Run();
 
-            //StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
-            //launcherDataSaver.SaveStats(launcher, "test_launch.xlsx");
-
-            //var test1 = ldeInverseProblem.CalcualteCriterion(launcher.Algorithm.BestSolution);
+            StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
+            launcherDataSaver.SaveStats(launcher, "test_launch.xlsx");
         }
 
         private void PreviousTesting()
