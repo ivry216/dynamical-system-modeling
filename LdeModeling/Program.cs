@@ -78,7 +78,7 @@ namespace TestApp
             LdsSampleManipulator ldsSampleManipulator = new LdsSampleManipulator();
             ldsSampleManipulator.Save("test.xlsx", sample);
 
-            SampleToLdeDataProcessor sampleToLdeProcessor = new SampleToLdeDataProcessor();
+            SampleToDynamicalSolutionDataProcessor sampleToLdeProcessor = new SampleToDynamicalSolutionDataProcessor();
             sampleToLdeProcessor.Process(sample);
 
             ModelToDataProcessor modelToDataProcessor = new ModelToDataProcessor();

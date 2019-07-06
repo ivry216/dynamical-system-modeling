@@ -62,6 +62,7 @@
     <Compile Include="DataSample\SampleGeneration\LinearDynamicalSystem\LdsSampleGenerator.cs" />
     <Compile Include="DataSample\SampleIO\ISampleFileManipulator.cs" />
     <Compile Include="DataSample\SampleIO\LinearDynamicalSystem\LdsSampleManipulator.cs" />
+    <Compile Include="Models\Dynamical\DeNumericalIntegration\INumericalIntegrationParameters.cs" />
     <Compile Include="Models\Dynamical\DeNumericalIntegration\RungeKuttahIntegrator.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelInput.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelOutput.cs" />
@@ -87,7 +88,7 @@
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\LdeModelParameters.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\LinearDynamicalSystemParameters.cs" />
     <Compile Include="Models\Dynamical\ModelToDataProcessing\ModelToDataProcessor.cs" />
-    <Compile Include="Models\Dynamical\SamplePreprocessing\SampleToLdeDataProcessor.cs" />
+    <Compile Include="Models\Dynamical\SamplePreprocessing\SampleToDynamicalSolutionDataProcessor.cs" />
     <Compile Include="Models\Dynamical\SystemsS\CascadedPathawaySystemParameters.cs" />
     <Compile Include="Models\Dynamical\SystemsS\ISSystemModelEvaluationParameters.cs" />
     <Compile Include="Models\Dynamical\SystemsS\ISSystemModel.cs" />

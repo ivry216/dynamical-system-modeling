@@ -40,5 +40,10 @@ namespace TestApp.Models.Dynamical.SystemsS
         {
             throw new System.NotImplementedException();
         }
+
+        public IDiscreteOutput Evaluate(IDiscreteInput input)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

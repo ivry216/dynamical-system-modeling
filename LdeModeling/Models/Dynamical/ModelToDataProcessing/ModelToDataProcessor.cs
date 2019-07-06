@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestApp.DataSample;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
 using TestApp.Models.Dynamical.SamplePreprocessing;
@@ -12,7 +8,7 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
     public class ModelToDataProcessor
     {
         private IDiscreteInput _inputs;
-        private SampleToLdeDataProcessor _samplePreprocessing;
+        private SampleToDynamicalSolutionDataProcessor _samplePreprocessing;
         private int _sampleSize;
         private DynamicalSystemSample _sample;
         private int _numberOfOutputs;
@@ -26,7 +22,7 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
         {
             _sample = sample;
             _numberOfOutputs = _sample.Data.NumberOfOutputs;
-            _samplePreprocessing = new SampleToLdeDataProcessor();
+            _samplePreprocessing = new SampleToDynamicalSolutionDataProcessor();
             _samplePreprocessing.Process(sample);
             _sampleSize = sample.Size;
         }
@@ -36,10 +32,10 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
             return new LdeEvaluationParameters(_sample.Data.OutputStartTime, _sample.Data.OutputEndTime, _samplePreprocessing.IntegrationStep, areInputsPrecalculated: true);
         }
 
-        public double CalculateSingleOutputCriterion(LdeModel model)
+        public double CalculateSingleOutputCriterion(INumericallyCalculable model)
         {
             // Calculate the model output
-            var output = (DiscreteDynamicalModelOutput)model.Evaluate(_inputs);
+            var output = model.Evaluate(_inputs);
             // 
             double sum = 0;
             var indexAndValues = _samplePreprocessing.IntegrationStepAndOutputs;
@@ -51,10 +47,10 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
             return sum / _sampleSize;
         }
 
-        public double CalculateMultipleOutputCriterion(LdeModel model)
+        public double CalculateMultipleOutputCriterion(INumericallyCalculable model)
         {
             // Calculate the model output
-            var output = (DiscreteDynamicalModelOutput)model.Evaluate(_inputs);
+            var output = model.Evaluate(_inputs);
             //
             double sum = 0;
             var indexAndValues = _samplePreprocessing.IntegrationStepAndOutputs;
@@ -70,10 +66,10 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
         }
 
         // TODO: code repetition!!!
-        public double CalculateMultipleOutputCriterion(LdeModel model, double[] normalization)
+        public double CalculateMultipleOutputCriterion(INumericallyCalculable model, double[] normalization)
         {
             // Calculate the model output
-            var output = (DiscreteDynamicalModelOutput)model.Evaluate(_inputs);
+            var output = model.Evaluate(_inputs);
             //
             double sum = 0;
             var indexAndValues = _samplePreprocessing.IntegrationStepAndOutputs;

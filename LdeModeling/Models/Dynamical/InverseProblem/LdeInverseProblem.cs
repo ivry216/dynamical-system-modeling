@@ -10,7 +10,7 @@ namespace TestApp.Models.Dynamical.InverseProblem
     {
         #region Fields
 
-        protected SampleToLdeDataProcessor sampleToLdeProcessor;
+        protected SampleToDynamicalSolutionDataProcessor sampleToLdeProcessor;
         protected ModelToDataProcessor modelToDataProcessor;
         protected LdeModel model;
 
@@ -28,7 +28,7 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         public LdeInverseProblem(int dimension) : base(dimension)
         {
-            sampleToLdeProcessor = new SampleToLdeDataProcessor();
+            sampleToLdeProcessor = new SampleToDynamicalSolutionDataProcessor();
             modelToDataProcessor = new ModelToDataProcessor();
             model = new LdeModel();
         }

@@ -6,7 +6,7 @@ using MathCore.Extensions.Reals;
 
 namespace TestApp.Models.Dynamical.SamplePreprocessing
 {
-    public class SampleToLdeDataProcessor
+    public class SampleToDynamicalSolutionDataProcessor
     {
         public Dictionary<int, double[]> IntegrationStepAndOutputs { get; private set; }
         public DiscreteDynamicalModelInput DiscreteInput { get; private set; }
