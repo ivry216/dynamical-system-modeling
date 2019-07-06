@@ -80,11 +80,11 @@ namespace TestApp.Models.Dynamical.SystemsS
                 double trial = ModelParameters.ModelParameters.Betta[i];
                 for (int j = 0; j < ModelParameters.OutputsNumber; j++)
                 {
-                    trial *= Math.Pow(state[j], ModelParameters.ModelParameters.G[i, j]);
+                    trial *= Math.Pow(state[j], ModelParameters.ModelParameters.H[i, j]);
                 }
                 for (int j = 0, k = ModelParameters.OutputsNumber; j < ModelParameters.InputsNumber; j++, k++)
                 {
-                    trial *= Math.Pow(inputs[j], ModelParameters.ModelParameters.G[i, k]);
+                    trial *= Math.Pow(inputs[j], ModelParameters.ModelParameters.H[i, k]);
                 }
 
                 currentState[i] -= trial;
