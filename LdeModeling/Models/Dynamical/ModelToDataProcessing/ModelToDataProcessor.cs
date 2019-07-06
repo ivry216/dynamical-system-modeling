@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TestApp.DataSample;
 using TestApp.Models.Dynamical.DeNumericalIntegration;
 using TestApp.Models.Dynamical.SamplePreprocessing;
@@ -70,6 +71,13 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
         {
             // Calculate the model output
             var output = model.Evaluate(_inputs);
+
+            //
+            if (output.Outputs.Any(arr => arr.Any(val => double.IsNaN(val))))
+            {
+                return double.MaxValue;
+            }
+
             //
             double sum = 0;
             var indexAndValues = _samplePreprocessing.IntegrationStepAndOutputs;
