@@ -39,8 +39,8 @@
             _alpha = new double[numberOfOutputs];
             _betta = new double[numberOfOutputs];
 
-            _gMatrix = new double[numberOfInputs + numberOfOutputs, numberOfInputs + numberOfOutputs];
-            _hMatrix = new double[numberOfInputs + numberOfOutputs, numberOfInputs + numberOfOutputs];
+            _gMatrix = new double[numberOfOutputs, _sumOfInputsAndOutputs];
+            _hMatrix = new double[numberOfOutputs, _sumOfInputsAndOutputs];
         }
 
         #endregion Constructor
