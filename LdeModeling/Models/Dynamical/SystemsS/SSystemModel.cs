@@ -44,7 +44,7 @@ namespace TestApp.Models.Dynamical.SystemsS
 
         public IDiscreteOutput Evaluate(IContiniousInput input)
         {
-            throw new System.NotImplementedException();
+            return rungeKuttahIntegrator.SolveEquation(input);
         }
 
         public IModelOutput Evaluate(IModelInput input)
@@ -86,7 +86,7 @@ namespace TestApp.Models.Dynamical.SystemsS
 
         public IDiscreteOutput Evaluate(IDiscreteInput input)
         {
-            throw new System.NotImplementedException();
+            return rungeKuttahIntegrator.SolveEquation(input);
         }
     }
 }
