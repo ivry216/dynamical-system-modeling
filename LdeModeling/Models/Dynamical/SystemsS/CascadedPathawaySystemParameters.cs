@@ -18,11 +18,11 @@
 
         #region Properties
 
-        public double[] Alpha;
-        public double[] Betta;
+        public double[] Alpha => _alpha;
+        public double[] Betta => _betta;
 
-        public double[,] G;
-        public double[,] H;
+        public double[,] G => _gMatrix;
+        public double[,] H => _hMatrix;
 
         public int OutputsNumber => _numberOfOutputs;
 
