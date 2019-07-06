@@ -59,7 +59,7 @@
     <Compile Include="DataSample\IDynamicalRegressionData.cs" />
     <Compile Include="DataSample\RegressionData.cs" />
     <Compile Include="DataSample\SampleGeneration\ISampleGenerator.cs" />
-    <Compile Include="DataSample\SampleGeneration\LinearDynamicalSystem\LdsSampleGenerator.cs" />
+    <Compile Include="DataSample\SampleGeneration\LinearDynamicalSystem\DynamixalSystemDataGenerator.cs" />
     <Compile Include="DataSample\SampleIO\ISampleFileManipulator.cs" />
     <Compile Include="DataSample\SampleIO\LinearDynamicalSystem\LdsSampleManipulator.cs" />
     <Compile Include="Models\Dynamical\DeNumericalIntegration\INumericalIntegrationParameters.cs" />

@@ -1,21 +1,17 @@
 ﻿using Randomizer.Randomizing;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestApp.Models.Dynamical;
-using TestApp.Models.Dynamical.LinearDifferentialEquation;
+using TestApp.Models.Dynamical.DeNumericalIntegration;
 
 namespace TestApp.DataSample.SampleGeneration.LinearDynamicalSystem
 {
-    public class LdsSampleGenerator : ISampleGenerator<DynamicalSystemSample>
+    public class DynamixalSystemDataGenerator : ISampleGenerator<DynamicalSystemSample>
     {
         private DistributionType _distributionType;
 
         private double _normalVariance;
 
-        private LdeModel _model;
+        private INumericallyCalculable _model;
         private IDiscreteInput _discreteInput;
 
         public int SampleSize { get; set; }
@@ -26,7 +22,7 @@ namespace TestApp.DataSample.SampleGeneration.LinearDynamicalSystem
             _normalVariance = normalDistributionVariance;
         }
 
-        public void SetModelAndInput(LdeModel ldeModel, IDiscreteInput discreteInput)
+        public void SetModelAndInput(INumericallyCalculable ldeModel, IDiscreteInput discreteInput)
         {
             _model = ldeModel;
             _discreteInput = discreteInput;
