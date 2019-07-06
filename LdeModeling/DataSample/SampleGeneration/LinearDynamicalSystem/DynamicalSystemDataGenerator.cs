@@ -5,7 +5,7 @@ using TestApp.Models.Dynamical.DeNumericalIntegration;
 
 namespace TestApp.DataSample.SampleGeneration.LinearDynamicalSystem
 {
-    public class DynamixalSystemDataGenerator : ISampleGenerator<DynamicalSystemSample>
+    public class DynamicalSystemDataGenerator : ISampleGenerator<DynamicalSystemSample>
     {
         private DistributionType _distributionType;
 
