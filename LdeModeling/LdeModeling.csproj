@@ -82,6 +82,7 @@
     <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblemL2.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeSingleOutputInverseProblem.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\DynamicalInverseProblem.cs" />
+    <Compile Include="Models\Dynamical\InverseProblem\SSystIdentificationProblem.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\ILinearDifferentialEquationEvaluationParams.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\ILinearDifferentialEquationModel.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\ILinearDifferentialEquationParameters.cs" />
