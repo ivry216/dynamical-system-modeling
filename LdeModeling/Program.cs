@@ -85,7 +85,7 @@ namespace TestApp
             modelToDataProcessor.SetInputs(discreteDynamicalModelInput);
             modelToDataProcessor.SetData(sample);
             var integrationScheme = modelToDataProcessor.SetIntegrationSchemeBySample();
-            model.EvaluationParameters = integrationScheme;
+            model.EvaluationParameters = new LdeEvaluationParameters(integrationScheme);
             model.ModelParameters.InitialState = sample.Data.InitialValue;
             double result = modelToDataProcessor.CalculateSingleOutputCriterion(model);
 

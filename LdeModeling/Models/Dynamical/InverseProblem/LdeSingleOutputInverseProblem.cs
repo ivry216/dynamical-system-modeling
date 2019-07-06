@@ -1,6 +1,8 @@
-﻿namespace TestApp.Models.Dynamical.InverseProblem
+﻿using TestApp.Models.Dynamical.LinearDifferentialEquation;
+
+namespace TestApp.Models.Dynamical.InverseProblem
 {
-    public class LdeSingleOutputInverseProblem : LdeInverseProblem
+    public class LdeSingleOutputInverseProblem : DynamicalInverseProblem<LdeModel>
     {
         #region Constructor
 

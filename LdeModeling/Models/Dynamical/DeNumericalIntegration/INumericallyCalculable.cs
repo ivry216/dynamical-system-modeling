@@ -1,11 +1,11 @@
 ﻿using TestApp.Models.Dynamical.LinearDifferentialEquation;
 
-namespace TestApp.Models.Dynamical
+namespace TestApp.Models.Dynamical.DeNumericalIntegration
 {
     public interface INumericallyCalculable
     {
-        IDynamicalModelEvaluationParams EvaluationParameters { get; }
-        IDynamicalModelParameters ModelParameters { get; }
+        INumericalIntegrationParameters NumericalIntegrationParameters { get; set; }
+        IDynamicalModelParameters ModelParameters { get; set; }
 
         double[] CalculateSystemEquation(double[] state, double[] inputs);
 

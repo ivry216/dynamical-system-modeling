@@ -1,6 +1,6 @@
 ﻿using System;
 using TestApp.DataSample;
-using TestApp.Models.Dynamical.LinearDifferentialEquation;
+using TestApp.Models.Dynamical.DeNumericalIntegration;
 using TestApp.Models.Dynamical.SamplePreprocessing;
 
 namespace TestApp.Models.Dynamical.ModelToDataProcessing
@@ -27,9 +27,9 @@ namespace TestApp.Models.Dynamical.ModelToDataProcessing
             _sampleSize = sample.Size;
         }
 
-        public LdeEvaluationParameters SetIntegrationSchemeBySample()
+        public NumericalIntegrationParameters SetIntegrationSchemeBySample()
         {
-            return new LdeEvaluationParameters(_sample.Data.OutputStartTime, _sample.Data.OutputEndTime, _samplePreprocessing.IntegrationStep, areInputsPrecalculated: true);
+            return new NumericalIntegrationParameters(_sample.Data.OutputStartTime, _sample.Data.OutputEndTime, _samplePreprocessing.IntegrationStep, areInputsPrecalculated: true);
         }
 
         public double CalculateSingleOutputCriterion(INumericallyCalculable model)

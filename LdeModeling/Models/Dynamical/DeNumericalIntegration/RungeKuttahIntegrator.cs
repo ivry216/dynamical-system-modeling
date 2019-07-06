@@ -41,7 +41,7 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
         public IDiscreteOutput SolveEquation(IDynamicalModelInput input)
         {
             // Get the evaluation parameters
-            var evaluationParameters = model.EvaluationParameters;
+            var evaluationParameters = model.NumericalIntegrationParameters;
             finalTime = evaluationParameters.FinalTime;
             startTime = evaluationParameters.StartTime;
             steps = evaluationParameters.Steps;

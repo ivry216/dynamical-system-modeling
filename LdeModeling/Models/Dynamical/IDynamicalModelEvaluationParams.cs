@@ -2,7 +2,8 @@
 
 namespace TestApp.Models.Dynamical
 {
-    public interface IDynamicalModelEvaluationParams : IModelEvaluationParameters, INumericalIntegrationParameters
+    public interface IDynamicalModelEvaluationParams : IModelEvaluationParameters
     {
+        INumericalIntegrationParameters NumericalIntegrationParameters { get; set; }
     }
 }

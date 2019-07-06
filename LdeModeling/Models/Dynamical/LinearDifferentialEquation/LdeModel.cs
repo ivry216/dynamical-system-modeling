@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using MathCore.Vectors;
 using MathCore.Extensions.Arrays;
 using TestApp.Models.Dynamical.DeNumericalIntegration;
@@ -18,9 +17,23 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
 
         IModelParameters IModel.ModelParameters => ModelParameters;
 
-        IDynamicalModelEvaluationParams INumericallyCalculable.EvaluationParameters => EvaluationParameters;
+        INumericalIntegrationParameters INumericallyCalculable.NumericalIntegrationParameters
+        {
+            get => EvaluationParameters.NumericalIntegrationParameters;
+            set
+            {
+                EvaluationParameters.NumericalIntegrationParameters = value;
+            }
+        }
 
-        IDynamicalModelParameters INumericallyCalculable.ModelParameters => ModelParameters;
+        IDynamicalModelParameters INumericallyCalculable.ModelParameters
+        {
+            get => ModelParameters;
+            set
+            {
+                ModelParameters = (ILinearDifferentialEquationParameters)value;
+            }
+        }
 
         private double[,] systemMatrix => ModelParameters.ModelParameters.A;
         private double[,] inputsMatrix => ModelParameters.ModelParameters.B;
@@ -30,6 +43,7 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
         {
             rungeKuttahIntegrator = new RungeKuttahIntegrator();
             rungeKuttahIntegrator.SetModel(this);
+            EvaluationParameters = new LdeEvaluationParameters();
         }
 
         public LdeModel(ILinearDifferentialEquationEvaluationParams evaluationParameters, ILinearDifferentialEquationParameters modelParameters)

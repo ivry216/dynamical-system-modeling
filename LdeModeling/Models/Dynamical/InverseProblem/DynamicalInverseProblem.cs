@@ -3,16 +3,18 @@ using TestApp.Models.Dynamical.LinearDifferentialEquation;
 using TestApp.Models.Dynamical.ModelToDataProcessing;
 using TestApp.Models.Dynamical.SamplePreprocessing;
 using Optimization.Problem;
+using TestApp.Models.Dynamical.DeNumericalIntegration;
 
 namespace TestApp.Models.Dynamical.InverseProblem
 {
-    public abstract class LdeInverseProblem : OptimizationProblem
+    public abstract class DynamicalInverseProblem<TModel> : OptimizationProblem
+        where TModel : INumericallyCalculable, new()
     {
         #region Fields
 
         protected SampleToDynamicalSolutionDataProcessor sampleToLdeProcessor;
         protected ModelToDataProcessor modelToDataProcessor;
-        protected LdeModel model;
+        protected TModel model;
 
         #endregion Fields
 
@@ -26,11 +28,11 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         #region Constructor
 
-        public LdeInverseProblem(int dimension) : base(dimension)
+        public DynamicalInverseProblem(int dimension) : base(dimension)
         {
             sampleToLdeProcessor = new SampleToDynamicalSolutionDataProcessor();
             modelToDataProcessor = new ModelToDataProcessor();
-            model = new LdeModel();
+            model = new TModel();
         }
 
         #endregion Construtor
@@ -41,8 +43,8 @@ namespace TestApp.Models.Dynamical.InverseProblem
         {
             sampleToLdeProcessor.Process(sample);
             modelToDataProcessor.SetData(sample);
-            var ldeEvaluationParameters = modelToDataProcessor.SetIntegrationSchemeBySample();
-            model.EvaluationParameters = ldeEvaluationParameters;
+            var integrationParameters = modelToDataProcessor.SetIntegrationSchemeBySample();
+            model.NumericalIntegrationParameters = new NumericalIntegrationParameters(integrationParameters);
             InitialValue = sample.Data.InitialValue;
         }
 

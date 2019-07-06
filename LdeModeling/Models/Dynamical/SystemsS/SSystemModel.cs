@@ -17,14 +17,29 @@ namespace TestApp.Models.Dynamical.SystemsS
 
         IModelParameters IModel.ModelParameters => ModelParameters;
 
-        IDynamicalModelEvaluationParams INumericallyCalculable.EvaluationParameters => EvaluationParameters;
+        INumericalIntegrationParameters INumericallyCalculable.NumericalIntegrationParameters
+        {
+            get => EvaluationParameters.NumericalIntegrationParameters;
+            set
+            {
+                EvaluationParameters.NumericalIntegrationParameters = value;
+            }
+        }
 
-        IDynamicalModelParameters INumericallyCalculable.ModelParameters => ModelParameters;
+        IDynamicalModelParameters INumericallyCalculable.ModelParameters
+        {
+            get => ModelParameters;
+            set
+            {
+                ModelParameters = (ISSystemModelParameters)value;
+            }
+        }
 
         public SSystemModel()
         {
             rungeKuttahIntegrator = new RungeKuttahIntegrator();
             rungeKuttahIntegrator.SetModel(this);
+            EvaluationParameters = new SSystemEvaluationParameters();
         }
 
         public IDiscreteOutput Evaluate(IContiniousInput input)

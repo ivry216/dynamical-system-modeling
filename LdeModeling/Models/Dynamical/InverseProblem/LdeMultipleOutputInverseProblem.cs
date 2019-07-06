@@ -1,9 +1,10 @@
 ﻿using System.Linq;
 using TestApp.DataSample;
+using TestApp.Models.Dynamical.LinearDifferentialEquation;
 
 namespace TestApp.Models.Dynamical.InverseProblem
 {
-    public class LdeMultipleOutputInverseProblem : LdeInverseProblem
+    public class LdeMultipleOutputInverseProblem : DynamicalInverseProblem<LdeModel>
     {
         #region Fields
 

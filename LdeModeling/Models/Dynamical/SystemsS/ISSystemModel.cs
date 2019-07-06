@@ -1,4 +1,5 @@
-﻿using TestApp.Models.Dynamical.LinearDifferentialEquation;
+﻿using TestApp.Models.Dynamical.DeNumericalIntegration;
+using TestApp.Models.Dynamical.LinearDifferentialEquation;
 
 namespace TestApp.Models.Dynamical.SystemsS
 {

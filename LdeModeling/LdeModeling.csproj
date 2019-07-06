@@ -67,6 +67,7 @@
     <Compile Include="Models\Dynamical\DeNumericalIntegration\RungeKuttahIntegrator.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelInput.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelOutput.cs" />
+    <Compile Include="Models\Dynamical\DynamicalModelEvaluationParams.cs" />
     <Compile Include="Models\Dynamical\IDiscreteInput.cs" />
     <Compile Include="Models\Dynamical\IDiscreteOutput.cs" />
     <Compile Include="Models\Dynamical\IDynamicalModel.cs" />
@@ -75,12 +76,12 @@
     <Compile Include="Models\Dynamical\IDynamicalModelOutput.cs" />
     <Compile Include="Models\Dynamical\IDynamicalModelParameters.cs" />
     <Compile Include="Models\Dynamical\IContiniousInput.cs" />
-    <Compile Include="Models\Dynamical\INumericallyCalculable.cs" />
+    <Compile Include="Models\Dynamical\DeNumericalIntegration\INumericallyCalculable.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblem.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblemL1.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeMultipleOutputInverseProblemL2.cs" />
     <Compile Include="Models\Dynamical\InverseProblem\LdeSingleOutputInverseProblem.cs" />
-    <Compile Include="Models\Dynamical\InverseProblem\LdeInverseProblem.cs" />
+    <Compile Include="Models\Dynamical\InverseProblem\DynamicalInverseProblem.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\ILinearDifferentialEquationEvaluationParams.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\ILinearDifferentialEquationModel.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\ILinearDifferentialEquationParameters.cs" />

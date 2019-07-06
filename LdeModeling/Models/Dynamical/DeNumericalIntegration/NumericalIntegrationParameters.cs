@@ -2,7 +2,7 @@
 
 namespace TestApp.Models.Dynamical.DeNumericalIntegration
 {
-    public abstract class NumericalIntegrationParameters : INumericalIntegrationParameters
+    public class NumericalIntegrationParameters : INumericalIntegrationParameters
     {
         public double FinalTime { get; }
         public double StartTime { get; }
@@ -27,6 +27,11 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
             StepSize = stepSize;
             Steps = (int)Math.Floor((endTime - startTime) / stepSize);
             AreInputsPrecalculated = areInputsPrecalculated;
+        }
+
+        public NumericalIntegrationParameters(NumericalIntegrationParameters parameters)
+            : this(parameters.StartTime, parameters.FinalTime, parameters.Steps, parameters.AreInputsPrecalculated)
+        {
         }
     }
 }
