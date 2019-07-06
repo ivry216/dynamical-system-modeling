@@ -4,6 +4,7 @@ using TestApp.Models.Dynamical.ModelToDataProcessing;
 using TestApp.Models.Dynamical.SamplePreprocessing;
 using Optimization.Problem;
 using TestApp.Models.Dynamical.DeNumericalIntegration;
+using TestApp.Models.Dynamical.SystemsS;
 
 namespace TestApp.Models.Dynamical.InverseProblem
 {
@@ -56,9 +57,9 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         public void InitializeCalculation()
         {
-            model.ModelParameters = new LdeModelParameters(NumberOfStateVars, NumberOfInputVars);
+            model.ModelParameters = new SSystemModelParameters(NumberOfStateVars, NumberOfInputVars);
             model.ModelParameters.InitialState = InitialValue;
-            model.ModelParameters.ModelParameters = new LinearDynamicalSystemParameters(NumberOfInputVars, NumberOfStateVars);
+            model.ModelParameters.ModelParameters = new CascadedPathawaySystemParameters(NumberOfInputVars, NumberOfStateVars);
         }
 
         public override abstract double CalcualteCriterion(double[] alternative);
