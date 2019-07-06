@@ -1,4 +1,5 @@
-﻿using TestApp.Models.Dynamical.DeNumericalIntegration;
+﻿using System;
+using TestApp.Models.Dynamical.DeNumericalIntegration;
 using TestApp.Models.Dynamical.LinearDifferentialEquation;
 
 namespace TestApp.Models.Dynamical.SystemsS
@@ -38,7 +39,34 @@ namespace TestApp.Models.Dynamical.SystemsS
 
         public double[] CalculateSystemEquation(double[] state, double[] inputs)
         {
-            throw new System.NotImplementedException();
+            double[] currentState = new double[ModelParameters.OutputsNumber];
+
+            for (int i = 0; i < ModelParameters.OutputsNumber; i++)
+            {
+                currentState[i] = ModelParameters.ModelParameters.Alpha[i];
+                for (int j = 0; j < ModelParameters.OutputsNumber; j++)
+                {
+                    currentState[i] *= Math.Pow(state[j], ModelParameters.ModelParameters.G[i, j]);
+                }
+                for (int j = 0, k = ModelParameters.OutputsNumber; j < ModelParameters.InputsNumber; j++, k++)
+                {
+                    currentState[i] *= Math.Pow(inputs[k], ModelParameters.ModelParameters.G[i, k]);
+                }
+
+                double trial = ModelParameters.ModelParameters.Betta[i];
+                for (int j = 0; j < ModelParameters.OutputsNumber; j++)
+                {
+                    trial *= Math.Pow(state[j], ModelParameters.ModelParameters.G[i, j]);
+                }
+                for (int j = 0, k = ModelParameters.OutputsNumber; j < ModelParameters.InputsNumber; j++, k++)
+                {
+                    trial *= Math.Pow(inputs[k], ModelParameters.ModelParameters.G[i, k]);
+                }
+
+                currentState[i] -= trial;
+            }
+
+            return currentState;
         }
 
         public IDiscreteOutput Evaluate(IDiscreteInput input)

@@ -63,6 +63,7 @@
     <Compile Include="DataSample\SampleIO\ISampleFileManipulator.cs" />
     <Compile Include="DataSample\SampleIO\LinearDynamicalSystem\LdsSampleManipulator.cs" />
     <Compile Include="Models\Dynamical\DeNumericalIntegration\INumericalIntegrationParameters.cs" />
+    <Compile Include="Models\Dynamical\DeNumericalIntegration\NumericalIntegrationParameters.cs" />
     <Compile Include="Models\Dynamical\DeNumericalIntegration\RungeKuttahIntegrator.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelInput.cs" />
     <Compile Include="Models\Dynamical\DiscreteDynamicalModelOutput.cs" />
