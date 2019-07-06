@@ -74,7 +74,7 @@ namespace TestApp.Models.Dynamical.SystemsS
                 }
                 for (int j = 0, k = ModelParameters.OutputsNumber; j < ModelParameters.InputsNumber; j++, k++)
                 {
-                    currentState[i] *= Math.Pow(inputs[k], ModelParameters.ModelParameters.G[i, k]);
+                    currentState[i] *= Math.Pow(inputs[j], ModelParameters.ModelParameters.G[i, k]);
                 }
 
                 double trial = ModelParameters.ModelParameters.Betta[i];
@@ -84,7 +84,7 @@ namespace TestApp.Models.Dynamical.SystemsS
                 }
                 for (int j = 0, k = ModelParameters.OutputsNumber; j < ModelParameters.InputsNumber; j++, k++)
                 {
-                    trial *= Math.Pow(inputs[k], ModelParameters.ModelParameters.G[i, k]);
+                    trial *= Math.Pow(inputs[j], ModelParameters.ModelParameters.G[i, k]);
                 }
 
                 currentState[i] -= trial;
