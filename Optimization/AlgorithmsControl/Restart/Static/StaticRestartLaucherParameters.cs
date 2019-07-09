@@ -2,7 +2,8 @@
 {
     public class StaticRestartLaucherParameters : IOptimizationLauncherParameters
     {
-        public int Iterations { get; set; }
         public AlgorithmLauncherType LauncherType => AlgorithmLauncherType.StaticRestart;
+
+        public int Iterations { get; set; }
     }
 }
