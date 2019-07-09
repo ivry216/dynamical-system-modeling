@@ -57,12 +57,14 @@
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\MessageToStatsFollowers.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\BestAlternativeHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IBestAlternativeHistoryStats.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IBestValueStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IIterationValuesHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IterationValuesHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\IAlgorithmIterationFollower.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\IBestAlternativeHistoryMaker.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\IIterationValuesHistoryMaker.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\IMessageToFollowers.cs" />
+    <Compile Include="AlgorithmsControl\InformationCollectingManager\BestValueAndVariableRestartCollector.cs" />
     <Compile Include="AlgorithmsControl\Restart\Conditional\BestValueBasedRestart.cs" />
     <Compile Include="AlgorithmsControl\Restart\Conditional\BestValueBasedRestartParameters.cs" />
     <Compile Include="AlgorithmsInterfaces\IContainingStatsFollowers.cs" />
