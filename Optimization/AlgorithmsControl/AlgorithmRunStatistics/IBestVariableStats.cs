@@ -2,8 +2,8 @@
 
 namespace Optimization.AlgorithmsControl.AlgorithmRunStatistics
 {
-    public interface IBestValueStats : IAlgorithmStats
+    public interface IBestVariableStats : IAlgorithmStats
     {
-        double BestValue { get; }
+        double[] BestSolution { get; }
     }
 }

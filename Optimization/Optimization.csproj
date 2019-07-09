@@ -58,6 +58,7 @@
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\BestAlternativeHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IBestAlternativeHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IBestValueStats.cs" />
+    <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IBestVariableStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IIterationValuesHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatistics\IterationValuesHistoryStats.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\IAlgorithmIterationFollower.cs" />
