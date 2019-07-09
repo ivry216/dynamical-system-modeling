@@ -19,6 +19,7 @@ namespace Optimization.AlgorithmsControl.Restart.Static
                 Algorithm.Evaluate();
                 // Save the results to collector
                 collector.Add(new BestVariableAndValueStats(Algorithm.BestValue, Algorithm.BestSolution));
+                Console.WriteLine($"Best value: {Algorithm.BestValue}");
             }
         }
     }
