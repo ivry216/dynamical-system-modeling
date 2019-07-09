@@ -25,6 +25,13 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
+            // Set dimension
+            int dimension = 14;
+
+            // Search parameters
+            var variablesFrom = Enumerable.Repeat(0.0, 6).Concat(Enumerable.Repeat(-4.0, dimension - 6)).ToArray();
+            var variablesTo = Enumerable.Repeat(20.0, 6).Concat(Enumerable.Repeat(4.0, dimension - 6)).ToArray();
+
             double startTime = 0;
             double endTime = 10;
             int numberOfSteps = 500;
@@ -47,9 +54,6 @@ namespace TestApp
                 0, 0.5, 0, 0,
                 0, 0, 0.5, 0
             };
-
-            // Set dimension
-            int dimension = realParameters.Length;
 
             // Set parameters
             cascadeSystemParams.AssignWithArray(realParameters);
@@ -128,8 +132,8 @@ namespace TestApp
             realGaParameters.GenerationType = PopulationGenerationType.Uniform;
 
             // Parameters for uniform generation
-            realGaParameters.GenerationFrom = Enumerable.Repeat(-1.0, dimension).ToArray();
-            realGaParameters.GenerationTo = Enumerable.Repeat(12.0, dimension).ToArray();
+            realGaParameters.GenerationFrom = variablesFrom;
+            realGaParameters.GenerationTo = variablesTo;
             // Parameters for normal generation
             realGaParameters.GenerationMean = RandomEngine.Instance.GenerateNormallyDistributedVector(dimension, 0, 3);
             realGaParameters.GenerationSd = Enumerable.Repeat(1.0, 12).ToArray();
@@ -141,12 +145,12 @@ namespace TestApp
             realGaParameters.CrossoverType = RvgaCrossoverType.Uniform;
 
             realGaParameters.MutationType = RvgaMutationType.ProbabilisticUniform;
-            realGaParameters.MutateFrom = Enumerable.Repeat(-1.0, dimension).ToArray();
-            realGaParameters.MutateTo = Enumerable.Repeat(10.0, dimension).ToArray();
+            realGaParameters.MutateFrom = variablesFrom;
+            realGaParameters.MutateTo = variablesTo;
             //realGaParameters.MutateFrom = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
             //realGaParameters.MutateTo = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
             realGaParameters.MutationAdditiveSD = 2;
-            realGaParameters.MutationProbability = 0.05;
+            realGaParameters.MutationProbability = 0.2;
             realGaParameters.MutationNumberOfGenes = 2;
 
             realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
@@ -154,43 +158,18 @@ namespace TestApp
             realGaParameters.Size = 100;
             realGaParameters.Iterations = 40;
 
-            realGaParameters.IndividsToOptimizeLocally = 10;
+            realGaParameters.IndividsToOptimizeLocally = 30;
             realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
             {
-                NumberOfCoordinates = 200,
+                NumberOfCoordinates = 100,
                 NumberOfSteps = 5,
-                Step = 0.05,
+                Step = 0.1,
                 Type = RandomCoordinatewiseSearchType.RandomDirection
             };
 
             realGa.SetProblem(sSystIdentificationProblem);
             realGa.SetParameters(realGaParameters);
-            realGa.Evaluate();
-
-            //DifferentialEvolution differentialEvolution = new DifferentialEvolution();
-            //DifferentialEvolutionParameters differentialEvolutionParameters = new DifferentialEvolutionParameters();
-
-            //differentialEvolutionParameters.CrossoverProbability = 1.2;
-            //differentialEvolutionParameters.DifferentialWeight = 1.2;
-
-            //differentialEvolutionParameters.GenerationParameters.GenerationType = PopulationGenerationType.Uniform;
-            //differentialEvolutionParameters.GenerationParameters.GenerationFrom = Enumerable.Repeat(-3.0, 12).ToArray();
-            //differentialEvolutionParameters.GenerationParameters.GenerationTo = Enumerable.Repeat(3.0, 12).ToArray();
-
-            //differentialEvolutionParameters.Size = 200;
-            //differentialEvolutionParameters.Iterations = 500;
-
-            //differentialEvolution.SetParameters(differentialEvolutionParameters);
-            //differentialEvolution.SetProblem(ldeInverseProblemL1);
-
-            ////differentialEvolution.Evaluate();
-
-            //model.ModelParameters.ModelParameters.AssignWithArray(realGa.BestSolution);
-            //DynamicalModelResultsIOManager ioResultsManager = new DynamicalModelResultsIOManager();
-            //ioResultsManager.Save((DiscreteDynamicalModelOutput)model.Evaluate(discreteDynamicalModelInput), "test1.xlsx");
-            //ioResultsManager.Save((DiscreteDynamicalModelOutput)model.Evaluate(discreteDynamicalModelInput), discreteDynamicalModelInput, "test2.xlsx");
-            //DynamicalModelParametersIOManager ioParamsManager = new DynamicalModelParametersIOManager();
-            //ioParamsManager.Save((LdeModelParameters)model.ModelParameters, "test3.xlsx");
+            //realGa.Evaluate();
 
             StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
             launcher.Algorithm = realGa;
