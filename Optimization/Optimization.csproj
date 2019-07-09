@@ -68,6 +68,10 @@
     <Compile Include="AlgorithmsControl\InformationCollectingManager\BestValueAndVariableRestartCollector.cs" />
     <Compile Include="AlgorithmsControl\Restart\Conditional\BestValueBasedRestart.cs" />
     <Compile Include="AlgorithmsControl\Restart\Conditional\BestValueBasedRestartParameters.cs" />
+    <Compile Include="AlgorithmsControl\Restart\Conditional\IRestartMeta.cs" />
+    <Compile Include="AlgorithmsControl\Restart\Conditional\IRestartMetaParameters.cs" />
+    <Compile Include="AlgorithmsControl\Restart\Conditional\RestartMetaBase.cs" />
+    <Compile Include="AlgorithmsControl\Restart\Conditional\RestartType.cs" />
     <Compile Include="AlgorithmsInterfaces\IContainingStatsFollowers.cs" />
     <Compile Include="AlgorithmsInterfaces\IRealIterableAlgorithm.cs" />
     <Compile Include="AlgorithmsInterfaces\IRestartableAlgorithm.cs" />
