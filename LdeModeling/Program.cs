@@ -26,8 +26,8 @@ namespace TestApp
         static void Main(string[] args)
         {
             double startTime = 0;
-            double endTime = 1;
-            int numberOfSteps = 200;
+            double endTime = 10;
+            int numberOfSteps = 500;
 
             int stateDimension = 3;
             int numberOfInputs = 1;
@@ -81,9 +81,8 @@ namespace TestApp
 
             DynamicalSystemDataGenerator sampleGenerator = new DynamicalSystemDataGenerator();
 
-            
             sampleGenerator.SetModelAndInput(model, discreteDynamicalModelInput);
-            sampleGenerator.SampleSize = 200;
+            sampleGenerator.SampleSize = numberOfSteps + 1;
 
             DynamicalModelResultsIOManager dynamicalModelResultsIOManager = new DynamicalModelResultsIOManager();
 

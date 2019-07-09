@@ -19,10 +19,13 @@ namespace TestApp.Models.Dynamical.SamplePreprocessing
             // Get inputs that could be used in calculation
             DiscreteInput = new DiscreteDynamicalModelInput(sample.Data.Inputs, sample.Data.InputsTimes);
             // Get integration step
-            int digitsForRounding = 4;
+            int digitsForRounding = 6;
             IntegrationStep = Math.Round(DiscreteInput.Times[2] - DiscreteInput.Times[0], digitsForRounding);
+
             // Assign all the timepoints for the lde integration
-            double[] times = new double[(int)Math.Floor((sample.Data.OutputEndTime - sample.Data.OutputStartTime)/IntegrationStep + 1)];
+            double[] times = new double[(int)Math.Floor(
+                (Math.Round(sample.Data.OutputEndTime, digitsForRounding) - Math.Round(sample.Data.OutputStartTime, digitsForRounding))/IntegrationStep + 1)];
+
             for (int i = 0; i < times.Length; i++)
             {
                 times[i] = sample.Data.OutputStartTime + IntegrationStep * i;
@@ -36,6 +39,11 @@ namespace TestApp.Models.Dynamical.SamplePreprocessing
                 nothingIsFound = true;
                 for (int j = 0; j < times.Length; j++)
                 {
+                    if (i == outputsTimes.Length - 1)
+                    {
+                        double bred = times.Last();
+                    }
+
                     if (outputsTimes[i].IsCloseByAbs(times[j]))
                     {
                         // If such a key is alredy exists

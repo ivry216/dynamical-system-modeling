@@ -25,7 +25,7 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
             StartTime = startTime;
             FinalTime = endTime;
             StepSize = stepSize;
-            Steps = (int)Math.Floor((endTime - startTime) / stepSize);
+            Steps = (int)Math.Floor((endTime - startTime) / stepSize + 1);
             AreInputsPrecalculated = areInputsPrecalculated;
         }
 
