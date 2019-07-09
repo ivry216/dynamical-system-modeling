@@ -21,7 +21,12 @@ namespace Optimization.AlgorithmsControl.Restart.Conditional
 
             for (int i = 0; i < _parameters.IterationsTotal; i++)
             {
+                IterateAlgorithm();
 
+                if (IsRestartNeeded())
+                {
+                    Restart();
+                }
             }
         }
 
