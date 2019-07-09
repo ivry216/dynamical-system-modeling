@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Optimization.AlgorithmsInterfaces;
 
 namespace Optimization.AlgorithmsControl.Restart.Conditional
@@ -20,8 +16,32 @@ namespace Optimization.AlgorithmsControl.Restart.Conditional
 
         public void Evaluate()
         {
-            throw new NotImplementedException();
+            Algorithm.Initialize();
+            Algorithm.Generate();
+
+            for (int i = 0; i < _parameters.IterationsTotal; i++)
+            {
+
+            }
         }
+
+        protected virtual void IterateAlgorithm()
+        {
+            Algorithm.NextIteration();
+            ActAfterAlgorithmIteration();
+        }
+
+        protected abstract void ActAfterAlgorithmIteration();
+
+        protected virtual void Restart()
+        {
+            ActBeforeRestart();
+            Algorithm.Generate();
+        }
+
+        protected abstract void ActBeforeRestart();
+
+        protected abstract bool IsRestartNeeded();
 
         void IAlgorithm.SetParameters(object parameters)
         {
