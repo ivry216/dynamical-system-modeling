@@ -51,11 +51,8 @@ namespace Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
             _localSearcher.SetProblem(Problem);
         }
 
-        protected override void Generate()
+        protected override void GenerateInitial()
         {
-            // Initialize iteration
-            Iteration = 0;
-
             // Generate the new population
             // With normal distribution
             if (Parameters.GenerationType == PopulationGenerationType.Normal)

@@ -24,14 +24,8 @@ namespace Optimization.LocalOptimization
             BestSolution = new double[Problem.Dimension];
         }
 
-        protected override void Generate()
+        protected override void GenerateInitial()
         {
-            // Assign the best value to min
-            BestValue = double.MinValue;
-
-            // Initialize iteration
-            Iteration = 0;
-
             // Set the initial solution
             _intermediate.FillWithVector(Parameters.InitialPoint);
             _intermediateCriterionValue = Parameters.InitialPointValue;

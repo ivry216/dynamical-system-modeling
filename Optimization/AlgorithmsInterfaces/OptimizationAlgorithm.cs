@@ -68,9 +68,22 @@ namespace Optimization.AlgorithmsInterfaces
 
         protected abstract void NextIteration();
         protected abstract void Initialize();
-        protected abstract void Generate();
 
         #endregion Abstract Methods
+
+        #region Generate
+
+        protected virtual void Generate()
+        {
+            ResetSolution();
+            // Update iteration
+            Iteration = 0;
+            GenerateInitial();
+        }
+
+        protected abstract void GenerateInitial();
+
+        #endregion Generate
 
         #region Restartable Methods
 
@@ -125,6 +138,13 @@ namespace Optimization.AlgorithmsInterfaces
                 BestValue = value;
                 BestSolution.FillWithVector(alternative);
             }
+        }
+
+        protected void ResetSolution()
+        {
+            // Update best values and solutions
+            BestValue = 0;
+            BestSolution = new double[Problem.Dimension];
         }
 
         #endregion Solution-Related Methods

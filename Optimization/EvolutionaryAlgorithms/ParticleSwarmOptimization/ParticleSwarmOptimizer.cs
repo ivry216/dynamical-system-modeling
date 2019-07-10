@@ -30,11 +30,8 @@ namespace Optimization.EvolutionaryAlgorithms.ParticleSwarmOptimization
             _bestEverFoundPosition = new double[Problem.Dimension];
         }
 
-        protected override void Generate()
+        protected override void GenerateInitial()
         {
-            // Unpdate iteration
-            Iteration = 0;
-
             // Generate the new population
             // With normal distribution
             if (Parameters.GenerationParameters.GenerationType == PopulationGenerationType.Normal)

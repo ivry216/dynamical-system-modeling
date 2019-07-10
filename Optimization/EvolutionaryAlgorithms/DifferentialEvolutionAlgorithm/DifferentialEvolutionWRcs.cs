@@ -41,11 +41,8 @@ namespace Optimization.EvolutionaryAlgorithms.DifferentialEvolutionAlgorithm
             _localSearcher.SetProblem(Problem);
         }
 
-        protected override void Generate()
+        protected override void GenerateInitial()
         {
-            // Initialize Iteration
-            Iteration = 0;
-
             // Generate the new population
             // With normal distribution
             if (Parameters.GenerationParameters.GenerationType == PopulationGenerationType.Normal)

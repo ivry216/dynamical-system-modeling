@@ -43,11 +43,8 @@ namespace Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm
             TrialFitness = new double[Parameters.SizeOfTrialPopulation];
         }
 
-        protected override void Generate()
+        protected override void GenerateInitial()
         {
-            // Unpdate iteration
-            Iteration = 0;
-
             // Generate the new population
             // With normal distribution
             if (Parameters.GenerationType == PopulationGenerationType.Normal)
