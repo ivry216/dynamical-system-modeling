@@ -16,7 +16,6 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         public override double CalcualteCriterion(double[] alternative)
         {
-            double[] allParams = new double[NumberOfStateVars * NumberOfStateVars + NumberOfInputVars * NumberOfStateVars];
             // TODO Optimize this
             model.ModelParameters.ModelParameters.AssignWithArray(alternative);
             model.ModelParameters.ModelParameters.B[0, 0] = 0;

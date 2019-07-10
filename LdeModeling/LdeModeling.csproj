@@ -89,7 +89,14 @@
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\LdeEvaluationParameters.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\LdeModel.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\LdeModelParameters.cs" />
+    <Compile Include="Models\Dynamical\LinearDifferentialEquation\SingleOutput\ISingleOutputLdeModel.cs" />
+    <Compile Include="Models\Dynamical\LinearDifferentialEquation\SingleOutput\ISingleOutputLdeModelParameters.cs" />
+    <Compile Include="Models\Dynamical\LinearDifferentialEquation\SingleOutput\ISingleOutputLdeEvaluationParameters.cs" />
+    <Compile Include="Models\Dynamical\LinearDifferentialEquation\SingleOutput\LdeSingleOutputModel.cs" />
     <Compile Include="Models\Dynamical\LinearDifferentialEquation\LinearDynamicalSystemParameters.cs" />
+    <Compile Include="Models\Dynamical\LinearDifferentialEquation\SingleOutput\LdeSingleOutputModelEvaluationParameters.cs" />
+    <Compile Include="Models\Dynamical\LinearDifferentialEquation\SingleOutput\SingleOutputLdeParameters.cs" />
+    <Compile Include="Models\Dynamical\LinearDifferentialEquation\SingleOutput\LdeSingleOutputModelParameters.cs" />
     <Compile Include="Models\Dynamical\ModelToDataProcessing\ModelToDataProcessor.cs" />
     <Compile Include="Models\Dynamical\SamplePreprocessing\SampleToDynamicalSolutionDataProcessor.cs" />
     <Compile Include="Models\Dynamical\SystemsS\CascadedPathawaySystemParameters.cs" />
