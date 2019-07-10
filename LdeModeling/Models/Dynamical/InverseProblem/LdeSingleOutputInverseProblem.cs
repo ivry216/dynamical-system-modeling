@@ -2,7 +2,7 @@
 
 namespace TestApp.Models.Dynamical.InverseProblem
 {
-    public class LdeSingleOutputInverseProblem : DynamicalInverseProblem<LdeModel>
+    public class LdeSingleOutputInverseProblem : DynamicalInverseProblem<LdeSingleOutputModel>
     {
         #region Constructor
 
@@ -18,9 +18,6 @@ namespace TestApp.Models.Dynamical.InverseProblem
         {
             // TODO Optimize this
             model.ModelParameters.ModelParameters.AssignWithArray(alternative);
-            model.ModelParameters.ModelParameters.B[0, 0] = 0;
-            model.ModelParameters.ModelParameters.B[0, 1] = 0;
-            model.ModelParameters.ModelParameters.B[0, 2] = 1;
 
             double result = modelToDataProcessor.CalculateSingleOutputCriterion(model);
 
