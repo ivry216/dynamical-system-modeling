@@ -19,12 +19,176 @@ using Optimization.LocalOptimization;
 using TestApp.Models.Dynamical.SystemsS;
 using System;
 using Optimization.AlgorithmsControl.Restart.Conditional;
+using TestApp.Models.Dynamical.LinearDifferentialEquation.SingleOutput;
 
 namespace TestApp
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            BestValueBasedRestart restarter = new BestValueBasedRestart();
+            BestValueBasedRestartParameters restartParameters = new BestValueBasedRestartParameters();
+            restartParameters.BestSolutionRestartDistance = 0.05;
+            restartParameters.IterationsTotal = 200;
+            restartParameters.Threshold = 0.05;
+            restartParameters.WindowSize = 15;
+
+            restarter.Parameters = restartParameters;
+
+            // Set dimension
+            int dimension = 5;
+
+            // Search parameters
+            var variablesFrom = Enumerable.Repeat(-5.0, dimension).ToArray();
+            var variablesTo = Enumerable.Repeat(5.0, dimension).ToArray();
+
+            double startTime = 0;
+            double endTime = 10;
+            int numberOfSteps = 500;
+
+            int stateDimension = 3;
+            int numberOfInputs = 2;
+
+            LdeSingleOutputModelEvaluationParameters evaluationParameters = new LdeSingleOutputModelEvaluationParameters(startTime, endTime, numberOfSteps, true);
+            LdeSingleOutputModelParameters modelParameters = new LdeSingleOutputModelParameters(stateDimension, numberOfInputs);
+            SingleOutputLdeParameters singleOutputSystemParams = new SingleOutputLdeParameters(numberOfInputs, stateDimension);
+
+            // Real parameters
+            double[] realParams = new double[]
+            {
+                -1.0, -2.0, -1.0,
+                1.0, 2.0
+            };
+
+            // Set parameters
+            singleOutputSystemParams.AssignWithArray(realParams);
+
+            // Set initial values
+            double[] initialValue = new double[] { 0, 0, 0 };
+
+            // Set those parameters
+            modelParameters.ModelParameters = singleOutputSystemParams;
+            modelParameters.InitialState = initialValue;
+
+            // Model
+            LdeSingleOutputModel model = new LdeSingleOutputModel(evaluationParameters, modelParameters);
+
+            // Trial input
+            double[][] input = new double[(numberOfSteps + 1) * 2][];
+            double[] inputTimes = new double[(numberOfSteps + 1) * 2];
+            for (int i = 0; i < input.Length; i++)
+            {
+                inputTimes[i] = startTime + i * (endTime - startTime)/numberOfSteps/2d;
+                input[i] = new double[2];
+                input[i][0] = Math.Sin(inputTimes[i]);
+                input[i][1] = Math.Cos(inputTimes[i]);
+            }
+
+            // Make input
+            DiscreteDynamicalModelInput discreteDynamicalModelInput = new DiscreteDynamicalModelInput(input, inputTimes);
+
+            var output = model.Evaluate(discreteDynamicalModelInput);
+
+            DynamicalSystemDataGenerator sampleGenerator = new DynamicalSystemDataGenerator();
+
+            sampleGenerator.SetModelAndInput(model, discreteDynamicalModelInput);
+            sampleGenerator.SampleSize = numberOfSteps + 1;
+
+            DynamicalModelResultsIOManager dynamicalModelResultsIOManager = new DynamicalModelResultsIOManager();
+
+            var sample = sampleGenerator.Generate();
+
+            LdsSampleManipulator ldsSampleManipulator = new LdsSampleManipulator();
+            ldsSampleManipulator.Save("test.xlsx", sample);
+
+            SampleToDynamicalSolutionDataProcessor sampleToLdeProcessor = new SampleToDynamicalSolutionDataProcessor();
+            sampleToLdeProcessor.Process(sample);
+
+            ModelToDataProcessor modelToDataProcessor = new ModelToDataProcessor();
+            modelToDataProcessor.SetInputs(discreteDynamicalModelInput);
+            modelToDataProcessor.SetData(sample);
+            var integrationScheme = modelToDataProcessor.SetIntegrationSchemeBySample();
+            model.EvaluationParameters = new LdeSingleOutputModelEvaluationParameters(integrationScheme);
+            model.ModelParameters.InitialState = sample.Data.InitialValue;
+            double result = modelToDataProcessor.CalculateSingleOutputCriterion(model);
+
+            SSystIdentificationProblem sSystIdentificationProblem = new SSystIdentificationProblem(dimension);
+            sSystIdentificationProblem.NumberOfStateVars = 3;
+            sSystIdentificationProblem.NumberOfInputVars = 2;
+            sSystIdentificationProblem.SetData(sample);
+            sSystIdentificationProblem.InitializeCalculation();
+            sSystIdentificationProblem.SetInputs(discreteDynamicalModelInput);
+
+            var test = sSystIdentificationProblem.CalcualteCriterion(new double[] {
+                10, 2, 3,
+                5, 1.44, 7.2,
+                -0.1, -0.05, 1,
+                0.5,
+                0.5,
+                0.5,
+                0.5,
+                0.5
+            });
+
+
+            RealGeneticAlgorithmWRcs realGa = new RealGeneticAlgorithmWRcs();
+            RealGeneticAlgorithmParametersWRcs realGaParameters = new RealGeneticAlgorithmParametersWRcs();
+
+            // Generation type
+            realGaParameters.GenerationType = PopulationGenerationType.Uniform;
+
+            // Parameters for uniform generation
+            realGaParameters.GenerationFrom = variablesFrom;
+            realGaParameters.GenerationTo = variablesTo;
+            // Parameters for normal generation
+            realGaParameters.GenerationMean = RandomEngine.Instance.GenerateNormallyDistributedVector(dimension, 0, 3);
+            realGaParameters.GenerationSd = Enumerable.Repeat(1.0, 12).ToArray();
+
+            realGaParameters.SelectionType = RvgaSelectionType.Tournament;
+            realGaParameters.NumberOfParents = 2;
+            realGaParameters.TournamentSize = 10;
+
+            realGaParameters.CrossoverType = RvgaCrossoverType.Uniform;
+
+            realGaParameters.MutationType = RvgaMutationType.ProbabilisticUniform;
+            realGaParameters.MutateFrom = variablesFrom;
+            realGaParameters.MutateTo = variablesTo;
+            //realGaParameters.MutateFrom = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
+            //realGaParameters.MutateTo = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
+            realGaParameters.MutationAdditiveSD = 2;
+            realGaParameters.MutationProbability = 0.2;
+            realGaParameters.MutationNumberOfGenes = 2;
+
+            realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
+            realGaParameters.SizeOfTrialPopulation = 200;
+            realGaParameters.Size = 100;
+            realGaParameters.Iterations = 200;
+
+            realGaParameters.IndividsToOptimizeLocally = 100;
+            realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
+            {
+                NumberOfCoordinates = 20,
+                NumberOfSteps = 5,
+                Step = 0.1,
+                Type = RandomCoordinatewiseSearchType.RandomDirection
+            };
+
+            realGa.SetProblem(sSystIdentificationProblem);
+            realGa.SetParameters(realGaParameters);
+            //realGa.Evaluate();
+
+            restarter.Algorithm = realGa;
+
+            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
+            launcher.Algorithm = restarter;
+            launcher.Run();
+
+            StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
+            launcherDataSaver.SaveStats(launcher, "test_launch.xlsx");
+        }
+
+        private void SSystemTesting()
         {
             BestValueBasedRestart restarter = new BestValueBasedRestart();
             BestValueBasedRestartParameters restartParameters = new BestValueBasedRestartParameters();
@@ -83,7 +247,7 @@ namespace TestApp
             double[] inputTimes = new double[(numberOfSteps + 1) * 2];
             for (int i = 0; i < input.Length; i++)
             {
-                inputTimes[i] = startTime + i * (endTime - startTime)/numberOfSteps/2d;
+                inputTimes[i] = startTime + i * (endTime - startTime) / numberOfSteps / 2d;
                 input[i] = new double[1];
                 input[i][0] = 0.7;
             }
