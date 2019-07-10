@@ -1,32 +1,61 @@
-﻿using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
-using Optimization.AlgorithmsControl.InformationCollectingManager;
-using Optimization.AlgorithmsInterfaces;
-using System;
+﻿using Optimization.AlgorithmsControl.Restart.Conditional.Collectors;
+using System.Linq;
+using System.Collections.Generic;
+using MathCore.Vectors;
 
 namespace Optimization.AlgorithmsControl.Restart.Conditional
 {
-    public class BestValueBasedRestart : OptimizationLauncher<BestValueBasedRestartParameters, RealAlgorithmDataCollector, IBestVariableAndValueStats, IRealIterableAlgorithm>
+    public class BestValueBasedRestart : RestartMetaBase<BestValueBasedRestartParameters>
     {
-        public double BestValue => throw new NotImplementedException();
+        private BestValueRestartCollector bestValueRestartCollector;
+        private BestVariableRestartCollector bestVariableRestartCollector;
 
-        public double[] BestSolution => throw new NotImplementedException();
+        private IReadOnlyCollection<double> window;
+        private IReadOnlyCollection<double[]> bestSolutionsFound;
 
-        public BestValueBasedRestart(BestValueBasedRestartParameters parameters) : base(parameters)
-        { }
-
-        public void Evaluate()
+        public BestValueBasedRestart()
         {
-            throw new NotImplementedException();
+            bestValueRestartCollector = new BestValueRestartCollector();
+            bestVariableRestartCollector = new BestVariableRestartCollector();
         }
 
-        public override void Run()
+        protected override void ActAfterAlgorithmIteration()
         {
-            throw new NotImplementedException();
+            bestValueRestartCollector.AddBest(Algorithm.BestValue);
         }
 
-        public void SetParameters(object parameters)
+        protected override void ActBeforeRestart()
         {
-            throw new NotImplementedException();
+            bestValueRestartCollector.Reset();
+            bestVariableRestartCollector.AddBestAlternative((double[])Algorithm.BestSolution.Clone());
+        }
+
+        protected override void InitializeCollectors()
+        {
+            bestValueRestartCollector.SetWindowSize(Parameters.WindowSize);
+
+            window = bestValueRestartCollector.BestValues;
+            bestSolutionsFound = bestVariableRestartCollector.BestVariables;
+        }
+
+        protected override bool IsRestartNeeded()
+        {
+            if (bestSolutionsFound.Any(s => VectorOperator.CalculateAbsDistance(s, Algorithm.BestSolution) < Parameters.BestSolutionRestartDistance))
+            {
+                System.Console.WriteLine("Restart!");
+                return true;
+            }
+
+            if (window.Count == Parameters.WindowSize)
+            {
+                if (window.Max() - window.Min() < Parameters.Threshold)
+                {
+                    System.Console.WriteLine("Restart!");
+                    return true;
+                }
+            }
+            
+            return false;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MathCore.Vectors
+﻿using static System.Math;
+
+namespace MathCore.Vectors
 {
     public class VectorOperator
     {
@@ -135,6 +137,17 @@
             }
 
             return result;
+        }
+
+        public static double CalculateAbsDistance(double[] vectorA, double[] vectorB)
+        {
+            double sum = 0;
+            for (int i = 0; i < vectorA.Length; i++)
+            {
+                sum += Abs(vectorA[i] - vectorB[i]);
+            }
+
+            return sum;
         }
 
         #endregion Main Methods

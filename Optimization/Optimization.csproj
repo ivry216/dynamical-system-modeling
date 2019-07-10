@@ -65,7 +65,7 @@
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\IBestAlternativeHistoryMaker.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\IIterationValuesHistoryMaker.cs" />
     <Compile Include="AlgorithmsControl\AlgorithmRunStatisticsInfrastructure\IterationStatistics\IMessageToFollowers.cs" />
-    <Compile Include="AlgorithmsControl\Restart\Conditional\Collectors\BestValueAndVariableRestartCollector.cs" />
+    <Compile Include="AlgorithmsControl\Restart\Conditional\Collectors\BestValueRestartCollector.cs" />
     <Compile Include="AlgorithmsControl\Restart\Conditional\BestValueBasedRestart.cs" />
     <Compile Include="AlgorithmsControl\Restart\Conditional\BestValueBasedRestartParameters.cs" />
     <Compile Include="AlgorithmsControl\Restart\Conditional\Collectors\BestVariableRestartCollector.cs" />

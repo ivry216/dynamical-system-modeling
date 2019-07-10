@@ -6,20 +6,29 @@ namespace Optimization.AlgorithmsControl.Restart.Conditional
     public abstract class RestartMetaBase<TParameters> : IRestartMeta<TParameters>
         where TParameters : IRestartMetaParameters
     {
-        protected TParameters _parameters;
+        protected double _bestValue;
+        protected double[] _bestAlternative;
+
+        public TParameters Parameters { get; set; }
 
         public IRestartableAlgorithm Algorithm { get; set; }
 
-        object IAlgorithm.BestValue => throw new NotImplementedException();
+        public double BestValue => _bestValue;
 
-        object IAlgorithm.BestSolution => throw new NotImplementedException();
+        public double[] BestSolution => _bestAlternative;
+
+        object IAlgorithm.BestValue => BestValue;
+
+        object IAlgorithm.BestSolution => BestSolution;
 
         public void Evaluate()
         {
+            InitializeCollectors();
+
             Algorithm.Initialize();
             Algorithm.Generate();
 
-            for (int i = 0; i < _parameters.IterationsTotal; i++)
+            for (int i = 0; i < Parameters.IterationsTotal; i++)
             {
                 IterateAlgorithm();
 
@@ -28,7 +37,11 @@ namespace Optimization.AlgorithmsControl.Restart.Conditional
                     Restart();
                 }
             }
+
+            UpdateSolution(Algorithm.BestValue, Algorithm.BestSolution);
         }
+
+        protected abstract void InitializeCollectors();
 
         protected virtual void IterateAlgorithm()
         {
@@ -40,6 +53,7 @@ namespace Optimization.AlgorithmsControl.Restart.Conditional
 
         protected virtual void Restart()
         {
+            UpdateSolution(Algorithm.BestValue, Algorithm.BestSolution);
             ActBeforeRestart();
             Algorithm.Generate();
         }
@@ -50,7 +64,16 @@ namespace Optimization.AlgorithmsControl.Restart.Conditional
 
         void IAlgorithm.SetParameters(object parameters)
         {
-            _parameters = (TParameters)parameters;
+            Parameters = (TParameters)parameters;
+        }
+
+        protected void UpdateSolution(double value, double[] alternative)
+        {
+            if (value > _bestValue)
+            {
+                _bestValue = value;
+                _bestAlternative = alternative;
+            }
         }
     }
 }

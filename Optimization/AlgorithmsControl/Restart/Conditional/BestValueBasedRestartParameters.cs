@@ -1,8 +1,13 @@
 ﻿namespace Optimization.AlgorithmsControl.Restart.Conditional
 {
-    public class BestValueBasedRestartParameters : IOptimizationLauncherParameters
+    public class BestValueBasedRestartParameters : IRestartMetaParameters
     {
-        public AlgorithmLauncherType LauncherType => AlgorithmLauncherType.BestValueBased;
-        public int NumberOfIterations { get; set; }
+        public int IterationsTotal { get; set; }
+        public RestartType Type { get; }
+
+        public int WindowSize { get; set; }
+        public double Threshold { get; set; }
+
+        public double BestSolutionRestartDistance { get; set; }
     }
 }

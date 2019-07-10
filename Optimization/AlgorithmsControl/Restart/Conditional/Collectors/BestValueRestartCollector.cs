@@ -10,10 +10,14 @@ namespace Optimization.AlgorithmsControl.Restart.Conditional.Collectors
 
         public IReadOnlyCollection<double> BestValues => _bestValues;
 
-        public BestValueRestartCollector(int windowSize)
+        public BestValueRestartCollector()
+        {
+            _bestValues = new Queue<double>();
+        }
+
+        public void SetWindowSize(int windowSize)
         {
             _windowSize = windowSize;
-            _bestValues = new Queue<double>();
         }
 
         public void AddBest(double bestValue)

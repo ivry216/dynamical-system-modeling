@@ -26,6 +26,7 @@ namespace Optimization.AlgorithmsControl.InformationCollectingManager
         public void Add(TStats stats)
         {
             _stats.Add(stats);
+            ActWhenAdd(stats);
         }
 
         // TODO: make it returning a copy
@@ -40,5 +41,14 @@ namespace Optimization.AlgorithmsControl.InformationCollectingManager
         }
 
         #endregion Inherited Methods
+
+        #region Virtual Methods
+
+        protected virtual void ActWhenAdd(TStats statsToAdd)
+        {
+
+        }
+
+        #endregion Virtual Methods
     }
 }
