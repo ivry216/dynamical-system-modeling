@@ -75,6 +75,7 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation.SingleOutput
             for (int i = 0; i < NumberOfInputs; i++)
             {
                 _matrixB[NumberOfOutputs - 1, i] = parameters[iteration];
+                iteration++;
             }
         }
 
