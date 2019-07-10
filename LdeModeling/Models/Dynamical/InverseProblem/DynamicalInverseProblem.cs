@@ -57,9 +57,7 @@ namespace TestApp.Models.Dynamical.InverseProblem
 
         public void InitializeCalculation()
         {
-            model.ModelParameters = new SSystemModelParameters(NumberOfStateVars, NumberOfInputVars);
-            model.ModelParameters.InitialState = InitialValue;
-            model.ModelParameters.ModelParameters = new CascadedPathawaySystemParameters(NumberOfInputVars, NumberOfStateVars);
+            model.InitializeModelParameters(NumberOfStateVars, NumberOfInputVars, InitialValue);
         }
 
         public override abstract double CalcualteCriterion(double[] alternative);

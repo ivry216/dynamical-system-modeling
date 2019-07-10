@@ -27,14 +27,9 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
             }
         }
 
-        IDynamicalModelParameters INumericallyCalculable.ModelParameters
-        {
-            get => ModelParameters;
-            set
-            {
-                ModelParameters = (ISingleOutputLdeModelParameters)value;
-            }
-        }
+        double[] INumericallyCalculable.InitialState => ModelParameters.InitialState;
+        int INumericallyCalculable.InputsNumber => ModelParameters.InputsNumber;
+        int INumericallyCalculable.OutputsNumber => ModelParameters.OutputsNumber;
 
         private double[,] systemMatrix => ModelParameters.ModelParameters.A;
         private double[,] inputsMatrix => ModelParameters.ModelParameters.B;
@@ -73,6 +68,13 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
         public IDiscreteOutput Evaluate(IDiscreteInput input)
         {
             return rungeKuttahIntegrator.SolveEquation(input);
+        }
+
+        void INumericallyCalculable.InitializeModelParameters(int numberOfOutputs, int numberOfInputs, double[] initialState)
+        {
+            ModelParameters = new LdeSingleOutputModelParameters(numberOfInputs, numberOfOutputs);
+            ModelParameters.InitialState = initialState;
+            ModelParameters.ModelParameters = new SingleOutputLdeParameters(numberOfInputs, numberOfOutputs);
         }
     }
 }

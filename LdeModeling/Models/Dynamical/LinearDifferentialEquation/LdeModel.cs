@@ -26,14 +26,9 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
             }
         }
 
-        IDynamicalModelParameters INumericallyCalculable.ModelParameters
-        {
-            get => ModelParameters;
-            set
-            {
-                ModelParameters = (ILinearDifferentialEquationParameters)value;
-            }
-        }
+        double[] INumericallyCalculable.InitialState => ModelParameters.InitialState;
+        int INumericallyCalculable.InputsNumber => ModelParameters.InputsNumber;
+        int INumericallyCalculable.OutputsNumber => ModelParameters.OutputsNumber;
 
         private double[,] systemMatrix => ModelParameters.ModelParameters.A;
         private double[,] inputsMatrix => ModelParameters.ModelParameters.B;
@@ -73,6 +68,13 @@ namespace TestApp.Models.Dynamical.LinearDifferentialEquation
         public IModelOutput Evaluate(IModelInput input)
         {
             throw new NotImplementedException();
+        }
+
+        void INumericallyCalculable.InitializeModelParameters(int numberOfOutputs, int numberOfInputs, double[] initialState)
+        {
+            ModelParameters = new LdeModelParameters(numberOfInputs, numberOfOutputs);
+            ModelParameters.InitialState = initialState;
+            ModelParameters.ModelParameters = new LinearDynamicalSystemParameters(numberOfInputs, numberOfOutputs);
         }
     }
 }

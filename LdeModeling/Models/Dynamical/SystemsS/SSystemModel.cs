@@ -26,14 +26,9 @@ namespace TestApp.Models.Dynamical.SystemsS
             }
         }
 
-        IDynamicalModelParameters INumericallyCalculable.ModelParameters
-        {
-            get => ModelParameters;
-            set
-            {
-                ModelParameters = (ISSystemModelParameters)value;
-            }
-        }
+        double[] INumericallyCalculable.InitialState => ModelParameters.InitialState;
+        int INumericallyCalculable.InputsNumber => ModelParameters.InputsNumber;
+        int INumericallyCalculable.OutputsNumber => ModelParameters.OutputsNumber;
 
         public SSystemModel()
         {
@@ -96,6 +91,13 @@ namespace TestApp.Models.Dynamical.SystemsS
         public IDiscreteOutput Evaluate(IDiscreteInput input)
         {
             return rungeKuttahIntegrator.SolveEquation(input);
+        }
+
+        void INumericallyCalculable.InitializeModelParameters(int numberOfOutputs, int numberOfInputs, double[] initialState)
+        {
+            ModelParameters = new SSystemModelParameters(numberOfOutputs, numberOfInputs);
+            ModelParameters.InitialState = initialState;
+            ModelParameters.ModelParameters = new CascadedPathawaySystemParameters(numberOfInputs, numberOfOutputs);
         }
     }
 }

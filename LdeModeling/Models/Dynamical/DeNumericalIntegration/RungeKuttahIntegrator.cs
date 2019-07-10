@@ -69,11 +69,11 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
         private IDiscreteOutput SolveForPrecalculatedInputs(IDiscreteInput input)
         {
             // Get the initial values
-            initialValues = model.ModelParameters.InitialState;
+            initialValues = model.InitialState;
 
             // Get the number of inputs and outputs
-            numberOfInputs = model.ModelParameters.InputsNumber;
-            numberOfOutputs = model.ModelParameters.OutputsNumber;
+            numberOfInputs = model.InputsNumber;
+            numberOfOutputs = model.OutputsNumber;
 
             // Get the input
             discreteInputs = input.Inputs;

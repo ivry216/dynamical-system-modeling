@@ -4,12 +4,17 @@ namespace TestApp.Models.Dynamical.DeNumericalIntegration
 {
     public interface INumericallyCalculable
     {
-        INumericalIntegrationParameters NumericalIntegrationParameters { get; set; }
-        IDynamicalModelParameters ModelParameters { get; set; }
-
         double[] CalculateSystemEquation(double[] state, double[] inputs);
 
         IDiscreteOutput Evaluate(IContiniousInput input);
         IDiscreteOutput Evaluate(IDiscreteInput input);
+
+        INumericalIntegrationParameters NumericalIntegrationParameters { get; set; }
+
+        double[] InitialState { get; }
+        int InputsNumber { get; }
+        int OutputsNumber { get; }
+
+        void InitializeModelParameters(int numberOfOutputs, int numberOfInputs, double[] initialState);
     }
 }
