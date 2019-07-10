@@ -45,7 +45,7 @@ namespace TestApp
 
             double startTime = 0;
             double endTime = 10;
-            int numberOfSteps = 500;
+            int numberOfSteps = 200;
 
             int stateDimension = 3;
             int numberOfInputs = 2;
@@ -113,22 +113,15 @@ namespace TestApp
             model.ModelParameters.InitialState = sample.Data.InitialValue;
             double result = modelToDataProcessor.CalculateSingleOutputCriterion(model);
 
-            SSystIdentificationProblem sSystIdentificationProblem = new SSystIdentificationProblem(dimension);
-            sSystIdentificationProblem.NumberOfStateVars = 3;
-            sSystIdentificationProblem.NumberOfInputVars = 2;
-            sSystIdentificationProblem.SetData(sample);
-            sSystIdentificationProblem.InitializeCalculation();
-            sSystIdentificationProblem.SetInputs(discreteDynamicalModelInput);
+            LdeSingleOutputInverseProblem inverseProblem = new LdeSingleOutputInverseProblem(dimension);
+            inverseProblem.NumberOfStateVars = 3;
+            inverseProblem.NumberOfInputVars = 2;
+            inverseProblem.SetData(sample);
+            inverseProblem.InitializeCalculation();
+            inverseProblem.SetInputs(discreteDynamicalModelInput);
 
-            var test = sSystIdentificationProblem.CalcualteCriterion(new double[] {
-                10, 2, 3,
-                5, 1.44, 7.2,
-                -0.1, -0.05, 1,
-                0.5,
-                0.5,
-                0.5,
-                0.5,
-                0.5
+            var test = inverseProblem.CalcualteCriterion(new double[] {
+                -1, -2, -1, 1, 2
             });
 
 
@@ -174,7 +167,7 @@ namespace TestApp
                 Type = RandomCoordinatewiseSearchType.RandomDirection
             };
 
-            realGa.SetProblem(sSystIdentificationProblem);
+            realGa.SetProblem(inverseProblem);
             realGa.SetParameters(realGaParameters);
             //realGa.Evaluate();
 
