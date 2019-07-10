@@ -18,6 +18,7 @@ using Optimization.EvolutionaryAlgorithms.RealValueGeneticAlgorithm.ParameterTyp
 using Optimization.LocalOptimization;
 using TestApp.Models.Dynamical.SystemsS;
 using System;
+using Optimization.AlgorithmsControl.Restart.Conditional;
 
 namespace TestApp
 {
@@ -25,6 +26,15 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
+            BestValueBasedRestart restarter = new BestValueBasedRestart();
+            BestValueBasedRestartParameters restartParameters = new BestValueBasedRestartParameters();
+            restartParameters.BestSolutionRestartDistance = 0.05;
+            restartParameters.IterationsTotal = 200;
+            restartParameters.Threshold = 0.05;
+            restartParameters.WindowSize = 15;
+
+            restarter.Parameters = restartParameters;
+
             // Set dimension
             int dimension = 14;
 
@@ -156,12 +166,12 @@ namespace TestApp
             realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
             realGaParameters.SizeOfTrialPopulation = 200;
             realGaParameters.Size = 100;
-            realGaParameters.Iterations = 40;
+            realGaParameters.Iterations = 200;
 
-            realGaParameters.IndividsToOptimizeLocally = 30;
+            realGaParameters.IndividsToOptimizeLocally = 100;
             realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
             {
-                NumberOfCoordinates = 100,
+                NumberOfCoordinates = 20,
                 NumberOfSteps = 5,
                 Step = 0.1,
                 Type = RandomCoordinatewiseSearchType.RandomDirection
@@ -171,8 +181,10 @@ namespace TestApp
             realGa.SetParameters(realGaParameters);
             //realGa.Evaluate();
 
+            restarter.Algorithm = realGa;
+
             StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
-            launcher.Algorithm = realGa;
+            launcher.Algorithm = restarter;
             launcher.Run();
 
             StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
