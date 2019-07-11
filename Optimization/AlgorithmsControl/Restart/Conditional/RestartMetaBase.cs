@@ -23,6 +23,8 @@ namespace Optimization.AlgorithmsControl.Restart.Conditional
 
         public void Evaluate()
         {
+            _bestValue = 0;
+
             InitializeCollectors();
 
             Algorithm.Initialize();
