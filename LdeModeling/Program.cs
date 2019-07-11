@@ -25,23 +25,81 @@ namespace TestApp
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Run(int dimension, double restartDistance, double threshold, int windowSize, LdeSingleOutputInverseProblem problem)
         {
-            BestValueBasedRestart restarter = new BestValueBasedRestart();
-            BestValueBasedRestartParameters restartParameters = new BestValueBasedRestartParameters();
-            restartParameters.BestSolutionRestartDistance = 0.05;
-            restartParameters.IterationsTotal = 200;
-            restartParameters.Threshold = 0.05;
-            restartParameters.WindowSize = 15;
-
-            restarter.Parameters = restartParameters;
-
-            // Set dimension
-            int dimension = 5;
-
             // Search parameters
             var variablesFrom = Enumerable.Repeat(-5.0, dimension).ToArray();
             var variablesTo = Enumerable.Repeat(5.0, dimension).ToArray();
+
+            BestValueBasedRestart restarter = new BestValueBasedRestart();
+            BestValueBasedRestartParameters restartParameters = new BestValueBasedRestartParameters();
+            restartParameters.BestSolutionRestartDistance = restartDistance;
+            restartParameters.IterationsTotal = 200;
+            restartParameters.Threshold = threshold;
+            restartParameters.WindowSize = windowSize;
+
+            restarter.Parameters = restartParameters;
+
+            RealGeneticAlgorithmWRcs realGa = new RealGeneticAlgorithmWRcs();
+            RealGeneticAlgorithmParametersWRcs realGaParameters = new RealGeneticAlgorithmParametersWRcs();
+
+            // Generation type
+            realGaParameters.GenerationType = PopulationGenerationType.Uniform;
+
+            // Parameters for uniform generation
+            realGaParameters.GenerationFrom = variablesFrom;
+            realGaParameters.GenerationTo = variablesTo;
+            // Parameters for normal generation
+            realGaParameters.GenerationMean = RandomEngine.Instance.GenerateNormallyDistributedVector(dimension, 0, 3);
+            realGaParameters.GenerationSd = Enumerable.Repeat(1.0, 12).ToArray();
+
+            realGaParameters.SelectionType = RvgaSelectionType.Tournament;
+            realGaParameters.NumberOfParents = 2;
+            realGaParameters.TournamentSize = 10;
+
+            realGaParameters.CrossoverType = RvgaCrossoverType.Uniform;
+
+            realGaParameters.MutationType = RvgaMutationType.ProbabilisticUniform;
+            realGaParameters.MutateFrom = variablesFrom;
+            realGaParameters.MutateTo = variablesTo;
+            //realGaParameters.MutateFrom = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
+            //realGaParameters.MutateTo = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
+            realGaParameters.MutationAdditiveSD = 2;
+            realGaParameters.MutationProbability = 0.2;
+            realGaParameters.MutationNumberOfGenes = 2;
+
+            realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
+            realGaParameters.SizeOfTrialPopulation = 100;
+            realGaParameters.Size = 100;
+            realGaParameters.Iterations = 200;
+
+            realGaParameters.IndividsToOptimizeLocally = 0;
+            realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
+            {
+                NumberOfCoordinates = 20,
+                NumberOfSteps = 5,
+                Step = 0.1,
+                Type = RandomCoordinatewiseSearchType.RandomDirection
+            };
+
+            realGa.SetProblem(problem);
+            realGa.SetParameters(realGaParameters);
+            //realGa.Evaluate();
+
+            restarter.Algorithm = realGa;
+
+            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
+            launcher.Algorithm = restarter;
+            launcher.Run();
+
+            StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
+            launcherDataSaver.SaveStats(launcher, $"{restartParameters.BestSolutionRestartDistance}_{restartParameters.Threshold}_{restartParameters.WindowSize}.xlsx");
+        }
+
+        static void Main(string[] args)
+        {
+            // Set dimension
+            int dimension = 5;
 
             double startTime = 0;
             double endTime = 10;
@@ -57,8 +115,8 @@ namespace TestApp
             // Real parameters
             double[] realParams = new double[]
             {
-                -1.0, -2.0, -1.0,
-                1.0, 2.0
+                -1.0, -4.0, -3.0,
+                -1.0, 3.0
             };
 
             // Set parameters
@@ -121,64 +179,28 @@ namespace TestApp
             inverseProblem.SetInputs(discreteDynamicalModelInput);
 
             var test = inverseProblem.CalcualteCriterion(new double[] {
-                -1, -2, -1, 1, 2
+                -1, -2, -4, -1, 1, 1
             });
 
+            var restartDistances = new double[] { 0.01, 0.05, 0.1 };
+            var thresholds = new double[] { 0.01, 0.05, 0.005, 0.001, 0.0005 };
+            var windowSizes = new int[] { 10, 12, 15, 20 };
 
-            RealGeneticAlgorithmWRcs realGa = new RealGeneticAlgorithmWRcs();
-            RealGeneticAlgorithmParametersWRcs realGaParameters = new RealGeneticAlgorithmParametersWRcs();
+            int all = restartDistances.Length * thresholds.Length * windowSizes.Length;
 
-            // Generation type
-            realGaParameters.GenerationType = PopulationGenerationType.Uniform;
-
-            // Parameters for uniform generation
-            realGaParameters.GenerationFrom = variablesFrom;
-            realGaParameters.GenerationTo = variablesTo;
-            // Parameters for normal generation
-            realGaParameters.GenerationMean = RandomEngine.Instance.GenerateNormallyDistributedVector(dimension, 0, 3);
-            realGaParameters.GenerationSd = Enumerable.Repeat(1.0, 12).ToArray();
-
-            realGaParameters.SelectionType = RvgaSelectionType.Tournament;
-            realGaParameters.NumberOfParents = 2;
-            realGaParameters.TournamentSize = 10;
-
-            realGaParameters.CrossoverType = RvgaCrossoverType.Uniform;
-
-            realGaParameters.MutationType = RvgaMutationType.ProbabilisticUniform;
-            realGaParameters.MutateFrom = variablesFrom;
-            realGaParameters.MutateTo = variablesTo;
-            //realGaParameters.MutateFrom = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
-            //realGaParameters.MutateTo = new double[] { 0, 1, 0, 0, 0, 1, -1, -2, -1, 0, 0, 2 };
-            realGaParameters.MutationAdditiveSD = 2;
-            realGaParameters.MutationProbability = 0.2;
-            realGaParameters.MutationNumberOfGenes = 2;
-
-            realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
-            realGaParameters.SizeOfTrialPopulation = 200;
-            realGaParameters.Size = 100;
-            realGaParameters.Iterations = 200;
-
-            realGaParameters.IndividsToOptimizeLocally = 100;
-            realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
+            for (int i = 0; i < restartDistances.Length; i++)
             {
-                NumberOfCoordinates = 20,
-                NumberOfSteps = 5,
-                Step = 0.1,
-                Type = RandomCoordinatewiseSearchType.RandomDirection
-            };
+                for (int j = 0; j < thresholds.Length; j++)
+                {
+                    for (int k = 0; k < windowSizes.Length; k++)
+                    {
+                        Console.WriteLine($"{restartDistances[i]} {thresholds[j]} {windowSizes[k]}");
+                        Run(dimension, restartDistances[i], thresholds[j], windowSizes[k], inverseProblem);
+                    }
+                }
+            }
 
-            realGa.SetProblem(inverseProblem);
-            realGa.SetParameters(realGaParameters);
-            //realGa.Evaluate();
-
-            restarter.Algorithm = realGa;
-
-            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
-            launcher.Algorithm = restarter;
-            launcher.Run();
-
-            StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
-            launcherDataSaver.SaveStats(launcher, "test_launch.xlsx");
+            Run(dimension, restartDistances[0], 0, windowSizes[0], inverseProblem);
         }
 
         private void SSystemTesting()
@@ -341,7 +363,7 @@ namespace TestApp
             restarter.Algorithm = realGa;
 
             StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
-            launcher.Algorithm = restarter;
+            launcher.Algorithm = realGa;
             launcher.Run();
 
             StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
