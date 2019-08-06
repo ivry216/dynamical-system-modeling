@@ -1,4 +1,5 @@
-﻿using OfficeOpenXml;
+﻿using MathCore.Extensions.Arrays;
+using OfficeOpenXml;
 using Optimization.AlgorithmsControl.AlgorithmRunStatistics;
 using System.Collections.Generic;
 using System.IO;
@@ -32,7 +33,7 @@ namespace Optimization.AlgorithmsControl.AlgorithmRunStatisticsInfrastructure.It
 
         public void Update(IMessageToFollowers message)
         {
-            _values.Add(message.AlternativeValues);
+            _values.Add(message.AlternativeValues.CopyVector());
         }
 
         public void SaveToFile()
