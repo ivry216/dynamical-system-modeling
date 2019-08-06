@@ -124,7 +124,7 @@ namespace Optimization.EvolutionaryAlgorithms.DifferentialEvolutionAlgorithm.Par
             }
         }
 
-        protected override void Update()
+        protected override void UpdateState()
         {
             // Run through all elements in population
             for (int i = 0; i < Parameters.Size; i++)

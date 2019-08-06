@@ -77,7 +77,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         protected abstract void Iterate();
         protected abstract void Initialize();
         protected abstract void Generate();
-        protected abstract void Update();
+        protected abstract void UpdateState();
 
         #endregion Abstract Methods
 
@@ -102,6 +102,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         {
             Iterate();
             CalculateObjective();
+            UpdateState();
         }
 
         #endregion Iteration Methods
@@ -112,6 +113,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         {
             Initialize();
             Generate();
+            UpdateState();
             UpdateFollowers();
             for (int i = 0; i < Parameters.Iterations; i++)
             {
