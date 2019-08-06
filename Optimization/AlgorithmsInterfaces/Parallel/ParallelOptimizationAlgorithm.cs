@@ -112,6 +112,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         {
             Initialize();
             Generate();
+            UpdateFollowers();
             for (int i = 0; i < Parameters.Iterations; i++)
             {
                 NextIteration();

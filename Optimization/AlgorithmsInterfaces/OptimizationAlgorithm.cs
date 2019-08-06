@@ -120,6 +120,7 @@ namespace Optimization.AlgorithmsInterfaces
         {
             Initialize();
             Generate();
+            UpdateFollowers();
             for (int i = 0; i < Parameters.Iterations; i++)
             {
                 NextIteration();
