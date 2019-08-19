@@ -14,7 +14,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
         #region Fields
 
         protected TAlgorithmParameters Parameters;
-        protected ParallelOptimizationProblem<TValues, TAlternatives> Problem;
+        protected IParallelOptimizationProblem<TValues, TAlternatives> Problem;
         protected int Dimension;
 
         protected IConverterToAlternativesForParallel<TAlternatives, TAlternativeRepresentations> converterToAlternatives;
