@@ -20,11 +20,100 @@ using TestApp.Models.Dynamical.SystemsS;
 using System;
 using Optimization.AlgorithmsControl.Restart.Conditional;
 using TestApp.Models.Dynamical.LinearDifferentialEquation.SingleOutput;
+using Optimization.EvolutionaryAlgorithms.ParticleSwarmOptimization;
 
 namespace TestApp
 {
     class Program
     {
+        private static void RunPso(int dimension, double restartDistance, double threshold, int windowSize, LdeSingleOutputInverseProblem problem)
+        {
+            // Search parameters
+            var variablesFrom = Enumerable.Repeat(-5.0, dimension).ToArray();
+            var variablesTo = Enumerable.Repeat(5.0, dimension).ToArray();
+
+            BestValueBasedRestart restarter = new BestValueBasedRestart();
+            BestValueBasedRestartParameters restartParameters = new BestValueBasedRestartParameters();
+            restartParameters.BestSolutionRestartDistance = restartDistance;
+            restartParameters.IterationsTotal = 500;
+            restartParameters.Threshold = threshold;
+            restartParameters.WindowSize = windowSize;
+
+            restarter.Parameters = restartParameters;
+
+            ParticleSwarmOptimizer pso = new ParticleSwarmOptimizer();
+            ParticleSwarmOptimizerParameters psoParams = new ParticleSwarmOptimizerParameters();
+
+            psoParams.Phi1 = 1.2;
+            psoParams.Phi2 = 1.2;
+
+            psoParams.GenerationParameters.GenerationType = PopulationGenerationType.Uniform;
+            psoParams.GenerationParameters.GenerationFrom = variablesFrom;
+            psoParams.GenerationParameters.GenerationTo = variablesTo;
+
+            psoParams.GenerationVelocitiesFrom = Enumerable.Repeat(-1.0, dimension).ToArray();
+            psoParams.GenerationVelocitiesTo = Enumerable.Repeat(1.0, dimension).ToArray();
+
+            psoParams.Size = 100;
+            psoParams.Iterations = 500;
+
+            pso.SetParameters(psoParams);
+            pso.SetProblem(problem);
+
+            //realGa.Evaluate();
+
+            restarter.Algorithm = pso;
+
+            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
+            launcher.Algorithm = restarter;
+            launcher.Run();
+
+            StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
+            launcherDataSaver.SaveStats(launcher, $"{restartParameters.BestSolutionRestartDistance}_{restartParameters.Threshold}_{restartParameters.WindowSize}.xlsx");
+        }
+
+        private static void RunDe(int dimension, double restartDistance, double threshold, int windowSize, LdeSingleOutputInverseProblem problem)
+        {
+            // Search parameters
+            var variablesFrom = Enumerable.Repeat(-5.0, dimension).ToArray();
+            var variablesTo = Enumerable.Repeat(5.0, dimension).ToArray();
+
+            BestValueBasedRestart restarter = new BestValueBasedRestart();
+            BestValueBasedRestartParameters restartParameters = new BestValueBasedRestartParameters();
+            restartParameters.BestSolutionRestartDistance = restartDistance;
+            restartParameters.IterationsTotal = 500;
+            restartParameters.Threshold = threshold;
+            restartParameters.WindowSize = windowSize;
+
+            restarter.Parameters = restartParameters;
+
+            DifferentialEvolution differentialEvolution = new DifferentialEvolution();
+            DifferentialEvolutionParameters differentialEvolutionParameters = new DifferentialEvolutionParameters();
+
+            differentialEvolutionParameters.CrossoverProbability = 0.2;
+            differentialEvolutionParameters.DifferentialWeight = 1.4;
+
+            differentialEvolutionParameters.GenerationParameters.GenerationType = PopulationGenerationType.Uniform;
+            differentialEvolutionParameters.GenerationParameters.GenerationFrom = variablesFrom;
+            differentialEvolutionParameters.GenerationParameters.GenerationTo = variablesTo;
+
+            differentialEvolutionParameters.Size = 100;
+            differentialEvolutionParameters.Iterations = 500;
+
+            differentialEvolution.SetProblem(problem);
+            differentialEvolution.SetParameters(differentialEvolutionParameters);
+            //realGa.Evaluate();
+
+            restarter.Algorithm = differentialEvolution;
+
+            StaticRestartLauncher launcher = new StaticRestartLauncher(new StaticRestartLaucherParameters() { Iterations = 40 });
+            launcher.Algorithm = restarter;
+            launcher.Run();
+
+            StandardLauncherStatisticsIOManager launcherDataSaver = new StandardLauncherStatisticsIOManager();
+            launcherDataSaver.SaveStats(launcher, $"{restartParameters.BestSolutionRestartDistance}_{restartParameters.Threshold}_{restartParameters.WindowSize}.xlsx");
+        }
+
         private static void Run(int dimension, double restartDistance, double threshold, int windowSize, LdeSingleOutputInverseProblem problem)
         {
             // Search parameters
@@ -34,7 +123,7 @@ namespace TestApp
             BestValueBasedRestart restarter = new BestValueBasedRestart();
             BestValueBasedRestartParameters restartParameters = new BestValueBasedRestartParameters();
             restartParameters.BestSolutionRestartDistance = restartDistance;
-            restartParameters.IterationsTotal = 200;
+            restartParameters.IterationsTotal = 500;
             restartParameters.Threshold = threshold;
             restartParameters.WindowSize = windowSize;
 
@@ -71,13 +160,13 @@ namespace TestApp
             realGaParameters.NextPopulationType = RvgaNextPopulationType.ParentsAndOffsprings;
             realGaParameters.SizeOfTrialPopulation = 100;
             realGaParameters.Size = 100;
-            realGaParameters.Iterations = 200;
+            realGaParameters.Iterations = 500;
 
             realGaParameters.IndividsToOptimizeLocally = 0;
             realGaParameters.LoParameters = new RandomCoordinatewiseOptimizatorParameters
             {
-                NumberOfCoordinates = 20,
-                NumberOfSteps = 5,
+                NumberOfCoordinates = 10,
+                NumberOfSteps = 1,
                 Step = 0.1,
                 Type = RandomCoordinatewiseSearchType.RandomDirection
             };
@@ -115,8 +204,8 @@ namespace TestApp
             // Real parameters
             double[] realParams = new double[]
             {
-                -1.0, -4.0, -3.0,
-                -1.0, 3.0
+                -1.0, -2.0, -1.0,
+                1.0, 2.0
             };
 
             // Set parameters
@@ -182,9 +271,9 @@ namespace TestApp
                 -1, -2, -4, -1, 1, 1
             });
 
-            var restartDistances = new double[] { 0.01, 0.05, 0.1 };
-            var thresholds = new double[] { 0.01, 0.05, 0.005, 0.001, 0.0005 };
-            var windowSizes = new int[] { 10, 12, 15, 20 };
+            var restartDistances = new double[] { 0.05 };
+            var thresholds = new double[] { 0.001, 0.005, 0.0005, 0.0001, 0.00005 };
+            var windowSizes = new int[] { 75 };
 
             int all = restartDistances.Length * thresholds.Length * windowSizes.Length;
 
@@ -195,12 +284,12 @@ namespace TestApp
                     for (int k = 0; k < windowSizes.Length; k++)
                     {
                         Console.WriteLine($"{restartDistances[i]} {thresholds[j]} {windowSizes[k]}");
-                        Run(dimension, restartDistances[i], thresholds[j], windowSizes[k], inverseProblem);
+                        RunPso(dimension, restartDistances[i], thresholds[j], windowSizes[k], inverseProblem);
                     }
                 }
             }
 
-            Run(dimension, restartDistances[0], 0, windowSizes[0], inverseProblem);
+            RunPso(dimension, restartDistances[0], 0, 100, inverseProblem);
         }
 
         private void SSystemTesting()

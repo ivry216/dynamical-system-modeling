@@ -1,4 +1,5 @@
-﻿using Randomizer.Randomizing;
+﻿using MathCore.Extensions.Arrays;
+using Randomizer.Randomizing;
 
 namespace Optimization.EvolutionaryAlgorithms.ParticleSwarmOptimization
 {
@@ -73,7 +74,21 @@ namespace Optimization.EvolutionaryAlgorithms.ParticleSwarmOptimization
             for (int i = 0; i < Parameters.Size; i++)
             {
                 TryUpdateSwarmHistory(Population[i], Fitness[i], i);
+                TryUpdateSolution(Fitness[i], Population[i]);
             }
+
+            //
+            _bestFoundPosition = new double[Parameters.Size][];
+            _bestFoundValue = new double[Parameters.Size];
+
+            for (int i = 0; i < Parameters.Size; i++)
+            {
+                _velocities[i] = new double[Problem.Dimension];
+                _bestFoundPosition[i] = new double[Problem.Dimension];
+            }
+
+            // Initialize the best group found solution
+            _bestEverFoundPosition = new double[Problem.Dimension];
         }
 
         protected override void NextIteration()
@@ -101,24 +116,25 @@ namespace Optimization.EvolutionaryAlgorithms.ParticleSwarmOptimization
                     // Update particle position
                     currentParticle[j] += currentVelocity[j];
                 }
+            }
 
-                // Calculate fitness
-                CalculateFitness();
+            // Calculate fitness
+            CalculateFitness();
 
-                // Initialize history with data
-                for (int k = 0; k < Parameters.Size; k++)
-                {
-                    TryUpdateSwarmHistory(Population[k], Fitness[k], k);
-                }
+            // Initialize history with data
+            for (int k = 0; k < Parameters.Size; k++)
+            {
+                TryUpdateSwarmHistory(Population[k], Fitness[k], k);
+                TryUpdateSolution(Fitness[k], Population[k]);
             }
         }
 
         private void TryUpdateSwarmHistory(double[] alternative, double value, int currentParticleIndex)
         {
-            if (value > Fitness[currentParticleIndex])
+            if (value > _bestFoundValue[currentParticleIndex])
             {
-                Population[currentParticleIndex] = alternative;
-                Fitness[currentParticleIndex] = value;
+                _bestFoundPosition[currentParticleIndex].FillWithVector(alternative);
+                _bestFoundValue[currentParticleIndex] = value;
 
                 if (value > _bestEverFoundValue)
                 {
