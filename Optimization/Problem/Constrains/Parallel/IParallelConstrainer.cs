@@ -1,6 +1,6 @@
 ﻿using Optimization.Problem.Parallel;
 
-namespace Optimization.Problem.Constrains
+namespace Optimization.Problem.Constrains.Parallel
 {
     public interface IConstrainer<TValues, TAlternatives>
         where TValues : IParallelOptimizationProblemValues
