@@ -10,7 +10,7 @@ namespace Optimization.AlgorithmsInterfaces
         where TAlgorithmParametesr : OptimizationAlgorithmParameters
         where TValues : IParallelOptimizationProblemValues
         where TAlternatives : IParallelOptimizationProblemAlternative
-        where TParallelProblem : ParallelOptimizationProblem<TValues, TAlternatives>
+        where TParallelProblem : IParallelOptimizationProblem<TValues, TAlternatives>
     {
         void SetParameters(TAlgorithmParametesr parameters);
         void SetProblem(TParallelProblem problem);

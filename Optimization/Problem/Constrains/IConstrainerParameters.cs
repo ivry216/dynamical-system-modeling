@@ -1,4 +1,4 @@
-﻿namespace Optimization.Problem.Constrains.Parallel
+﻿namespace Optimization.Problem.Constrains
 {
     public interface IConstrainerParameters
     {

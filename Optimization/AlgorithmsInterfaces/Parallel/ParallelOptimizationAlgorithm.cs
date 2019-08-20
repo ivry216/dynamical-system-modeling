@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Optimization.AlgorithmsInterfaces.Parallel
 {
-    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : IParallelOptimizationAlgorithm<TAlgorithmParameters, ParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IRestartableAlgorithm, IContainingStatsFollowers
+    public abstract class ParallelOptimizationAlgorithm<TAlgorithmParameters, TValues, TAlternatives, TCalculationResult, TAlternativeRepresentations> : IParallelOptimizationAlgorithm<TAlgorithmParameters, IParallelOptimizationProblem<TValues, TAlternatives>, TValues, TAlternatives>, IRealAlgorithm, IRestartableAlgorithm, IContainingStatsFollowers
         where TAlgorithmParameters : OptimizationAlgorithmParameters
         where TValues : IParallelOptimizationProblemValues
         where TAlternatives : IParallelOptimizationProblemAlternative
@@ -137,7 +137,7 @@ namespace Optimization.AlgorithmsInterfaces.Parallel
             SetParameters((TAlgorithmParameters)parameters);
         }
 
-        public void SetProblem(ParallelOptimizationProblem<TValues, TAlternatives> problem)
+        public void SetProblem(IParallelOptimizationProblem<TValues, TAlternatives> problem)
         {
             Problem = problem;
             Dimension = problem.Dimension;

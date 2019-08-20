@@ -1,9 +1,4 @@
-﻿using Optimization.Problem.Constrains.Parallel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Optimization.Problem.Constrains;
 
 namespace Optimization.Problem.Parallel.Constrained
 {
@@ -13,7 +8,7 @@ namespace Optimization.Problem.Parallel.Constrained
     {
         #region Fields
 
-        protected IParallelConstrainer _constrainer;
+        protected IConstrainer _constrainer;
 
         #endregion Fields
 
@@ -26,7 +21,7 @@ namespace Optimization.Problem.Parallel.Constrained
 
         #region Constructor
 
-        public ParallelOptimizationConstrainedProblem(int dimension, IParallelConstrainer constrainer)
+        public ParallelOptimizationConstrainedProblem(int dimension, IConstrainer constrainer)
         {
             Dimension = dimension;
             _constrainer = constrainer;
