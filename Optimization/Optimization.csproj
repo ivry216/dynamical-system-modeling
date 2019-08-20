@@ -132,8 +132,13 @@
     <Compile Include="AlgorithmsInterfaces\OptimizationAlgorithmParameters.cs" />
     <Compile Include="Parameters\Generation\GenerationParameters.cs" />
     <Compile Include="Parameters\Generation\IGenerationParameters.cs" />
+<<<<<<< HEAD
     <Compile Include="Problem\Constrains\Parallel\ParallelConstrainerBase.cs" />
     <Compile Include="Problem\Constrains\Parallel\IParallelConstrainer.cs" />
+=======
+    <Compile Include="Problem\Constrains\Parallel\ConstrainerBase.cs" />
+    <Compile Include="Problem\Constrains\Parallel\IConstrainer.cs" />
+>>>>>>> master
     <Compile Include="Problem\IOptimizationProblem.cs" />
     <Compile Include="Problem\OptimizationProblem.cs" />
     <Compile Include="Problem\Parallel\Constrained\ParallelOptimizationConstrainedProblem.cs" />
