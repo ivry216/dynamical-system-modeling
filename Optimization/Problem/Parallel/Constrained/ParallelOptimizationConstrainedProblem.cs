@@ -13,7 +13,7 @@ namespace Optimization.Problem.Parallel.Constrained
     {
         #region Fields
 
-        protected IParallelConstrainer<TValues, TAlternatives> _constrainer;
+        protected IParallelConstrainer _constrainer;
 
         #endregion Fields
 
@@ -26,7 +26,7 @@ namespace Optimization.Problem.Parallel.Constrained
 
         #region Constructor
 
-        public ParallelOptimizationConstrainedProblem(int dimension, IParallelConstrainer<TValues, TAlternatives> constrainer)
+        public ParallelOptimizationConstrainedProblem(int dimension, IParallelConstrainer constrainer)
         {
             Dimension = dimension;
             _constrainer = constrainer;
