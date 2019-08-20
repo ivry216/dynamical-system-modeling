@@ -9,12 +9,15 @@ namespace Optimization.Problem.Constrains
         public double? HardMaxConstrain { get; }
         public double? HardMinConstrain { get; }
 
-        public HardAndSoftConstrain(double? hardMax, double? hardMin, double? softMax, double? softMin)
+        public double SoftConstrainCoeff { get; }
+
+        public HardAndSoftConstrain(double? hardMax, double? hardMin, double? softMax, double? softMin, double sotfConstrainCoeff = 0d)
         {
             HardMaxConstrain = hardMax;
             HardMinConstrain = hardMin;
             SoftMinConstrain = softMax;
             SoftMaxConstrain = softMax;
+            SoftConstrainCoeff = sotfConstrainCoeff;
         }
 
         public bool IsFeasible(double alternativeValue)
