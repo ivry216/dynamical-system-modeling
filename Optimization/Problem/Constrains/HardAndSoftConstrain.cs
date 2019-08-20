@@ -11,11 +11,11 @@ namespace Optimization.Problem.Constrains
 
         public double SoftConstrainCoeff { get; }
 
-        public HardAndSoftConstrain(double? hardMax, double? hardMin, double? softMax, double? softMin, double sotfConstrainCoeff = 0d)
+        public HardAndSoftConstrain(double? hardMin, double? hardMax, double? softMin, double? softMax, double sotfConstrainCoeff = 0d)
         {
             HardMaxConstrain = hardMax;
             HardMinConstrain = hardMin;
-            SoftMinConstrain = softMax;
+            SoftMinConstrain = softMin;
             SoftMaxConstrain = softMax;
             SoftConstrainCoeff = sotfConstrainCoeff;
         }
