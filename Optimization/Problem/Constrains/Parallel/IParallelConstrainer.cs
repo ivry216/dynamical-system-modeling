@@ -1,11 +1,7 @@
-﻿using Optimization.Problem.Parallel;
-
-namespace Optimization.Problem.Constrains.Parallel
+﻿namespace Optimization.Problem.Constrains.Parallel
 {
-    public interface IParallelConstrainer<TValues, TAlternatives>
-        where TValues : IParallelOptimizationProblemValues
-        where TAlternatives : IParallelOptimizationProblemAlternative
+    public interface IParallelConstrainer
     {
-        TValues Evaluate(TAlternatives alternatives);
+        double Evaluate(double[] alternatives);
     }
 }

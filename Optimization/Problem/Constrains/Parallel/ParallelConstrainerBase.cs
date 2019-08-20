@@ -1,19 +1,16 @@
-﻿using Optimization.Problem.Parallel;
-using System;
+﻿using System;
 
 namespace Optimization.Problem.Constrains.Parallel
 {
-    public abstract class ParallelConstrainerBase<TValues, TAlternatives> : IParallelConstrainer<TValues, TAlternatives>
-        where TValues : IParallelOptimizationProblemValues
-        where TAlternatives : IParallelOptimizationProblemAlternative
+    public abstract class ParallelConstrainerBase : IParallelConstrainer
     {
-        protected Func<TValues, TAlternatives> _objectiveFunction;
+        protected Func<double, double[]> _objectiveFunction;
 
-        public ParallelConstrainerBase(Func<TValues, TAlternatives> objectiveFunction)
+        public ParallelConstrainerBase(Func<double, double[]> objectiveFunction)
         {
             _objectiveFunction = objectiveFunction;
         }
 
-        public abstract TValues Evaluate(TAlternatives alternatives);
+        public abstract double Evaluate(double[] alternatives);
     }
 }
