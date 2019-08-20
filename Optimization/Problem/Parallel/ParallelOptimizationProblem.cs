@@ -7,7 +7,7 @@
         #region Properties
 
         public int Dimension { get; }
-        public bool IsConstrained { get; }
+        public bool IsConstrained => false;
 
         #endregion Properties
 
