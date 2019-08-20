@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Optimization.Problem.Constrains.Parallel.SoftAndHard;
+using System;
 
 namespace Optimization.Problem.Constrains.Parallel
 {
-    public class ParallelSoftAndHardConstrainer : ParallelConstrainerBase
+    public class ParallelSoftAndHardConstrainer : ParallelConstrainerBase<SahConstrainerParameters>
     {
-        public ParallelSoftAndHardConstrainer(Func<double, double[]> objectiveFunction) : base(objectiveFunction)
+        public ParallelSoftAndHardConstrainer(SahConstrainerParameters parameters, Func<double, double[]> objectiveFunction) : base(parameters, objectiveFunction)
         {
         }
 

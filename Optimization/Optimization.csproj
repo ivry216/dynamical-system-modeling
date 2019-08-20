@@ -132,6 +132,7 @@
     <Compile Include="AlgorithmsInterfaces\OptimizationAlgorithmParameters.cs" />
     <Compile Include="Parameters\Generation\GenerationParameters.cs" />
     <Compile Include="Parameters\Generation\IGenerationParameters.cs" />
+    <Compile Include="Problem\Constrains\Parallel\IConstrainerParameters.cs" />
     <Compile Include="Problem\Constrains\Parallel\IParallelConstrainer.cs" />
     <Compile Include="Problem\Constrains\Parallel\ParallelConstrainerBase.cs" />
     <Compile Include="Problem\Constrains\Parallel\ParallelSoftAndHardConstrainer.cs" />

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Optimization.Problem.Constrains.Parallel.SoftAndHard
+﻿namespace Optimization.Problem.Constrains.Parallel.SoftAndHard
 {
-    class SahConstrainerParameters
+    public class SahConstrainerParameters : IConstrainerParameters
     {
     }
 }
