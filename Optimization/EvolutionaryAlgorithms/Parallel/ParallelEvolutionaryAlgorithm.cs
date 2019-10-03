@@ -40,7 +40,7 @@ namespace Optimization.EvolutionaryAlgorithms.Parallel
 
             // Initialize the population
             Population = new double[Parameters.Size][];
-            for (int i = 0; i < Problem.Dimension; i++)
+            for (int i = 0; i < Parameters.Size; i++)
             {
                 Population[i] = new double[Problem.Dimension];
             }
